@@ -131,7 +131,4 @@ Route::group(['middleware' => ['auth']] , function(){
     Route::get('queries/delete/{id}', [QueryController::class, 'queryDelete'])->name('admin.query.delete');
 
     Route::resource('/partner', PartnerController::class)->except('show', 'create');
-
-
-    // this is my repository
 });
