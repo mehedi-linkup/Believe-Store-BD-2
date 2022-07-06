@@ -76,15 +76,17 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+                                
+                                <label for="about_image">About Image 1</label>
+                                <input class="form-control form-control-sm" id="about_image" type="file" name="about_image" onchange="readAboutURL(this);">
+                                <div class="form-group mt-2">
+                                    <img class="form-controlo img-thumbnail" src="#" id="previewAboutImage" style="width: 160px;height: 130px;">
+                                </div>
+
                                 <label for="logo" class="mt-2">Company Logo</label>
                                 <input class="form-control form-control-sm" id="logo" type="file" name="logo" onchange="readURL(this);">
                                 <div class="form-group my-2">
                                     <img class="form-controlo img-thumbnail" src="#" id="previewImage" style="width: 160px;height: 130px;">
-                                </div>
-                                <label for="about_image">About Image</label>
-                                <input class="form-control form-control-sm" id="about_image" type="file" name="about_image" onchange="readAboutURL(this);">
-                                <div class="form-group mt-2">
-                                    <img class="form-controlo img-thumbnail" src="#" id="previewAboutImage" style="width: 160px;height: 130px;">
                                 </div>
                             </div>
                             <div class="col-md-6 mb-2">
@@ -96,7 +98,7 @@
                                     </span>
                                 @enderror
 
-                                <label for="bg_image">Background Image</label>
+                                <label for="bg_image">About Image 2</label>
                                 <input class="form-control form-control-sm" id="bg_image" type="file" name="bg_image" onchange="readBgURL(this);">
                                 <div class="form-group mt-2">
                                     <img class="form-controlo img-thumbnail" src="#" id="previewBgImage" style="width: 160px;height: 130px;">

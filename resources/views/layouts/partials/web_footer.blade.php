@@ -3,25 +3,25 @@
       <div class="container">
           <div class="row">
               <div class="col-md-3 col-6">
-                  <h3 class="company-title">Believe Store BD</h3>
-                  <div class="about-text">Some text about our company. Some text about our company. Some text about our company. Some text about our company. Some text about our company....</div>
+                  <h3 class="company-title">{{ $content->name }}</h3>
+                  <div class="about-text">{!! Str::words($content->about, 25, '') !!}</div>
               </div>
               <div class="col-md-3 col-6">
                   <h4>Company Address</h4>
                   <ul class="address">
-                      <li>Kazi Nazrul Islam Avenue, Dhaka-1000</li>
-                      <li><b>Phone:</b> <a href="tel:01719345637">01719345637</a></li>
-                      <li><b>Email:</b> <a href="mailto:admin@email.com">admin@email.com</a></li>
+                      <li>{{ $content->address }}</li>
+                      <li><b>Phone:</b> <a href="tel:{{ $content->phone }}">{{ $content->phone }}</a></li>
+                      <li><b>Email:</b> <a href="mailto:{{ $content->email }}">{{ $content->email }}</a></li>
                       <li></li>
                   </ul>
               </div>
               <div class="col-md-3 col-6">
                   <h4>Follow Us</h4>
                   <ul class="link">
-                      <li><a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-square me-2"></i><span>Facebook</span></a></li>
-                      <li><a href="https://www.twitter.com/" target="_blank"><i class="fab fa-twitter-square me-2"></i><span>Twitter</span></a></li>
-                      <li><a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram-square me-2"></i><span>Instagram</span></a></li>
-                      <li><a href="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin me-2"></i><span>LinkedIn</span></a></li>
+                      <li><a href="{{ $content->facebook }}" target="_blank"><i class="fab fa-facebook-square me-2"></i><span>Facebook</span></a></li>
+                      <li><a href="{{ $content->twitter }}" target="_blank"><i class="fab fa-twitter-square me-2"></i><span>Twitter</span></a></li>
+                      <li><a href="{{ $content->instagram }}" target="_blank"><i class="fab fa-instagram-square me-2"></i><span>Instagram</span></a></li>
+                      <li><a href="{{ $content->linkedin }}" target="_blank"><i class="fab fa-linkedin me-2"></i><span>LinkedIn</span></a></li>
                   </ul>
               </div>
               <div class="col-md-3 col-6">
@@ -36,7 +36,7 @@
           <div class="row">
               <div class="col-md-6 col-12">
                   <div class="copyright">
-                      <p>@Copyright 2022, All right reserved, Believe Store BD.</p>
+                      <p>@Copyright 2022, All right reserved, {{ $content->name }}.</p>
                   </div>
               </div>
               <div class="col-md-6 col-12">

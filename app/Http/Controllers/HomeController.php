@@ -7,14 +7,20 @@ use App\Models\Category;
 use App\Models\Subcategory;
 use App\Models\Product;
 use App\Models\Slider;
+use App\Models\Gallery;
+use App\Models\Video;
+use App\Models\Management;
 
 class HomeController extends Controller
 {
     public function index()
-    {
+    {   
         $category = Category::latest()->get();
         $slider = Slider::latest()->get();
-        return view('pages.website.index', compact('category', 'slider'));
+        $video = Video::latest()->get();
+        $gallery = Gallery::latest()->get();
+        $management = Management::latest()->get();
+        return view('pages.website.index', compact('category', 'slider', 'gallery', 'video', 'management'));
     }
     public function submenu($id) {
         $subcategory = Subcategory::where('category_id', $id)->get();

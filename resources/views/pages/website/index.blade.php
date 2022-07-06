@@ -1,4 +1,4 @@
-@extends('layouts.website')
+@extends('layouts.website', [])
 @section('web-content')
 
 @include('layouts.partials.web_slider')
@@ -7,11 +7,23 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12 col-12">
-        <h2 class="section-title fs-2 fw-bold text-center text-uppercase text-white">Product Menu</h2>
+        <h2 class="section-title fs-2 fw-bold text-center text-uppercase text-white">Our Product List</h2>
       </div>
     </div>
     <div class="row gy-3">
+      @foreach($category->take(8) as $item)
       <div class="col-md-3 col-12 text-center">
+        <a href="{{ route('submenu', $item->id) }}" class="filter-anchor">
+          <div class="filter-box">
+            <div class="img-box">
+              <img src="{{ asset( $item->image ) }}" alt="{{ $item->name }}" class="img-fluid"/>
+            </div>
+            <h5 class="product-title mt-2">{{ $item->name }}</h5>
+          </div>
+        </a>
+      </div>
+      @endforeach
+      {{-- <div class="col-md-3 col-12 text-center">
         <a href="" class="filter-anchor">
           <div class="filter-box">
             <div class="img-box">
@@ -80,17 +92,7 @@
             <h5 class="product-title mt-2">Flip Cover Print</h5>
           </div>
         </a>
-      </div>
-      <div class="col-md-3 col-12 text-center">
-        <a href="" class="filter-anchor">
-          <div class="filter-box">
-            <div class="img-box">
-              <img src="{{ asset('website/assets/image/category/202206250928yourdesignT-scaled.jpg') }}" alt="" class="img-fluid"/>
-            </div>
-            <h5 class="product-title mt-2">Flip Cover Print</h5>
-          </div>
-        </a>
-      </div>
+      </div> --}}
     </div>
   </div>
 </section>
@@ -99,16 +101,16 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4 col-12">
-                <img src="{{ asset('website/assets/image/service/about-product1.jpg') }}" alt="" class="w-100">
+                <img src="{{ asset( $content->about_image ) }}" alt="" class="w-100">
             </div>
             <div class="col-md-4 col-12">
-                <img src="{{ asset('website/assets/image/service/trending.jpg') }}" alt="" class="w-100">
+                <img src="{{ asset( $content->bg_image ) }}" alt="" class="w-100">
             </div>
             <div class="col-md-4 col-12">
                 <div class="custom-card">
-                    <h2 class="welcome-title fs-3 fw-bold text-uppercase">Welcome To Believe Store BD</h2>
-                    <p class="semi-title">Customize any case with our premium marble design which has a matching POP as well! Customization available for 300+ phone cases! Customizing cases has never been easier.</p>
-                    <div class="description">With the right technology we are able to perfect the printing all the way to the sides of the case. Sublimation print is 100% permanent and washable. Therefore rough use of Stick-On cases are not an issue! 📲✨Let's customize! Inbox us for details! 📩</div>
+                    <h2 class="welcome-title fs-3 fw-bold text-uppercase">Welcome To {{ $content->name }}</h2>
+                    {{-- <p class="semi-title">Customize any case with our premium marble design which has a matching POP as well! Customization available for 300+ phone cases! Customizing cases has never been easier.</p> --}}
+                    <div class="description">{!! $content->about !!}</div>
                 </div>
             </div>
         </div>
@@ -179,24 +181,26 @@
         <h2 class="section-title fs-2 fw-bold text-center text-uppercase text-white">Meet our Team</h2>
       </div>
       <div class="row">
+        @foreach($management->take(4) as $item)
         <div class="col-md-3 col-12">
           <div class="team-box">
             <div class="img-box">
               <div class="icon-box">
                 <ul class="link-icons justify-content-around">
-                  <li><a href=""><i class="fa-brands fa-facebook-f"></i></a></li>
-                  <li><a href=""><i class="fa-brands fa-twitter"></i></a></li>
-                  <li><a href=""><i class="fa-brands fa-instagram"></i></a></li>
-                  <li><a href=""><i class="fa-brands fa-linkedin-in"></i></a></li>
+                  <li><a href="{{ $item->facebook }}"><i class="fa-brands fa-facebook-f"></i></a></li>
+                  <li><a href="{{ $item->twitter }}"><i class="fa-brands fa-twitter"></i></a></li>
+                  <li><a href="{{ $item->instagram }}"><i class="fa-brands fa-instagram"></i></a></li>
+                  {{-- <li><a href=""><i class="fa-brands fa-linkedin-in"></i></a></li> --}}
                 </ul>
               </div>
-              <img src="{{ asset('website/assets/image/team/44.jpg') }}" alt="" class="img-fluid">
+              <img src="{{ asset('uploads/management/'.$item->image) }}" alt="{{ $item->name }}" class="img-fluid">
             </div>
-            <h5 class="product-title text-center mt-4">William</h5>
-            <p class="text-designation text-center">Project Manager</p>
+            <h5 class="product-title text-center mt-4">{{ $item->name }}</h5>
+            <p class="text-designation text-center">{{ $item->name }}</p>
           </div>
         </div>
-        <div class="col-md-3 col-12">
+        @endforeach
+        {{-- <div class="col-md-3 col-12">
           <div class="team-box">
             <div class="img-box">
               <div class="icon-box">
@@ -250,7 +254,7 @@
             </div>
           </div>
 
-        </div>
+        </div> --}}
       </div>
     </div>
   </div>
@@ -263,84 +267,13 @@
     </div>
     <div class="row">
       <ul class="gallery">
+        @foreach($gallery->take(15) as $item)
         <li>
-          <!-- <a href="https://source.unsplash.com/random?iran" class="image-link">
-            <img src="https://source.unsplash.com/random?iran" alt="">
-          </a> -->
-          <a href="{{ asset('website/assets/image/gallery/photo-1.jpg') }}" title="photo 1" class="image-link">
-            <img src="{{ asset('website/assets/image/gallery/photo-1.jpg') }}" alt="">
+          <a href="{{ asset('uploads/gallery/'.$item->image ) }}" title="{{$item->name}}" class="image-link">
+            <img src="{{ asset('uploads/gallery/'.$item->image ) }}" alt="">
           </a>
         </li>
-        <li>
-          <a href="{{ asset('website/assets/image/gallery/photo-14.jpg') }}" title="photo 1" class="image-link">
-            <img src="{{ asset('website/assets/image/gallery/photo-14.jpg') }}" alt="">
-          </a>
-        </li>
-        <li>
-          <a href="{{ asset('website/assets/image/gallery/photo-2.jpg') }}" title="photo 1" class="image-link">
-            <img src="{{ asset('website/assets/image/gallery/photo-2.jpg') }}" alt="">
-          </a>
-        </li>
-        <li>
-          <a href="{{ asset('website/assets/image/gallery/photo-3.jpg') }}" title="photo 1" class="image-link">
-            <img src="{{ asset('website/assets/image/gallery/photo-3.jpg') }}" alt="">
-          </a>
-        </li>
-        <li>
-          <a href="{{ asset('website/assets/image/gallery/photo-4.jpg') }}" title="photo 1" class="image-link">
-            <img src="{{ asset('website/assets/image/gallery/photo-4.jpg') }}" alt="">
-          </a>
-        </li>
-        <li>
-          <a href="{{ asset('website/assets/image/gallery/photo-5.jpg') }}" title="photo 1" class="image-link">
-            <img src="{{ asset('website/assets/image/gallery/photo-5.jpg') }}" alt="">
-          </a>
-        </li>
-        <li>
-          <a href="{{ asset('website/assets/image/gallery/photo-6.jpg') }}" title="photo 1" class="image-link">
-            <img src="{{ asset('website/assets/image/gallery/photo-6.jpg') }}" alt="">  
-          </a>
-        </li>
-        <li>
-          <a href="{{ asset('website/assets/image/gallery/photo-7.jpg') }}" title="photo 1" class="image-link">
-            <img src="{{ asset('website/assets/image/gallery/photo-7.jpg') }}" alt="">
-          </a>
-        </li>
-        <li>
-          <a href="{{ asset('website/assets/image/gallery/photo-8.jpg') }}" title="photo 1" class="image-link">
-            <img src="{{ asset('website/assets/image/gallery/photo-8.jpg') }}" alt="">
-          </a>
-        </li>
-        <li>
-          <a href="{{ asset('website/assets/image/gallery/photo-9.jpg') }}" title="photo 1" class="image-link">
-            <img src="{{ asset('website/assets/image/gallery/photo-9.jpg') }}" alt="">  
-          </a>
-        </li>
-        <li>
-          <a href="{{ asset('website/assets/image/gallery/photo-10.jpg') }}" title="photo 1" class="image-link">
-            <img src="{{ asset('website/assets/image/gallery/photo-10.jpg') }}" alt="">
-          </a>
-        </li>
-        <li>
-          <a href="{{ asset('website/assets/image/gallery/photo-11.jpg') }}" title="photo 1" class="image-link">
-            <img src="{{ asset('website/assets/image/gallery/photo-11.jpg') }}" alt="">
-          </a>
-        </li>
-        <li>
-          <a href="{{ asset('website/assets/image/gallery/photo-12.jpg') }}" title="photo 1" class="image-link">
-            <img src="{{ asset('website/assets/image/gallery/photo-12.jpg') }}" alt="">  
-          </a>
-        </li>  
-        <li>
-          <a href="{{ asset('website/assets/image/gallery/photo-13.jpg') }}" title="photo 1" class="image-link">
-            <img src="{{ asset('website/assets/image/gallery/photo-13.jpg') }}" alt="">
-          </a>
-        </li>
-        <li>
-          <a href="{{ asset('website/assets/image/gallery/photo-14.jpg') }}" title="photo 1" class="image-link">
-            <img src="{{ asset('website/assets/image/gallery/photo-14.jpg') }}" alt="">  
-          </a>
-        </li>  
+        @endforeach
       </ul>
     </div>
   </div>
@@ -352,31 +285,20 @@
       <h2 class="section-title fs-2 fw-bold text-center text-uppercase">Video Gallery</h2>
     </div>
     <div class="row">
+     
       <div class="col-md-5 col-12">
         <div>
-          <iframe width="100%" height="274" src="https://www.youtube.com/embed/Zv11L-ZfrSg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+          <iframe width="100%" height="274" src="{{ $video[0]->link }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
         </div>
       </div>
+      
       <div class="col-md-7 col-12 mt-md-0 mt-2">
         <div class="row row-cols-md-3 row-cols-2 gx-1">
+         @foreach($video as $item)
           <div class="col">
-            <iframe width="100%" height="135" src="https://www.youtube.com/embed/Zv11L-ZfrSg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+            <iframe width="100%" height="135" src="{{ $item->link }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
           </div>
-          <div class="col">
-            <iframe width="100%" height="135" src="https://www.youtube.com/embed/Zv11L-ZfrSg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
-          </div>
-          <div class="col">
-            <iframe width="100%" height="135" src="https://www.youtube.com/embed/Zv11L-ZfrSg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
-          </div>
-          <div class="col">
-            <iframe width="100%" height="135" src="https://www.youtube.com/embed/Zv11L-ZfrSg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
-          </div>
-          <div class="col">
-            <iframe width="100%" height="135" src="https://www.youtube.com/embed/Zv11L-ZfrSg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
-          </div>
-          <div class="col">
-            <iframe width="100%" height="135" src="https://www.youtube.com/embed/Zv11L-ZfrSg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
-          </div>
+          @endforeach
         </div>
       </div>
     </div>

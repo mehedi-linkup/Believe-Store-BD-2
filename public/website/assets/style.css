@@ -103,7 +103,10 @@ h2.section-title::before {
 }
 
 .nav-link {
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255);
+}
+.nav-link:hover {
+    color: rgba(255, 255, 255, 0.9);
 }
 .navbar-nav .nav-link.active, .navbar-nav .show>.nav-link {
     color: #f24c34;
@@ -473,6 +476,59 @@ h2.section-title::before {
         text-align: center;
     }
 }
+
+
+/* Subcategory Page */
+.product-background {
+    background-size: cover;
+    background-position: center center;
+    background-color: rgba(0, 0, 0, 0.5);
+    background-image: url('../assets/image/section-background/EmbeddedImage.jpg');
+    background-blend-mode: darken;
+    height: 250px;
+}
+
+@media(min-width: 1200px) {
+    .breadcrumb a , .breadcrumb li.active, .breadcrumb span {
+        font-size: 26px;
+    }
+}
+
+@media(min-width: 768px) and (max-width: 1199px) {
+    .breadcrumb a , .breadcrumb li.active, .breadcrumb span {
+        font-size: 22px;
+    }
+}
+
+@media(max-width: 767px) {
+    .breadcrumb a , .breadcrumb li.active, .breadcrumb span {
+        font-size: 18px;
+    }
+}
+.breadcrumb li.active, .breadcrumb span {
+    color: #fff;
+}
+.breadcrumb a {
+    color: #f35d47;
+}
+.product-background nav {
+    margin-top: 50px;
+}
+
+
+
+
+
+/* 
+.page-header {
+    background-color: #f35d47;
+}
+
+.page-header ol {
+    margin: 0;
+    padding: 10px;
+} */
+
 
 /* Third Party app css */
 .viewbox-container {

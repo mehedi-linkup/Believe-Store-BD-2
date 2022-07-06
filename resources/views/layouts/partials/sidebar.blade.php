@@ -6,19 +6,23 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Dashboard
                 </a>
-                <a class="nav-link {{ ($pageName == 'content' || $pageName == 'service' || $pageName == 'category' || $pageName == 'subcategory' || $pageName == 'management' || $pageName == 'gallery' || $pageName == 'product' || $pageName == 'partner' ? 'active' : 'collapsed') }}" href="#" data-toggle="collapse" data-target="#collapseLayouts1" aria-expanded="false" aria-controls="collapseLayouts1">
+                <a class="nav-link {{ ($pageName == 'content' || $pageName == 'slide' || $pageName == 'service' || $pageName == 'category' || $pageName == 'subcategory' || $pageName == 'management' || $pageName == 'video' || $pageName == 'gallery' || $pageName == 'product' || $pageName == 'partner' ? 'active' : 'collapsed') }}" href="#" data-toggle="collapse" data-target="#collapseLayouts1" aria-expanded="false" aria-controls="collapseLayouts1">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     Web Content
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
-                <div class="collapse {{ ($pageName == 'content' || $pageName == 'service' || $pageName == 'category' || $pageName == 'subcategory' || $pageName == 'management' || $pageName == 'gallery' || $pageName == 'product' || $pageName == 'partner' ? 'show' : '') }}" id="collapseLayouts1" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                <div class="collapse {{ ($pageName == 'content' || $pageName == 'slider' || $pageName == 'service' || $pageName == 'category' || $pageName == 'subcategory' || $pageName == 'management' || $pageName == 'video' || $pageName == 'gallery' || $pageName == 'product' || $pageName == 'partner' ? 'show' : '') }}" id="collapseLayouts1" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
                         <a class="nav-link" href="{{ route('company.edit') }}">Company Content</a>
+                        <a class="nav-link" href="{{ route('slider.index') }}">Slider</a>
+                        <a class="nav-link" href="{{ route('whatwe.index') }}">About Us</a>
                         <a class="nav-link" href="{{ route('service') }}">Service</a>
                         <a class="nav-link" href="{{ route('admin.categories') }}">Category</a>
                         <a class="nav-link" href="{{ route('admin.subcategories') }}">Subcategory</a>
                         <a class="nav-link" href="{{ route('management.index') }}">Management</a>
                         <a class="nav-link" href="{{ route('gallery') }}">Gallery</a>
+                        <a class="nav-link" href="{{ route('videos') }}">Video</a>
+                        <a class="nav-link" href="{{ route('news') }}">News & Events</a>
                         <a class="nav-link" href="{{ route('partner.index') }}">Partner</a>
                         <a class="nav-link" href="{{ route('admin.products') }}">Product</a>
                     </nav>

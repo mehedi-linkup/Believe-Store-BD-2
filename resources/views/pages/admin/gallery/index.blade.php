@@ -65,7 +65,7 @@
                                     <td>{{ $user->title }}</td>                                    
                                     <td><img class="border" style="height: 26px; width:35px;" src="{{ asset('uploads/gallery/'.$user->image) }}" alt=""></td>
                                     <td>
-                                        <a href="{{ url('gallery/edit/'. $user->id) }}" type="submit" class="btn btn-info btn-mod-info btn-sm mr-1"><i class="fas fa-user-edit"></i></button>
+                                        <a href="{{ url('gallery/edit/'. $user->id) }}" type="submit" class="btn btn-info btn-mod-info btn-sm mr-1"><i class="fas fa-edit"></i></button>
                                         <a href="{{ url('gallery/delete/'.$user->id) }}" type="submit" class="btn btn-danger btn-mod-danger btn-sm" onclick="return confirmDel()"><i class="fas fa-trash"></i></button>
                                     </td>
                                 </tr>

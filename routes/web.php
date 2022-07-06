@@ -14,9 +14,9 @@ use App\Http\Controllers\Admin\QueryController;
 use App\Http\Controllers\Admin\RegistrationController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\SubcategoryController;
+use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\Admin\VideoController;
 use App\Http\Controllers\HomeController;
-
-
 
 /*
 |--------------------------------------------------------------------------
@@ -30,11 +30,9 @@ use App\Http\Controllers\HomeController;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-
-
-// Route::get('/submenu/{id}', [HomeController::class, 'submenu'])->name('submenu');
-// Route::get('/product/{id}', [HomeController::class, 'product'])->name('product');
-// Route::get('/product-detail/{id}', [HomeController::class, 'productDetail'])->name('productDetail');
+Route::get('/submenu/{id}', [HomeController::class, 'submenu'])->name('submenu');
+Route::get('/product/{id}', [HomeController::class, 'product'])->name('product');
+Route::get('/product-detail/{id}', [HomeController::class, 'productDetail'])->name('productDetail');
 
 // login
 Route::get('admin', [AuthenticationController::class, 'login'])->name('login');
@@ -93,13 +91,39 @@ Route::group(['middleware' => ['auth']] , function(){
     Route::post('gallery/update/{id}', [GalleryController::class, 'galleryUpdate'])->name('update.gallery');
     Route::get('gallery/delete/{id}', [GalleryController::class, 'galleryDelete'])->name('delete.gallery');
     
+    // Video Route
+    Route::get('/videos', [VideoController::class, 'index'])->name('videos');
+    Route::post('video/insert', [VideoController::class, 'store'])->name('store.video');
+    Route::get('video/edit/{id}', [VideoController::class, 'edit'])->name('edit.video');
+    Route::post('video/update/{id}', [VideoController::class, 'update'])->name('update.video');
+    Route::get('video/delete/{id}', [VideoController::class, 'delete'])->name('delete.video');
+
+    Route::get('/news', [NewsController::class, 'index'])->name('news');
+    Route::post('news/insert', [NewsController::class, 'store'])->name('store.news');
+    Route::get('news/edit/{id}', [NewsController::class, 'edit'])->name('edit.news');
+    Route::post('news/update/{id}', [NewsController::class, 'update'])->name('update.news');
+    Route::get('news/delete/{id}', [NewsController::class, 'delete'])->name('delete.news');
+
+
     // Management Route
     Route::get('managements', [ManagementController::class, 'index'])->name('management.index');
     Route::post('management/store', [ManagementController::class, 'store'])->name('management.store');
     Route::get('management/edit/{id}', [ManagementController::class, 'edit'])->name('management.edit');
     Route::post('management/update/{id}', [ManagementController::class, 'update'])->name('management.update');
     Route::get('management/delete/{id}', [ManagementController::class, 'delete'])->name('management.delete');
-    
+
+    Route::get('sliders', [SliderController::class, 'index'])->name('slider.index');
+    Route::post('slider/store', [SliderController::class, 'store'])->name('slider.store');
+    Route::get('slider/edit/{id}', [SliderController::class, 'edit'])->name('slider.edit');
+    Route::post('slider/update/{id}', [SliderController::class, 'update'])->name('slider.update');
+    Route::get('slider/delete/{id}', [SliderController::class, 'delete'])->name('slider.delete');
+
+    Route::get('whatwe', [WhatWeController::class, 'index'])->name('whatwe.index');
+    Route::post('whatwe/store', [WhatWeController::class, 'store'])->name('whatwe.store');
+    Route::get('whatwe/edit/{id}', [WhatWeController::class, 'edit'])->name('whatwe.edit');
+    Route::post('whatwe/update/{id}', [WhatWeController::class, 'update'])->name('whatwe.update');
+    Route::get('whatwe/delete/{id}', [WhatWeController::class, 'delete'])->name('whatwe.delete');
+
     Route::get('/messages', [MessageController::class, 'message'])->name('admin.message');
     Route::get('messages/delete/{id}', [MessageController::class, 'messageDelete'])->name('admin.message.delete');
     
