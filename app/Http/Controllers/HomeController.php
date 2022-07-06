@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Subcategory;
@@ -9,6 +9,7 @@ use App\Models\Product;
 use App\Models\Slider;
 use App\Models\Gallery;
 use App\Models\Video;
+use App\Models\News;
 use App\Models\Management;
 
 class HomeController extends Controller
@@ -20,7 +21,8 @@ class HomeController extends Controller
         $video = Video::latest()->get();
         $gallery = Gallery::latest()->get();
         $management = Management::latest()->get();
-        return view('pages.website.index', compact('category', 'slider', 'gallery', 'video', 'management'));
+        $news = News::latest()->get();
+        return view('pages.website.index', compact('category', 'slider', 'gallery', 'video', 'management', 'news'));
     }
     public function submenu($id) {
         $subcategory = Subcategory::where('category_id', $id)->get();

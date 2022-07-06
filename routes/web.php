@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\SubcategoryController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\VideoController;
+use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\HomeController;
 
 /*
@@ -98,11 +99,12 @@ Route::group(['middleware' => ['auth']] , function(){
     Route::post('video/update/{id}', [VideoController::class, 'update'])->name('update.video');
     Route::get('video/delete/{id}', [VideoController::class, 'delete'])->name('delete.video');
 
+    // News Route
     Route::get('/news', [NewsController::class, 'index'])->name('news');
     Route::post('news/insert', [NewsController::class, 'store'])->name('store.news');
-    Route::get('news/edit/{id}', [NewsController::class, 'edit'])->name('edit.news');
-    Route::post('news/update/{id}', [NewsController::class, 'update'])->name('update.news');
-    Route::get('news/delete/{id}', [NewsController::class, 'delete'])->name('delete.news');
+    Route::get('news/edit/{id}', [NewsController::class, 'edit'])->name('news.edit');
+    Route::post('news/update/{id}', [NewsController::class, 'update'])->name('news.update');
+    Route::get('news/delete/{id}', [NewsController::class, 'delete'])->name('news.delete');
 
 
     // Management Route

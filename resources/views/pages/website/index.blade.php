@@ -180,82 +180,27 @@
       <div class="col-md-12 col-12">
         <h2 class="section-title fs-2 fw-bold text-center text-uppercase text-white">Meet our Team</h2>
       </div>
-      <div class="row">
-        @foreach($management->take(4) as $item)
-        <div class="col-md-3 col-12">
-          <div class="team-box">
-            <div class="img-box">
-              <div class="icon-box">
-                <ul class="link-icons justify-content-around">
-                  <li><a href="{{ $item->facebook }}"><i class="fa-brands fa-facebook-f"></i></a></li>
-                  <li><a href="{{ $item->twitter }}"><i class="fa-brands fa-twitter"></i></a></li>
-                  <li><a href="{{ $item->instagram }}"><i class="fa-brands fa-instagram"></i></a></li>
-                  {{-- <li><a href=""><i class="fa-brands fa-linkedin-in"></i></a></li> --}}
-                </ul>
-              </div>
-              <img src="{{ asset('uploads/management/'.$item->image) }}" alt="{{ $item->name }}" class="img-fluid">
+    </div>
+    <div class="row">
+      @foreach($management->take(4) as $item)
+      <div class="col-md-3 col-12">
+        <div class="team-box">
+          <div class="img-box">
+            <div class="icon-box">
+              <ul class="link-icons justify-content-around">
+                <li><a href="{{ $item->facebook }}"><i class="fa-brands fa-facebook-f"></i></a></li>
+                <li><a href="{{ $item->twitter }}"><i class="fa-brands fa-twitter"></i></a></li>
+                <li><a href="{{ $item->instagram }}"><i class="fa-brands fa-instagram"></i></a></li>
+                {{-- <li><a href=""><i class="fa-brands fa-linkedin-in"></i></a></li> --}}
+              </ul>
             </div>
-            <h5 class="product-title text-center mt-4">{{ $item->name }}</h5>
-            <p class="text-designation text-center">{{ $item->name }}</p>
+            <img src="{{ asset('uploads/management/'.$item->image) }}" alt="{{ $item->name }}" class="img-fluid">
           </div>
+          <h5 class="product-title text-center mt-4">{{ $item->name }}</h5>
+          <p class="text-designation text-center">{{ $item->name }}</p>
         </div>
-        @endforeach
-        {{-- <div class="col-md-3 col-12">
-          <div class="team-box">
-            <div class="img-box">
-              <div class="icon-box">
-                <ul class="link-icons justify-content-around">
-                  <li><a href=""><i class="fa-brands fa-facebook-f"></i></a></li>
-                  <li><a href=""><i class="fa-brands fa-twitter"></i></a></li>
-                  <li><a href=""><i class="fa-brands fa-instagram"></i></a></li>
-                  <li><a href=""><i class="fa-brands fa-linkedin-in"></i></a></li>
-                </ul>
-              </div>
-              <img src="{{ asset('website/assets/image/team/45.jpg') }}" alt="" class="img-fluid">
-            </div>
-            <h5 class="product-title text-center mt-4">Charlotte</h5>
-            <p class="text-designation text-center">Designer</p>
-          </div>
-        </div>
-
-        <div class="col-md-3 col-12">
-          <div class="team-box">
-            <div class="img-box">
-              <div class="icon-box">
-                <ul class="link-icons justify-content-around">
-                  <li><a href=""><i class="fa-brands fa-facebook-f"></i></a></li>
-                  <li><a href=""><i class="fa-brands fa-twitter"></i></a></li>
-                  <li><a href=""><i class="fa-brands fa-instagram"></i></a></li>
-                  <li><a href=""><i class="fa-brands fa-linkedin-in"></i></a></li>
-                </ul>
-              </div>
-              <img src="{{ asset('website/assets/image/team/46.jpg') }}" alt="" class="img-fluid">
-            </div>
-            <h5 class="product-title text-center mt-4">Benjamin</h5>
-            <p class="text-designation text-center">Chief Eng.</p>
-          </div>
-        </div>
-
-        <div class="col-md-3 col-12">
-            <div class="team-box">
-              <div class="img-box">
-                <div class="icon-box">
-                  <ul class="link-icons justify-content-around">
-                    <li><a href=""><i class="fa-brands fa-facebook-f"></i></a></li>
-                    <li><a href=""><i class="fa-brands fa-twitter"></i></a></li>
-                    <li><a href=""><i class="fa-brands fa-instagram"></i></a></li>
-                    <li><a href=""><i class="fa-brands fa-linkedin-in"></i></a></li>
-                  </ul>
-                </div>
-                <img src="{{ asset('website/assets/image/team/47.jpg') }}" alt="" class="img-fluid">
-              </div>
-              <h5 class="product-title text-center mt-4">Madison</h5>
-              <p class="text-designation text-center">Developer</p>
-            </div>
-          </div>
-
-        </div> --}}
       </div>
+      @endforeach
     </div>
   </div>
 </section>
@@ -315,9 +260,10 @@
           </div>
         </div>
         <div class="row gy-2 gy-md-0">
+          @foreach($news->take(2) as $item)
           <div class="col-md-6 col-12">
             <div class="image-card">
-              <div class="post-date-box"> 25 <span>Jan, 2020</span></div>
+              <div class="post-date-box"> {{ date('d', strtotime($item->created_at)) }} <span>{{ $item->created_at->todatestring() }}, 2020</span></div>
               <img src="{{ asset('website/assets/image/blog/4.jpg') }}" alt="" class="img-fluid">
             </div>
             <div class="text-box">
@@ -325,16 +271,7 @@
               <p>No matter matter what tech you're using for your project, website, or app, we have the tools that work how and where.</p>
             </div>
           </div>
-          <div class="col-md-6 col-12">
-            <div class="image-card">
-              <div class="post-date-box"> 25 <span>Jan, 2020</span></div>
-              <img src="{{ asset('website/assets/image/blog/5.jpg') }}" alt="" class="img-fluid">
-            </div>
-            <div class="text-box">
-              <h4><a href="#">Pellentesque sapien erat</a></h4>
-              <p>No matter matter what tech you're using for your project, website, or app, we have the tools that work how and where.</p>
-            </div>
-          </div>
+          @endforeach
         </div>
       </div>
       <div class="col-md-4 col-12 pe-0 d-none d-md-block">
