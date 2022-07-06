@@ -152,7 +152,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-6 col-12 ps-0 d-none d-md-block">
-        <img src="{{ asset('website/assets/image/passion/jocker-notebook.jpg') }}" alt="" class="img-fluid">
+        <img src="{{ asset('website/assets/image/passion/jocker-notebook.jpg') }}" alt="" class="img-fluid" style="height: 100%">
       </div>
       <div class="col-md-6 col-12 d-flex">
         <div class="text-box align-self-center">

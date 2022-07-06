@@ -7,7 +7,7 @@
     <meta name="keywords" content="Believe Store BD"/>
 	  <meta name="author" content="Believe Store"/>
     <!-- FAVICONS ICON -->
-	<link rel="shortcut icon" href=""/>
+	  <link rel="shortcut icon" href="{{ asset('website/assets/image/logo/logo.png') }}">
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Montserrat:wght@100;200;300;400;500;600;700;800&family=Open+Sans:wght@300;400;500;600;700;800&family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('website/assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('website/assets/css/viewbox.css') }}">
