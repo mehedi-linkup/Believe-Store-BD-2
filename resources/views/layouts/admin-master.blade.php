@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
+	    <link rel="shortcut icon" href="{{ asset($content->logo) }}">
         <title>Admin | {{ $title ?? '' }}</title>
         <link href="{{ asset('css/admin-styles.css') }}" rel="stylesheet" />
         <link rel="preconnect" href="https://fonts.googleapis.com">

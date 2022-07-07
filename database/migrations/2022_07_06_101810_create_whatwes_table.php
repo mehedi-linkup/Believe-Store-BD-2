@@ -1,5 +1,5 @@
 <?php
-
+use App\Models\Whatwe;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -19,8 +19,20 @@ class CreateWhatwesTable extends Migration
             $table->text('description1');
             $table->string('title2');
             $table->text('description2');
+            $table->string('title3');
+            $table->text('description3');
+            $table->string('image');
             $table->timestamps();
         });
+
+        // Create a default one
+        
+        // $whatwe = new Whatwe();
+        // $whatwe->title1 = 'Pellentesque ut risus a odio posuere aliquet Pellentesque sapien erat .'; 
+        // $whatwe->description1 = 'test@gmail.com'; 
+        // $whatwe->title2 = 'Pellentesque ut risus a odio posuere aliquet Pellentesque sapien erat .'; 
+        // $whatwe->description2 = 'Default address'; 
+        // $whatwe->save();
     }
 
     /**

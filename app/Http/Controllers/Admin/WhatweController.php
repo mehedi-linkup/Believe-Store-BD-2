@@ -6,82 +6,50 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Whatwe;
 
+
 class WhatweController extends Controller
 {
-    public function index() {
-        $whatwe = Whatwe::latest()->get();
-        return view('pages.admin.service.index', compact('whatwe'));
+    // Edit
+    public function edit()
+    {
+        $whatwe = Whatwe::first();
+        return view('pages.admin.whatwe.content', compact('whatwe'));
     }
-    public function store(Request $request) {
+
+    // Company profile Update 
+    public function update(Request $request, Whatwe $whatwe)
+    {
         $request->validate([
             'title1' => 'required',
-            'description1' => 'required|min:12',
+            'description1' => 'required|min:10',
             'title2' => 'required',
-            'description2' => 'required|min:12',
-        ]);
-        try {
-            $image = $request->file('image');
-            $name_gen=hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
-            Image::make($image)->resize(724,480)->save('uploads/service/'.$name_gen);
-            $save_url = 'uploads/service/'.$name_gen;
-
-            
-            $service = new Service;
-            $service->name = $request->name;
-            $service->description = $request->description;
-            $service->s_description = $request->s_description;
-            $service->image = $save_url;    
-            $service->created_at = Carbon::now();
-            $service->save();
-            return redirect()->back()->with('success', 'Service inserted!');
-        } catch (\Exception $e) {
-		    return ["error" => $e->getMessage()];
-            // return redirect()->back()->with('error', 'Service insert failed!');
-        }
-    }
-    public function edit(Request $request, $id) {
-        $service = Service::find($id);
-        return view('pages.admin.service.edit', compact('service'));
-    }
-    public function update(Request $request, $id) {
-        $request->validate([
-            'name' => 'required',
-            'description' => 'required|min:12',
-            's_description' => 'required|min:8',
+            'description2' => 'required|min:10',
+            'title3' => 'required',
+            'description3' => 'required|min:10',
+            'image' => 'mimes:jpg,jpeg,png,bmp'
         ]);
 
-        try {
-            // DB::beginTransaction();
-            $service = Service::find($id);
-            $service->name = $request->name;
-            $service->description = $request->description;
-            $service->s_description = $request->s_description;
+        $image = $whatwe->image;
 
-            $image = $request->file('image');
-            if($image) {
-                $imageName = date('YmdHi').$image->getClientOriginalName();
-                Image::make($image)->resize(720,480)->save('uploads/service/' . $imageName);
-                $save_url = 'uploads/service/'.$imageName;
-                if(file_exists($service->image) && !empty($service->image)) {
-                    unlink($service->image);
-                }
-                $service['image'] = $save_url;
-            }           
-            $service->save();
-            // DB::commit();
-            return redirect()->back()->with('success', 'Service Updated!');
-        } catch (\Exception $e) {
-            // DB::rollback();           
-		    // return ["error" => $e->getMessage()];
-            return redirect()->back()->with('error', 'Service update failed!');
+        if($request->hasFile('image')) {
+            if(!empty($whatwe->image) && file_exists($whatwe->image))
+            {
+                unlink($whatwe->image);
+            }
+            $image = $this->imageUpload($request, 'image', 'uploads/about');
         }
-    }
-    public function delete($id) {
-        $service = service::find($id);
-        if(file_exists($service->image) && !empty($service->image)) {
-            unlink($service->image);
+
+        $whatwe->title1 = $request->title1;
+        $whatwe->description1 = $request->description1;
+        $whatwe->title2 = $request->title2;
+        $whatwe->description2 = $request->description2;
+        $whatwe->title3 = $request->title3;
+        $whatwe->description3 = $request->description3;
+        $whatwe->image = $image;
+        $whatwe->save();
+        if($whatwe){
+            return redirect()->back()->with('success', 'Update Successfull!');
         }
-        $service->delete();
-        return Redirect()->back()->with("success", "Service Deleted Successfully");
+        return redirect()->back()->withInput();
     }
 }

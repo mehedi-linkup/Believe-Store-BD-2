@@ -17,6 +17,8 @@ use App\Http\Controllers\Admin\SubcategoryController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\VideoController;
 use App\Http\Controllers\Admin\NewsController;
+use App\Http\Controllers\Admin\WhatweController;
+use App\Http\Controllers\Admin\BackImageController;
 use App\Http\Controllers\HomeController;
 
 /*
@@ -120,11 +122,11 @@ Route::group(['middleware' => ['auth']] , function(){
     Route::post('slider/update/{id}', [SliderController::class, 'update'])->name('slider.update');
     Route::get('slider/delete/{id}', [SliderController::class, 'delete'])->name('slider.delete');
 
-    Route::get('whatwe', [WhatWeController::class, 'index'])->name('whatwe.index');
-    Route::post('whatwe/store', [WhatWeController::class, 'store'])->name('whatwe.store');
-    Route::get('whatwe/edit/{id}', [WhatWeController::class, 'edit'])->name('whatwe.edit');
-    Route::post('whatwe/update/{id}', [WhatWeController::class, 'update'])->name('whatwe.update');
-    Route::get('whatwe/delete/{id}', [WhatWeController::class, 'delete'])->name('whatwe.delete');
+    Route::get('whatwe', [WhatweController::class, 'edit'])->name('whatwe.edit');
+    Route::put('whatwe/{whatwe}', [WhatweController::class, 'update'])->name('whatwe.update');
+
+    Route::get('backimage', [BackImageController::class, 'edit'])->name('backimage.edit');
+    Route::put('backimage/{backimage}', [BackImageController::class, 'update'])->name('backimage.update');
 
     Route::get('/messages', [MessageController::class, 'message'])->name('admin.message');
     Route::get('messages/delete/{id}', [MessageController::class, 'messageDelete'])->name('admin.message.delete');

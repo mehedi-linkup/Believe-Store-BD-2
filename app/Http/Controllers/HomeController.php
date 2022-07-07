@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Subcategory;
 use App\Models\Product;
+use App\Models\Whatwe;
 use App\Models\Slider;
 use App\Models\Gallery;
 use App\Models\Video;
@@ -18,11 +19,12 @@ class HomeController extends Controller
     {   
         $category = Category::latest()->get();
         $slider = Slider::latest()->get();
+        $whatwe = Whatwe::first();
         $video = Video::latest()->get();
         $gallery = Gallery::latest()->get();
         $management = Management::latest()->get();
         $news = News::latest()->get();
-        return view('pages.website.index', compact('category', 'slider', 'gallery', 'video', 'management', 'news'));
+        return view('pages.website.index', compact('category', 'slider', 'gallery', 'video', 'management', 'news', 'whatwe'));
     }
     public function submenu($id) {
         $subcategory = Subcategory::where('category_id', $id)->get();

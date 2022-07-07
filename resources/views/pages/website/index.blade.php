@@ -1,4 +1,4 @@
-@extends('layouts.website', [])
+@extends('layouts.website', ['pageName' => 'home'])
 @section('web-content')
 
 @include('layouts.partials.web_slider')
@@ -23,76 +23,6 @@
         </a>
       </div>
       @endforeach
-      {{-- <div class="col-md-3 col-12 text-center">
-        <a href="" class="filter-anchor">
-          <div class="filter-box">
-            <div class="img-box">
-              <img src="{{ asset('website/assets/image/category/202206250928yourdesignT-scaled.jpg') }}" alt="" class="img-fluid"/>
-            </div>
-            <h5 class="product-title mt-2">Flip Cover Print</h5>
-          </div>
-        </a>
-      </div>
-      <div class="col-md-3 col-12 text-center">
-        <a href="" class="filter-anchor">
-          <div class="filter-box">
-            <div class="img-box">
-              <img src="{{ asset('website/assets/image/category/202206250928yourdesignT-scaled.jpg') }}" alt="" class="img-fluid"/>
-            </div>
-            <h5 class="product-title mt-2">Flip Cover Print</h5>
-          </div>
-        </a>
-      </div>
-      <div class="col-md-3 col-12 text-center">
-        <a href="" class="filter-anchor">
-          <div class="filter-box">
-            <div class="img-box">
-              <img src="{{ asset('website/assets/image/category/202206250928yourdesignT-scaled.jpg') }}" alt="" class="img-fluid"/>
-            </div>
-            <h5 class="product-title mt-2">Flip Cover Print</h5>
-          </div>
-        </a>
-      </div>
-      <div class="col-md-3 col-12 text-center">
-        <a href="" class="filter-anchor">
-          <div class="filter-box">
-            <div class="img-box">
-              <img src="{{ asset('website/assets/image/category/202206250928yourdesignT-scaled.jpg') }}" alt="" class="img-fluid"/>
-            </div>
-            <h5 class="product-title mt-2">Flip Cover Print</h5>
-          </div>
-        </a>
-      </div>
-      <div class="col-md-3 col-12 text-center">
-        <a href="" class="filter-anchor">
-          <div class="filter-box">
-            <div class="img-box">
-              <img src="{{ asset('website/assets/image/category/202206250928yourdesignT-scaled.jpg') }}" alt="" class="img-fluid"/>
-            </div>
-            <h5 class="product-title mt-2">Flip Cover Print</h5>
-          </div>
-        </a>
-      </div>
-      <div class="col-md-3 col-12 text-center">
-        <a href="" class="filter-anchor">
-          <div class="filter-box">
-            <div class="img-box">
-              <img src="{{ asset('website/assets/image/category/202206250928yourdesignT-scaled.jpg') }}" alt="" class="img-fluid"/>
-            </div>
-            <h5 class="product-title mt-2">Flip Cover Print</h5>
-          </div>
-        </a>
-      </div>
-      <div class="col-md-3 col-12 text-center">
-        <a href="" class="filter-anchor">
-          <div class="filter-box">
-            <div class="img-box">
-              <img src="{{ asset('website/assets/image/category/202206250928yourdesignT-scaled.jpg') }}" alt="" class="img-fluid"/>
-            </div>
-            <h5 class="product-title mt-2">Flip Cover Print</h5>
-          </div>
-        </a>
-      </div> --}}
     </div>
   </div>
 </section>
@@ -124,12 +54,15 @@
               <div class="grand-box">
                 <div class="inner-box">
                   <h3 class="card-title text-uppercase fw-bold mb-3">Who we are</h3>
-                  <p class="card-semi-text w-75 mb-4">Pellentesque ut risus a odio posuere aliquet Pellentesque sapien erat .</p>
-                  <ul class="mb-5">
+                  <!-- <p class="card-semi-text w-75 mb-4">Pellentesque ut risus a odio posuere aliquet Pellentesque sapien erat .</p> -->
+                  <!-- <ul class="mb-5">
                     <li><i class="fa-solid fa-circle-arrow-right"></i> <span>Sed massa tellus, aliquam rhoncus, venenatis quis.</span></li>
                     <li><i class="fa-solid fa-circle-arrow-right"></i> <span>enim. Suspendisse imperdiet cursus nisi.</span></li>
-                  </ul>
-                  <a href="" class="btn btn-orange text-uppercase rounded-pill">Read More</a>
+                  </ul> -->
+                  <!-- <a href="" class="btn btn-orange text-uppercase rounded-pill">Read More</a> -->
+                  <div>
+                    {!! $whatwe->description1 !!}
+                  </div>
                 </div>
               </div>
           </div>
@@ -137,12 +70,15 @@
               <div class="grand-box">
                 <div class="inner-box">
                   <h3 class="card-title text-uppercase fw-bold mb-3">WHAT WE DO</h3>
-                  <p class="card-semi-text w-75 mb-4">Pellentesque ut risus a odio posuere aliquet Pellentesque sapien erat .</p>
+                  <!-- <p class="card-semi-text w-75 mb-4">Pellentesque ut risus a odio posuere aliquet Pellentesque sapien erat .</p>
                   <ul class="mb-5">
                     <li><i class="fa-solid fa-circle-arrow-right"></i> <span>Sed massa tellus, aliquam rhoncus, venenatis quis.</span></li>
                     <li><i class="fa-solid fa-circle-arrow-right"></i> <span>Etiam enim. Suspendisse imperdiet cursus nisi.</span></li>
-                  </ul>
-                  <a href="" class="btn btn-orange text-uppercase rounded-pill">Read More</a>
+                  </ul> -->
+                  <!-- <a href="" class="btn btn-orange text-uppercase rounded-pill">Read More</a> -->
+                  <div>
+                    {!! $whatwe->description2 !!}
+                  </div>
                 </div>
               </div>
             </div>
@@ -154,20 +90,23 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-6 col-12 ps-0 d-none d-md-block">
-        <img src="{{ asset('website/assets/image/passion/jocker-notebook.jpg') }}" alt="" class="img-fluid" style="height: 100%">
+        <img src="{{ asset($whatwe->image) }}" alt="" class="img-fluid" style="height: 100%">
       </div>
       <div class="col-md-6 col-12 d-flex">
         <div class="text-box align-self-center">
           <h3 class="card-title text-uppercase text-danger mb-1">It's our passion</h3>
-          <h3 class="card-title text-uppercase fw-bold mb-4">Design is not just an art, it's life.</h3>
-          <h6 class="card-semi-text w-75 mb-3">Suspendisse et justo. Praesent mattis commodo augue Aliquam ornare hendrerit augue.</h6>
+          <h3 class="card-title text-uppercase fw-bold mb-4">{{ $whatwe->title3 }}</h3>
+          <!-- <h6 class="card-semi-text w-75 mb-3">Suspendisse et justo. Praesent mattis commodo augue Aliquam ornare hendrerit augue.</h6>
           <p class="card-semi-text w-75 mb-4">Whether it’s checking the ‘gram, taking selfies or replying to those all-important group chats, we know your phone is never far from your hand! Turn your phone into a work of art. Browse our complete range of designer phone cases featuring original designs</p>
           <ul class="mb-5">
             <li><i class="fa-solid fa-circle-arrow-right"></i> <span>Nullam efficitur velit ut interdum pellentesque.</span></li>
             <li><i class="fa-solid fa-circle-arrow-right"></i> <span>Maecenas sit amet orci eget mi commodo scelerisque eu tempus mi.</span></li>
             <li><i class="fa-solid fa-circle-arrow-right"></i> <span>Vivamus at sem rhoncus, posuere elit id, semper ipsum.</span></li>
           </ul>
-          <a href="" class="btn btn-black text-uppercase rounded-pill">Read More</a>
+          <a href="" class="btn btn-black text-uppercase rounded-pill">Read More</a> -->
+          <div>
+            {!! $whatwe->description3 !!}
+          </div>
         </div>
       </div>
     </div>
@@ -261,14 +200,19 @@
         </div>
         <div class="row gy-2 gy-md-0">
           @foreach($news->take(2) as $item)
+          @php
+          $monthNum  = date('m', strtotime($item->created_at));
+          $dateObj   = DateTime::createFromFormat('!m', $monthNum);
+          $monthName = $dateObj->format('F'); 
+          @endphp
           <div class="col-md-6 col-12">
             <div class="image-card">
-              <div class="post-date-box"> {{ date('d', strtotime($item->created_at)) }} <span>{{ $item->created_at->todatestring() }}, 2020</span></div>
-              <img src="{{ asset('website/assets/image/blog/4.jpg') }}" alt="" class="img-fluid">
+              <div class="post-date-box"> {{ date('d', strtotime($item->created_at)) }} <span>{{ $monthName }}, {{ date('y', strtotime($item->created_at)) }}</span></div>
+              <img src="{{ asset($item->image) }}" alt="" class="img-fluid">
             </div>
             <div class="text-box">
-              <h4><a href="#">Pellentesque sapien erat</a></h4>
-              <p>No matter matter what tech you're using for your project, website, or app, we have the tools that work how and where.</p>
+              <h4><a>{{ $item->title }}</a></h4>
+              <p>{{ $item->description }}</p>
             </div>
           </div>
           @endforeach
