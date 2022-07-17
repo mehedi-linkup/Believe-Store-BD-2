@@ -8,7 +8,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="form-area">
-                    <h4 class="heading"><i class="fas fa-plus"></i> Add a Video</h4>
+                    <h4 class="heading"><i class="fas fa-plus"></i> Add a Video (At most 7 Videos)</h4>
                     <form action="{{ route('store.video') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row">

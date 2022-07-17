@@ -10310,8 +10310,9 @@ body {
 
 /* personal Coding */
 .form-control-sm#image {
-  padding-top: 0;
-  padding-bottom: 0;
+  /* padding-top: 0;
+  padding-bottom: 0; */
+  padding: 1px;
 }
 .form-control-sm#bg_image {
   padding-top: 0;

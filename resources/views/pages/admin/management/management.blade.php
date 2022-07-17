@@ -14,7 +14,7 @@
                             <span>Update Management</span>
                         @else
                             <i class="fas fa-plus"></i>
-                            <span>Add Management</span>
+                            <span>Add Management (At most 4 members)</span>
                         @endif
                     </h4>
                     <form action="{{ (@$managementData) ? route('management.update', $managementData->id) : route('management.store') }}" method="POST" enctype="multipart/form-data">

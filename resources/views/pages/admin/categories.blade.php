@@ -12,7 +12,7 @@
                         <i class="fas fa-edit mr-1"></i>Update Category
                         
                         @else
-                        <i class="fas fa-plus mr-1"></i>Add Category
+                        <i class="fas fa-plus mr-1"></i>Add Category (At most 8 category)
                         @endif
                     </div>
                     <div class="card-body">

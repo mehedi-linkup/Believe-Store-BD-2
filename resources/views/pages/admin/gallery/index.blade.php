@@ -8,7 +8,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="form-area">
-                    <h4 class="heading"><i class="fas fa-plus"></i> Add a Photo</h4>
+                    <h4 class="heading"><i class="fas fa-plus"></i> Add a Photo (At most 15 photos)</h4>
                     <form action="{{ route('store.gallery') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row">

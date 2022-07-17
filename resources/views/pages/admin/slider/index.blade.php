@@ -18,7 +18,7 @@
                         @csrf
                         <div class="row">
                             <div class="col-md-6 mb-2">
-                                <label for="slogan">Slider Slogan <span class="text-danger"> * </span></label>
+                                <label for="slogan">Slider Slogan</label>
                                 <input class="form-control form-control-sm @error('slogan') is-invalid @enderror" id="slogan" type="text" name="slogan" value="{{ old('slogan') }}" placeholder="slider slogan">
                                 @error('slogan')
                                     <span class="invalid-feedback" role="alert">
@@ -26,7 +26,7 @@
                                     </span>
                                 @enderror
                                 
-                                <label for="headerline">Slider Headline <span class="text-danger"> * </span></label>
+                                <label for="headerline">Slider Headline</label>
                                 <input class="form-control form-control-sm @error('headerline') is-invalid @enderror" id="headerline" type="text" name="headerline" value="{{ old('headerline') }}" placeholder="slider headerline">
                                 @error('headerline')
                                     <span class="invalid-feedback" role="alert">
@@ -34,7 +34,7 @@
                                     </span>
                                 @enderror
 
-                                <label for="description">Slider Text <span class="text-danger"> * </span></label>
+                                <label for="description">Slider Text</label>
                                 <input class="form-control form-control-sm @error('description') is-invalid @enderror" id="description" type="text" name="description" value="{{ old('description') }}" placeholder="slider description">
                                 @error('description')
                                     <span class="invalid-feedback" role="alert">

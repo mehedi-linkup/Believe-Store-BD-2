@@ -6,7 +6,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="form-area">
-                    <h4 class="heading"><i class="fas fa-plus"></i> Add a News(Use only 2 news)</h4>
+                    <h4 class="heading"><i class="fas fa-plus"></i> Add a News (At most 2 news)</h4>
                     <form action="{{ route('store.news') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
@@ -28,7 +28,7 @@
                             <div class="col-md-6 mb-2">
                                 <div class="form-group">
                                     <label for="description">News Details (max: 255 character)</label>
-                                    <textarea name="description" class="form-control" id="description" rows="4"></textarea>
+                                    <textarea name="description" class="form-control" id="description" rows="4" placeholder="News Details"></textarea>
                                 </div>
                             </div>
                         </div>

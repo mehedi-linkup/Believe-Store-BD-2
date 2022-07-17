@@ -29,14 +29,14 @@
                             <div class="row">
                                 <div class="col-md-7 mb-2">
                                     <label for="name" class="mb-2"> Product Name <span class="text-danger">*</span> </label>
-                                    <input type="text" name="name" value="{{ @$productData->name }}" class="form-control mb-2" id="name" placeholder="Enter Category name">
+                                    <input type="text" name="name" value="{{ @$productData->name }}" class="form-control form-controm-sm mb-2" id="name" placeholder="Enter Category name">
                                     @error('name') <span style="color: red">{{$message}}</span> @enderror
 
 
 
 
                                     <label for="name" class="mb-2"> Category <span class="text-danger">*</span> </label>
-                                    <select name="category_id" class="form-control mb-2">
+                                    <select name="category_id" class="form-control form-control-sm mb-2">
                                         <option value="">Select Category Option</option>
                                         @foreach ($category as $item)
                                             <option value="{{ $item->id }}" {{ $item->id == @$productData->category_id ? 'selected' : '' }} >{{ $item->name }}</option>
@@ -46,7 +46,7 @@
 
 
                                     <label for="name" class="mb-2"> Subcategory <span class="text-danger">*</span> </label>
-                                    <select name="subcategory_id" class="form-control mb-2">
+                                    <select name="subcategory_id" class="form-control form-control-sm mb-2">
                                         <option value="">Select Subcategory Option</option>
                                     </select>
                                     @error('subcategory_id') <span style="color: red">{{$message}}</span> @enderror
@@ -57,7 +57,7 @@
 
                                 <div class="col-md-5 mb-2">
                                     <label for="about_image" class="mb-2">Product Image</label>
-                                    <input class="form-control" id="image" type="file" name="image" onchange="mainThambUrl(this)">
+                                    <input class="form-control form-control-sm" id="image" type="file" name="image" onchange="mainThambUrl(this)">
                                     <div class="form-group mt-2">
                                         <img class="form-controlo img-thumbnail" src="{{(@$productData) ? asset($productData->image) : asset('uploads/no.png') }}" id="mainThmb" style="width: 150px;height: 120px;">
                                     </div>

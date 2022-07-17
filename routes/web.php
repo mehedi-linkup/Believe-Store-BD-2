@@ -36,6 +36,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/submenu/{id}', [HomeController::class, 'submenu'])->name('submenu');
 Route::get('/product/{id}', [HomeController::class, 'product'])->name('product');
 Route::get('/product-detail/{id}', [HomeController::class, 'productDetail'])->name('productDetail');
+Route::get('/news-detail/{id}', [HomeController::class, 'newsDetail'])->name('newsDetail');
 
 // login
 Route::get('admin', [AuthenticationController::class, 'login'])->name('login');

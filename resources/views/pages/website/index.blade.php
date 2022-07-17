@@ -90,7 +90,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-6 col-12 ps-0 d-none d-md-block">
-        <img src="{{ asset($whatwe->image) }}" alt="" class="img-fluid" style="height: 100%">
+        <img src="{{ asset($whatwe->image) }}" alt="" class="img-fluid h-100">
       </div>
       <div class="col-md-6 col-12 d-flex">
         <div class="text-box align-self-center">
@@ -212,8 +212,8 @@
                 <img src="{{ asset($item->image) }}" alt="" class="img-fluid">
               </div>
               <div class="text-box">
-                <h4><a>{{ $item->title }}</a></h4>
-                <p>{{ $item->description }}</p>
+                <h4><a href="{{ route('newsDetail', $item->id) }}">{{ $item->title }}</a></h4>
+                <p>{{ Str::words($item->description, 15, '') }}</p>
               </div>
             </div>
             </div>
