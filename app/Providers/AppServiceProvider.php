@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use App\Models\CompanyProfile;
+use App\Models\BackImage;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,5 +26,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         view()->share('content', CompanyProfile::first());
+        view()->share('backimage', BackImage::first());
     }
 }

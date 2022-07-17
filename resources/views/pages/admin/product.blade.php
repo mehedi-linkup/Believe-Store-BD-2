@@ -33,36 +33,35 @@
                                     @error('name') <span style="color: red">{{$message}}</span> @enderror
 
 
-                                    <label for="name" class="mb-2"> Product Description <span class="text-danger">*</span> </label>
-                                    <textarea name="description" id="description" rows="4" class="form-control">{{ @$productData->description }}</textarea>
-                                    @error('description') <span style="color: red">{{$message}}</span> @enderror
-                                </div>
 
-                                <div class="col-md-5 mb-2">
+
                                     <label for="name" class="mb-2"> Category <span class="text-danger">*</span> </label>
                                     <select name="category_id" class="form-control mb-2">
                                         <option value="">Select Category Option</option>
                                         @foreach ($category as $item)
                                             <option value="{{ $item->id }}" {{ $item->id == @$productData->category_id ? 'selected' : '' }} >{{ $item->name }}</option>
                                         @endforeach
-                                        
                                     </select>
                                     @error('category_id') <span style="color: red">{{$message}}</span> @enderror
+
 
                                     <label for="name" class="mb-2"> Subcategory <span class="text-danger">*</span> </label>
                                     <select name="subcategory_id" class="form-control mb-2">
                                         <option value="">Select Subcategory Option</option>
-                                        
-                                        
                                     </select>
-                                    @error('category_id') <span style="color: red">{{$message}}</span> @enderror
+                                    @error('subcategory_id') <span style="color: red">{{$message}}</span> @enderror
+                                    {{-- <label for="name" class="mb-2"> Product Description <span class="text-danger">*</span> </label>
+                                    <textarea name="description" id="description" rows="4" class="form-control">{{ @$productData->description }}</textarea>
+                                    @error('description') <span style="color: red">{{$message}}</span> @enderror --}}
+                                </div>
 
+                                <div class="col-md-5 mb-2">
                                     <label for="about_image" class="mb-2">Product Image</label>
                                     <input class="form-control" id="image" type="file" name="image" onchange="mainThambUrl(this)">
                                     <div class="form-group mt-2">
                                         <img class="form-controlo img-thumbnail" src="{{(@$productData) ? asset($productData->image) : asset('uploads/no.png') }}" id="mainThmb" style="width: 150px;height: 120px;">
                                     </div>
-                                        @error('category_id') <span style="color: red">{{$message}}</span> @enderror
+                                    @error('image') <span style="color: red">{{$message}}</span> @enderror
                                 </div>
                             </div>
 
@@ -111,7 +110,7 @@
                                         <td>{{ $item->category->name }}</td>
                                         <td>{{ $item->subcategory->name }}</td>
                                         <td>
-                                            <a href="{{ route('admin.product.edit', $item->id) }}" class="btn-sm btn btn-info"><i class="fas fa-user-edit"></i></a>
+                                            <a href="{{ route('admin.product.edit', $item->id) }}" class="btn-sm btn btn-info"><i class="fas fa-edit"></i></a>
                                             <a href="{{ route('admin.product.delete', $item->id) }}" onclick="confirm('Are you sure to Delete?')" class="btn-sm btn btn-danger"><i class="fas fa-trash"></i></a>
                                         </td>
                                     </tr>

@@ -12,23 +12,23 @@
                     <form action="{{ route('backimage.update', $backimage) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
-                        <div class="row">
-                            <div class="col-md-6 mb-2">
+                        <div class="row justify-content-center">
+                            <div class="col-md-5 mb-2">
+                                <div class="form-group my-2 text-center">
+                                    <img class="form-controlo img-thumbnail" src="#" id="previewImage1" style="width: auto;height: 130px;">
+                                </div>
                                 <label for="bgimage_other" class="">Page's cover (size 1600 * 600)</label>
-                                <input class="form-control form-control-sm" id="bgimage_other" type="file" name="bgimage_other" onchange="readURL1(this);">
-                                <div class="form-group my-2">
-                                    <img class="form-controlo img-thumbnail" src="#" id="previewImage1" style="width: 160px;height: 130px;">
-                                </div>
+                                <input style="padding: 1px;" class="form-control form-control-sm" id="bgimage_other" type="file" name="bgimage_other" onchange="readURL1(this);">
                             </div>
-                            <div class="col-md-6 mb-2">
-                            <label for="bgimage_news" class="">Section cover (size 400 * 600)</label>
-                                <input class="form-control form-control-sm" id="bgimage_news" type="file" name="bgimage_news" onchange="readURL2(this);">
-                                <div class="form-group my-2">
-                                    <img class="form-controlo img-thumbnail" src="#" id="previewImage2" style="width: 160px;height: 130px;">
+                            <div class="col-md-5 mb-2">
+                                <div class="form-group my-2 text-center">
+                                    <img class="form-controlo img-thumbnail" src="#" id="previewImage2" style="width: auto;height: 130px;">
                                 </div>
+                                <label for="bgimage_news" class="">Section cover (size 400 * 600)</label>
+                                <input style="padding: 1px;" class="form-control form-control-sm" id="bgimage_news" type="file" name="bgimage_news" onchange="readURL2(this);">
                             </div>
                         </div>
-                        <hr class="mt-0">
+                        {{-- <hr class="mt-0"> --}}
                         <div class="clearfix mt-1">
                             <div class="float-md-right">
                                 <button type="reset" class="btn btn-dark btn-sm">Reset</button>
@@ -58,7 +58,7 @@
             reader.readAsDataURL(input.files[0]);
         }
     }
-    document.getElementById("previewImage1").src="{{ $backimage->bgimage_other }}";
+    document.getElementById("previewImage1").src="{{ asset('/website/assets/image/section-background/'.$backimage->bgimage_other) }}";
 
     function readURL2(input) {
         if (input.files && input.files[0]) {
@@ -74,6 +74,6 @@
             reader.readAsDataURL(input.files[0]);
         }
     }
-    document.getElementById("previewImage2").src="{{ $backimage->bgimage_news }}";
+    document.getElementById("previewImage2").src="{{ asset('/website/assets/image/section-background/'.$backimage->bgimage_news) }}";
 </script>
 @endpush

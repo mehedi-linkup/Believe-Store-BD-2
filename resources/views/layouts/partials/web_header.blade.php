@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-lg fixed-top scrolling-navbar">
       <div class="container-lg">
         <a class="navbar-brand" href="{{ route('home') }}">
-          <img src="{{ asset($content->logo) }}" alt="" style="height: 67px; width: 90px" >
+          <img src="{{ asset($content->logo) }}" alt="" >
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"><i class="fa-solid fa-bars"></i></span>

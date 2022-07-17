@@ -14,8 +14,8 @@ class BackImageSeeder extends Seeder
     public function run()
     {
         BackImage::create([
-            'bgimage_other' => 'website/assets/image/section-background/EmbeddedImage.jpg',
-            'bgimage_news' => 'website/assets/image/31.jpg',
+            'bgimage_other' => 'EmbeddedImage.jpg',
+            'bgimage_news' => '31.jpg',
         ]);
     }
 }

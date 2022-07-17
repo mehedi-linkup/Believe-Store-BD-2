@@ -6,7 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\Category;
-use Illuminate\Support\Facades\DB;
+use DB;
+use Image;
 
 class CategoryController extends Controller
 {
@@ -25,25 +26,34 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
+        $request->validate([
             'name' => 'required|unique:categories,name|max:100',
+            'image' => 'mimes:jpeg,png,jpg,gif,webp',
         ]);
-        
+        $imgName = '';
+        if($request->hasFile('image')){
+            $image = $request->file('image');
+            $nameGen = hexdec(uniqid());
+            $imgExt = strtolower($image->getClientOriginalExtension());
+            $imgName = $nameGen. '.' . $imgExt;
+            $upLocation = 'uploads/category/';
+            // $image->move($upLocation, $imgName);
+            Image::make($image)->resize(768,768)->save($upLocation . $imgName);
+            $lastImage = $upLocation . $imgName;
+        }
         try {
-            DB::beginTransaction();
             $category = new Category();
             $category->name = $request->name;
+            $category->image = $lastImage;
             $category->save();
-            DB::commit();
-
+            
             $notification=array(
-                'message'=>'Category Craeted Succefully..',
+                'message'=>'Category Created Succefully..',
                 'alert-type'=>'success'
             );
             return Redirect()->back()->with($notification);
 
         } catch (\Exception $e) {
-            DB::rollback();    
 
             $notification=array(
                 'message'=>'Something went wrong',
@@ -75,16 +85,25 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validatedData = $request->validate([
+        $request->validate([
             'name' => 'required|max:100',
+            'image' => 'mimes:jpeg,png,jpg,gif,webp',
         ]);
         
         try {
-            DB::beginTransaction();
             $category = Category::findOrFail($id);
             $category->name = $request->name;
+            $image = $request->file('image');
+            if($image) {
+                $imageName = date('YmdHi').$image->getClientOriginalName();
+                Image::make($image)->resize(768,768)->save('uploads/category/' . $imageName);
+                if(file_exists($category->image) && !empty($category->image)) {
+                    unlink($category->image);
+                }
+                $lastImage = 'uploads/category/'. $imageName;
+                $category['image'] = $lastImage;
+            }
             $category->save();
-            DB::commit();
 
             $notification=array(
                 'message'=>'Category Updated Succefully..',
@@ -93,7 +112,6 @@ class CategoryController extends Controller
             return Redirect()->route('admin.categories')->with($notification);
 
         } catch (\Exception $e) {
-            DB::rollback();    
 
             $notification=array(
                 'message'=>'Something went wrong',
@@ -113,9 +131,11 @@ class CategoryController extends Controller
     {
         $category = Category::findOrFail($id);
         if($category){
+            if(file_exists($category->image) AND !empty($category->image)){
+                unlink($category->image);
+            }
             $category->delete();
         }
-
         $notification=array(
             'message'=>'Category Deleted Succefully..',
             'alert-type'=>'success'

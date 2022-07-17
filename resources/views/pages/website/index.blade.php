@@ -7,7 +7,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12 col-12">
-        <h2 class="section-title fs-2 fw-bold text-center text-uppercase text-white">Our Product List</h2>
+        <h2 class="fs-2 fw-bold text-center text-uppercase text-white"><span class="section-border">Our Product List</span></h2>
       </div>
     </div>
     <div class="row gy-3">
@@ -117,7 +117,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12 col-12">
-        <h2 class="section-title fs-2 fw-bold text-center text-uppercase text-white">Meet our Team</h2>
+        <h2 class="fs-2 fw-bold text-center text-uppercase text-white"><span class="section-border">Meet our Team</span></h2>
       </div>
     </div>
     <div class="row">
@@ -147,7 +147,7 @@
 <section id="gallery" class="our-gallery section-padding">
   <div class="container">
     <div class="row">
-      <h2 class="section-title fs-2 fw-bold text-center text-uppercase">Our Gallery</h2>
+      <h2 class="fs-2 fw-bold text-center text-uppercase"><span class="section-border-black">Our Gallery</span></h2>
     </div>
     <div class="row">
       <ul class="gallery">
@@ -166,7 +166,7 @@
 <section id="video-gallery" class="video-gallery section-padding">
   <div class="container">
     <div class="row">
-      <h2 class="section-title fs-2 fw-bold text-center text-uppercase">Video Gallery</h2>
+      <h2 class="fs-2 fw-bold text-center text-uppercase"><span class="section-border-black">Video Gallery</span></h2>
     </div>
     <div class="row">
      
@@ -178,7 +178,7 @@
       
       <div class="col-md-7 col-12 mt-md-0 mt-2">
         <div class="row row-cols-md-3 row-cols-2 gx-1">
-         @foreach($video as $item)
+         @foreach($video->take(6) as $item)
           <div class="col">
             <iframe width="100%" height="135" src="{{ $item->link }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
           </div>
@@ -195,7 +195,7 @@
       <div class="col-md-8 col-12 ps-md-5 pe-md-5 section-padding">
         <div class="row">
           <div class="col-md-12 col-12">
-            <h2 class="section-title fs-2 fw-bold text-center text-uppercase text-white">News & Events</h2>
+            <h2 class="fs-2 fw-bold text-center text-uppercase text-white"><span class="section-border">News & Events</span></h2>
           </div>
         </div>
         <div class="row gy-2 gy-md-0">
@@ -206,20 +206,22 @@
           $monthName = $dateObj->format('F'); 
           @endphp
           <div class="col-md-6 col-12">
-            <div class="image-card">
-              <div class="post-date-box"> {{ date('d', strtotime($item->created_at)) }} <span>{{ $monthName }}, {{ date('y', strtotime($item->created_at)) }}</span></div>
-              <img src="{{ asset($item->image) }}" alt="" class="img-fluid">
+            <div class="full-box" style="height: 100%">
+              <div class="image-card">
+                <div class="post-date-box"> {{ date('d', strtotime($item->created_at)) }} <span>{{ $monthName }}, {{ date('y', strtotime($item->created_at)) }}</span></div>
+                <img src="{{ asset($item->image) }}" alt="" class="img-fluid">
+              </div>
+              <div class="text-box">
+                <h4><a>{{ $item->title }}</a></h4>
+                <p>{{ $item->description }}</p>
+              </div>
             </div>
-            <div class="text-box">
-              <h4><a>{{ $item->title }}</a></h4>
-              <p>{{ $item->description }}</p>
             </div>
-          </div>
           @endforeach
         </div>
       </div>
       <div class="col-md-4 col-12 pe-0 d-none d-md-block">
-        <img src="{{ asset('website/assets/image/31.jpg') }}" alt="" class="cover-img w-100 h-100">
+        <img src="{{ asset('website/assets/image/section-background/'.$backimage->bgimage_news) }}" alt="" class="cover-img w-100 h-100">
       </div>
     </div>
   </div>

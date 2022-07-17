@@ -1,7 +1,7 @@
 @extends('layouts.website', ['pageName' => 'product'])
 @section('web-content')
 
-<section id="product-background" class="product-background d-flex">
+<section id="product-background" class="product-background d-flex" style="background-image: url('{{ asset('/website/assets/image/section-background/'.$backimage->bgimage_other) }}')">
   <div class="container align-self-center">
       <div class="row">
           <div class="col-lg-8 offset-lg-2 col-12">

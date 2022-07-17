@@ -31,8 +31,7 @@ class ProductController extends Controller
             'category_id' => 'required',
             'subcategory_id' => 'required',
             'name' => 'required|max:100',
-            'description' => 'required',
-            'image' => 'required|image|mimes:jpeg,jpg,png,gif',
+            'image' => 'required|image|mimes:jpeg,jpg,png,gif,webp',
         ]);
         
         try {
@@ -45,7 +44,7 @@ class ProductController extends Controller
             $product->category_id = $request->category_id;
             $product->subcategory_id = $request->subcategory_id;
             $product->name = $request->name;
-            $product->description = $request->description;
+            // $product->description = $request->description;
             $product->image = $save_url;
             $product->save();
 
@@ -61,6 +60,7 @@ class ProductController extends Controller
                 'message'=>'Something went wrong',
                 'alert-type'=>'success'
             );
+            return $e;
             return Redirect()->back()->with($notification);
         }
     }
@@ -106,8 +106,7 @@ class ProductController extends Controller
             'category_id' => 'required',
             'subcategory_id' => 'required',
             'name' => 'required|max:100',
-            'description' => 'required',
-            'image' => 'image|mimes:jpeg,jpg,png,gif',
+            'image' => 'image|mimes:jpeg,jpg,png,gif,webp',
         ]);
         
         $old_img = $request->old_image;
@@ -122,7 +121,7 @@ class ProductController extends Controller
             $product->category_id = $request->category_id;
             $product->subcategory_id = $request->subcategory_id;
             $product->name = $request->name;
-            $product->description = $request->description;
+            // $product->description = $request->description;
             $product->image = $save_url;
             $product->save();
         } else {
@@ -130,7 +129,7 @@ class ProductController extends Controller
             $product->category_id = $request->category_id;
             $product->subcategory_id = $request->subcategory_id;
             $product->name = $request->name;
-            $product->description = $request->description;
+            // $product->description = $request->description;
             $product->save();
         }
         

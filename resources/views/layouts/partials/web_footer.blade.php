@@ -3,7 +3,8 @@
       <div class="container">
           <div class="row">
               <div class="col-md-3 col-6">
-                  <h3 class="company-title">{{ $content->name }}</h3>
+                  {{-- <h3 class="company-title">{{ $content->name }}</h3> --}}
+                  <h4>{{ $content->name }}</h4>
                   <div class="about-text">{!! Str::words($content->about, 25, '') !!}</div>
               </div>
               <div class="col-md-3 col-6">
@@ -36,7 +37,7 @@
           <div class="row">
               <div class="col-md-6 col-12">
                   <div class="copyright">
-                      <p>@Copyright 2022, All right reserved, {{ $content->name }}.</p>
+                      <p>&copy; Copyright 2022, All right reserved.</p>
                   </div>
               </div>
               <div class="col-md-6 col-12">

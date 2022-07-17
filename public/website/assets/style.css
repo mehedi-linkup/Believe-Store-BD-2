@@ -86,10 +86,18 @@ h2.section-title::before {
     left: calc(50% - 60px);
 }
 
+.section-border {
+    border-bottom: 2px solid #fff;
+}
+
+.section-border-black {
+    border-bottom: 2px solid #000;
+}
 
 .custom-card {
     background-color: #fff;
     padding: 30px;
+    height: 100%;
 }
 
 /* Navbar Custom */
@@ -109,8 +117,24 @@ h2.section-title::before {
     color: rgba(255, 255, 255, 0.9);
 }
 .navbar-nav .nav-link.active, .navbar-nav .show>.nav-link {
-    color: #f24c34;
+    color: #ff2000;
+    font-weight: 600;
 }
+/* .navbar-nav .nav-link.active, .navbar-nav .show>.nav-link {
+    color: #f24c34;
+} */
+
+nav .navbar-brand img {
+    height: 67px;
+    width: 90px;
+}
+@media(max-width: 767px) {
+    nav .navbar-brand img {
+        height: 35px;
+        width: 44px;
+    }
+}
+
 
 .navbar-toggler-icon {
     background-image: none;
@@ -225,12 +249,36 @@ h2.section-title::before {
 .our-team {
     background-color: rgba(242, 76, 52, 0.9);
 }
+
+
+
+
 .team-box {
     padding: 20px;
     background-color: #fff;
     border: 2px solid transparent;
     transition: all 0.3s;
 }
+@media(min-width:768px) {
+    .team-box img {
+        height: 128px;
+    }
+}
+
+@media(min-width:992px) {
+    .team-box img {
+        height: 197px;
+    }
+}
+
+@media(min-width:1200px) {
+    .team-box img {
+        height: 248px;;
+    }
+}
+
+
+
 .text-designation {
     margin-bottom: 10px;
 }
@@ -379,7 +427,7 @@ h2.section-title::before {
 
 /* Footer Start */
 .site-footer {
-    background-color: #3a3939;;
+    background-color: #101010;
 }
 .site-footer .footer-newsletter {
     padding-top: 65px;
@@ -409,7 +457,7 @@ h2.section-title::before {
     font-size: 26px;
 }
 .site-footer .about-text {
-    color: #f9eded;
+    color: #ddd;
     text-align: justify;
 }
 .site-footer .address {
@@ -417,7 +465,7 @@ h2.section-title::before {
     list-style: none;
 }
 .site-footer .address li {
-    color: #f9eded;
+    color: #ddd;
 }
 .site-footer .address li a {
     color: rgb(249, 237, 237);
@@ -433,13 +481,13 @@ h2.section-title::before {
     /* margin-left: 24px; */
 }
 .site-footer .link li a {
-    color: #ebf2ff;
+    color: #ddd;
 }
 .site-footer .link li a i {
     font-size: 26px;
 }
 .site-footer h4 {
-    color: #ebf2ff;
+    color: #ff2000;
     font-size: 18px;
 }
 .site-footer .footer-end {
@@ -447,6 +495,7 @@ h2.section-title::before {
     color: #ebf2ff;
     padding-top: 12px;
     padding-bottom: 12px;
+    font-size: 13px;
 }
 .site-footer .footer-end p {
     margin-bottom: 0;
@@ -456,9 +505,13 @@ h2.section-title::before {
     justify-content: end;
 }
 .site-footer .footer-end .developed a {
-    color: #ebf2ff
+    /* display: inline-block; */
+    color: #ebf2ff;
+    transition: all 1s ease;
 }
-
+.site-footer .footer-end .developed a:hover {
+    border-bottom: 1px solid;
+}
 @media(max-width: 767px) {
     .footer-end .copyright p {
         text-align: center;
