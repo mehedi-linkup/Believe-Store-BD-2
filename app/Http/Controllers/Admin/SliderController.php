@@ -15,19 +15,19 @@ class SliderController extends Controller
     }
     public function store(Request $request) {
         $request->validate([
-            'slogan' => 'required|string|min:3',
-            'headerline' => 'required|string|min:3',
-            'description' => 'required|string|min:3',
-            'image' => 'required|mimes:jpg,png,bmp,jpeg',
+            'slogan' => 'max:255',
+            'headerline' => 'max:255',
+            'description' => 'max:255',
+            'image' => 'required|mimes:jpg,png,bmp,jpeg,webp',
         ]);
         $slider = new Slider();
-        $slider->slogan = $request->slogan;
-        $slider->headerline = $request->headerline;
-        $slider->description = $request->description;
+        // $slider->slogan = $request->slogan;
+        // $slider->headerline = $request->headerline;
+        // $slider->description = $request->description;
         $slider->image = $this->imageUpload($request, 'image', 'uploads/slider') ?? '';
         $slider->save();
         if($slider) {
-            return redirect()->route('slider.index')->with('success', 'Insert Successfull');
+            return redirect()->route('slider.index')->with('success', 'Insert Successful');
         }
         return redirect()->back()->withInput();       
     }
@@ -43,9 +43,10 @@ class SliderController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'slogan' => 'required|string|min:3',
-            'headerline' => 'required|string|min:3',
-            'description' => 'required|string|min:3',
+            'slogan' => 'max:255',
+            'headerline' => 'max:255',
+            'description' => 'max:255',
+            'image' => 'mimes:jpg,png,bmp,jpeg,webp',
         ]);
         // image upload
         $slider = Slider::find($id);
@@ -66,7 +67,7 @@ class SliderController extends Controller
         $slider->save();
         if($slider)
         {
-            return redirect()->route('slider.index')->with('success', 'Update Successfull');
+            return redirect()->route('slider.index')->with('success', 'Update Successful');
         }
         return redirect()->back()->withInput()->with('faild', 'Update Unsuccess');
     }
@@ -78,6 +79,6 @@ class SliderController extends Controller
             unlink($slider->image);
         }
         $slider->delete();
-        return redirect()->back()->with('success', 'Deleted Successfull');
+        return redirect()->back()->with('success', 'Deleted Successful');
     }
 }
