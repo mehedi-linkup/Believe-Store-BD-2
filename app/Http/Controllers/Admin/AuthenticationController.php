@@ -65,7 +65,7 @@ class AuthenticationController extends Controller
         }
         else
         {
-            return 'password dose not match';
+            return 'password does not match';
         }
     }
 }

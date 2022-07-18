@@ -24,8 +24,8 @@ class BackImageController extends Controller
             'bgimage_other' => 'mimes:jpg,jpeg,png,bmp',
             'bgimage_news' => 'mimes:jpg,jpeg,png,bmp',
         ]);
-
-        $db_exits = BackImage::first();
+        try {
+            $db_exits = BackImage::first();
         $embededImageName = '';
         if($_FILES['bgimage_other']['name']){
             if(file_exists(public_path('/website/assets/image/section-background/'. $db_exits->bgimage_other)))
@@ -57,9 +57,11 @@ class BackImageController extends Controller
         $db_exits->bgimage_other = $embededImageName != '' ? $embededImageName : $db_exits->bgimage_other;
         $db_exits->bgimage_news = $embededImage2Name != '' ? $embededImage2Name : $db_exits->bgimage_news;
         $db_exits->save();
-        if($db_exits){
-            return redirect()->back()->with('success', 'Update Successfull!');
+        return redirect()->back()->with('success', 'Update Successfull!');
+        } catch (\Throwable $th) {
+            // return redirect()->back()->withInput();
+            return redirect()->back()->('error', 'Update Failed!');
         }
-        return redirect()->back()->withInput();
+
     }
 }

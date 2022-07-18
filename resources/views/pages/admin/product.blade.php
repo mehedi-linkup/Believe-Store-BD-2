@@ -29,11 +29,8 @@
                             <div class="row">
                                 <div class="col-md-7 mb-2">
                                     <label for="name" class="mb-2"> Product Name <span class="text-danger">*</span> </label>
-                                    <input type="text" name="name" value="{{ @$productData->name }}" class="form-control form-controm-sm mb-2" id="name" placeholder="Enter Category name">
+                                    <input type="text" name="name" value="{{ @$productData->name }}" class="form-control form-control-sm mb-2" id="name" placeholder="Enter Category name">
                                     @error('name') <span style="color: red">{{$message}}</span> @enderror
-
-
-
 
                                     <label for="name" class="mb-2"> Category <span class="text-danger">*</span> </label>
                                     <select name="category_id" class="form-control form-control-sm mb-2">
@@ -48,6 +45,11 @@
                                     <label for="name" class="mb-2"> Subcategory <span class="text-danger">*</span> </label>
                                     <select name="subcategory_id" class="form-control form-control-sm mb-2">
                                         <option value="">Select Subcategory Option</option>
+                                        @if(@$productSubData)
+                                        @foreach ($productSubData as $item)
+                                            <option value="{{ $item->id }}" {{ $item->id == @$productData->subcategory_id ? 'selected' : '' }} >{{ $item->name }}</option>
+                                        @endforeach
+                                        @endif
                                     </select>
                                     @error('subcategory_id') <span style="color: red">{{$message}}</span> @enderror
                                     {{-- <label for="name" class="mb-2"> Product Description <span class="text-danger">*</span> </label>
@@ -174,8 +176,6 @@
                   .height(120);
         };
         reader.readAsDataURL(input.files[0]);
-
-
       }
     }
 </script>

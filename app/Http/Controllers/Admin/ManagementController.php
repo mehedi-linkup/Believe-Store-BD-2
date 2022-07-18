@@ -52,8 +52,8 @@ class ManagementController extends Controller
             $management->save();
             return redirect()->back()->with('success', 'Member Inserted!');
         } catch (\Exception $e) {
-		    return ["error" => $e->getMessage()];
-            // return Redirect()->back()->with('Failed', 'Photo insertion failed!');
+		    // return ["error" => $e->getMessage()];
+            return Redirect()->back()->with('Failed', 'Photo insertion failed!');
         }
     }
 
@@ -107,8 +107,8 @@ class ManagementController extends Controller
             $management->save();
             return Redirect()->route('management.index')->with("success", "Update Successfull");
         } catch(\Exception $e) {
-		    return ["error" => $e->getMessage()];
-            // return redirect()->back()->with('error', 'Team insert failed!');
+		    // return ["error" => $e->getMessage()];
+            return redirect()->back()->with('error', 'Team insert failed!');
         }
     }
 

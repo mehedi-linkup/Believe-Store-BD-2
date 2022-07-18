@@ -90,9 +90,9 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-6 col-12 ps-0 d-none d-md-block">
-        <img src="{{ asset($whatwe->image) }}" alt="" class="img-fluid h-100">
+        <img src="{{ asset($whatwe->image) }}" alt="" class="img-fluid p-md-5 bg-white h-100">
       </div>
-      <div class="col-md-6 col-12 d-flex">
+      <div class="col-md-6 col-12 pe-md-0 d-flex">
         <div class="text-box align-self-center">
           <h3 class="card-title text-uppercase text-danger mb-1">It's our passion</h3>
           <h3 class="card-title text-uppercase fw-bold mb-4">{{ $whatwe->title3 }}</h3>
@@ -127,16 +127,16 @@
           <div class="img-box">
             <div class="icon-box">
               <ul class="link-icons justify-content-around">
-                <li><a href="{{ $item->facebook }}"><i class="fa-brands fa-facebook-f"></i></a></li>
-                <li><a href="{{ $item->twitter }}"><i class="fa-brands fa-twitter"></i></a></li>
-                <li><a href="{{ $item->instagram }}"><i class="fa-brands fa-instagram"></i></a></li>
+                <li><a href="{{ $item->facebook }}" target="_blank"><i class="fa-brands fa-facebook-f"></i></a></li>
+                <li><a href="{{ $item->twitter }}" target="_blank"><i class="fa-brands fa-twitter"></i></a></li>
+                <li><a href="{{ $item->instagram }}" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
                 {{-- <li><a href=""><i class="fa-brands fa-linkedin-in"></i></a></li> --}}
               </ul>
             </div>
             <img src="{{ asset('uploads/management/'.$item->image) }}" alt="{{ $item->name }}" class="img-fluid">
           </div>
           <h5 class="product-title text-center mt-4">{{ $item->name }}</h5>
-          <p class="text-designation text-center">{{ $item->name }}</p>
+          <p class="text-designation text-center">{{ $item->designation }}</p>
         </div>
       </div>
       @endforeach
@@ -178,11 +178,11 @@
       
       <div class="col-md-7 col-12 mt-md-0 mt-2">
         <div class="row row-cols-md-3 row-cols-2 gx-1">
-         @foreach($video->take(6) as $item)
+         @for($i = 1; $i < sizeof($video->take(7)); $i++)
           <div class="col">
-            <iframe width="100%" height="135" src="{{ $item->link }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+            <iframe width="100%" height="135" src="{{ $video[$i]->link }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
           </div>
-          @endforeach
+          @endfor
         </div>
       </div>
     </div>

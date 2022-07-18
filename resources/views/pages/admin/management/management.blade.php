@@ -39,7 +39,7 @@
                                 @enderror
                             </div>
                             <div class="col-md-6 mb-2">
-                                <label for="facebook"> Facebook <span class="text-danger">*</span> </label>
+                                <label for="facebook"> Facebook </label>
                                 <input type="url" name="facebook" class="form-control form-control-sm shadow-none  @error('facebook') is-invalid @enderror" value="{{ @$managementData->facebook }}" id="facebook" placeholder="Facebook Link">
                                 @error('facebook')
                                     <span class="invalid-feedback" role="alert">
@@ -48,7 +48,7 @@
                                 @enderror
                             </div>
                             <div class="col-md-6 mb-2">
-                                <label for="twitter"> Twitter <span class="text-danger">*</span> </label>
+                                <label for="twitter"> Twitter </label>
                                 <input type="text" name="twitter" class="form-control form-control-sm shadow-none  @error('twitter') is-invalid @enderror" value="{{ @$managementData->twitter }}" id="twitter" placeholder="Twitter Link">
                                 @error('twitter')
                                     <span class="invalid-feedback" role="alert">
@@ -57,7 +57,7 @@
                                 @enderror
                             </div>
                             <div class="col-md-6 mb-2">
-                                <label for="instagram"> Instagram <span class="text-danger">*</span> </label>
+                                <label for="instagram"> Instagram </label>
                                 <input type="text" name="instagram" class="form-control form-control-sm shadow-none  @error('instagram') is-invalid @enderror" value="{{ @$managementData->instagram }}" id="designation" placeholder="Enter a Designation">
                                 @error('instagram')
                                     <span class="invalid-feedback" role="alert">
@@ -66,7 +66,7 @@
                                 @enderror
                             </div>
                             <div class="col-md-6 mb-2">
-                                <label for="image">Image</label>
+                                <label for="image">Image <span class="text-danger">*</span> (size: 700px * 800px) </label>
                                 <input class="form-control form-control-sm" id="image" type="file" name="image" onchange="readURL(this);">
                                 <div class="form-group mt-2">
                                     <img class="form-controlo img-thumbnail" src="#" id="previewImage" style="width: 160px;height: 130px; background: #3f4a49;">
@@ -111,7 +111,7 @@
                                     <td>{{ $item->designation }}</td>
                                     <td>
                                         <a href="{{ route('management.edit', $item->id) }}" type="submit" class="btn btn-info btn-mod-info btn-sm mr-1"><i class="fas fa-edit"></i></button>
-                                        <a href="{{ route('management.delete', $item->id) }}" type="submit" class="btn btn-danger btn-mod-danger btn-sm" onclick="return confirmDel()"><i class="fas fa-trash"></i></button>
+                                        <a href="{{ route('management.delete', $item->id) }}" type="submit" class="btn btn-danger btn-mod-danger btn-sm" onclick="return confirm('Are you sure?')"><i class="fas fa-trash"></i></button>
                                     </td>
                                 </tr>
                             @empty
@@ -119,7 +119,6 @@
                                     <td rowspan="5">Data Not Found</td>
                                 </tr>
                             @endforelse
-                            
                         </tbody>
                     </table>
                 </div>

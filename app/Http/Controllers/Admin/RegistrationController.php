@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules\Exists;
+use PhpParser\Node\Stmt\TryCatch;
 
 class RegistrationController extends Controller
 {
@@ -26,17 +28,20 @@ class RegistrationController extends Controller
             'image' => 'mimes:jpg,png.jpeg,bmp'
         ]);
 
-        $user = new User();
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->username = $request->username;
-        $user->password = Hash::make($request->password);
-        $user->image = $this->imageUpload($request, 'image', 'uploads/user') ?? '';
-        $user->save();
-        if($user) {
-            return back();
+        try {
+            $user = new User();
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->username = $request->username;
+            $user->password = Hash::make($request->password);
+            $user->image = $this->imageUpload($request, 'image', 'uploads/user') ?? '';
+            $user->save();
+            if($user) {
+                return back();
+            } 
+        } catch (\Throwable $th) {
+            return redirect()->back()->withInput();
         }
-        return redirect()->back()->withInput();
     }
 
     public function settings() {
@@ -53,28 +58,37 @@ class RegistrationController extends Controller
             'image' => 'mimes:jpg,png.jpeg,bmp'
         ]);
 
-        $user = User::findOrFail(Auth::id());
-        
-        $profileImage = '';
-        if($request->hasFile('image')) {
-            if(!empty($user->image) && file_exists($user->image)) {
-                unlink($user->image);
+        try {
+            if(User::where('id', '!=', Auth::id())->where('username', $request->username)->exists()) {
+
+                return back()->with('error','Username exist!');
+                
+            } else {
+                $user = User::findOrFail(Auth::id());
+                $profileImage = '';
+                if($request->hasFile('image')) {
+                    if(!empty($user->image) && file_exists($user->image)) {
+                        unlink($user->image);
+                    }
+                    $profileImage = $this->imageUpload($request, 'image', 'uploads/user');
+                } else {
+                    $profileImage = $user->image;
+                }
+    
+                $user->name = $request->name;
+                $user->email = $request->email;
+                $user->username = $request->username;
+                $user->image = $profileImage;
+                $user->save();
+                if($user)
+                {
+                    // return redirect()->route('dashboard');
+                    return redirect()->back()->with('success', 'Update Successful!');
+                }
             }
-            $profileImage = $this->imageUpload($request, 'image', 'uploads/user');
-        } else {
-            $profileImage = $user->image;
+        } catch (\Throwable $th) {
+            //throw $th;
+            return redirect()->back()->withInput();
         }
-
-
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->username = $request->username;
-        $user->image = $profileImage;
-        $user->save();
-        if($user)
-        {
-            return redirect()->route('dashboard');
-        }
-        return redirect()->back()->withInput();
     }
 }
