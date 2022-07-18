@@ -150,7 +150,7 @@ nav .navbar-brand img {
 }
 @media (max-width: 575px) {
     .carousel-inner {
-        max-height: 370px;
+        height: 370px;
     }
 }
 @media (min-width: 576px) and (max-width: 991px) {
