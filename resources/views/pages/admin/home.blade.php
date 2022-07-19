@@ -10,11 +10,11 @@
             <div class="col-xl-3 col-md-6">
                 <div class="card text-white mb-4" style="background: #484d52">
                     <div class="card-body">
-                        <div>Customer Message</div>
-                        <span>{{ $message }}</span>
+                        <div>Users</div>
+                        <span>{{ $users }}</span>
                     </div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="{{ route('admin.message') }}">View Details</a>
+                        <a class="small text-white stretched-link" href="{{ route('register.create') }}">View Details</a>
                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                     </div>
                 </div>
@@ -22,11 +22,11 @@
             <div class="col-xl-3 col-md-6">
                 <div class="card text-white mb-4" style="background: #484d52">
                     <div class="card-body">
-                        <div>Service Query Message</div>
-                        <span>{{ $query }}</span>
+                        <div>Total Slider</div>
+                        <span>{{ $slider }}</span>
                     </div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="{{ route('admin.query') }}">View Details</a>
+                        <a class="small text-white stretched-link" href="{{ route('slider.index') }}">View Details</a>
                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                     </div>
                 </div>

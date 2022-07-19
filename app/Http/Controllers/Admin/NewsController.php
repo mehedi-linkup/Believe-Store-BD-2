@@ -15,9 +15,10 @@ class NewsController extends Controller
         return view('pages.admin.news.index', compact('news'));
     }
     public function store(Request $request) {
-        $validatedData = $request->validate([
+        // return $request;
+        $request->validate([
             'title' => 'required|min:4',
-            'description' => 'required|min:10|max:255',
+            'description' => 'required|min:10',
             'image' => 'required|Image|mimes:jpeg,jpg,png,gif,webp',
         ]);
         $image = $request->file('image');
@@ -37,8 +38,8 @@ class NewsController extends Controller
             $news->save();
             return redirect()->back()->with('success', 'News Insertion Successfull!');
         } catch (\Exception $e) {        
-		    return ["error" => $e->getMessage()];
-            // return Redirect()->back()->with('Failed', 'Photo insertion failed!');
+		    // return ["error" => $e->getMessage()];
+            return Redirect()->back()->with('error', 'News Insertion Failed!');
         }
     }
     public function edit($id) {
@@ -49,7 +50,8 @@ class NewsController extends Controller
     public function update(Request $request, $id) {
         $request->validate([
             'title' => 'required|min:4',
-            'description' => 'required|min:10|max:255'
+            'description' => 'required|min:10',
+            'image' => 'Image|mimes:jpeg,jpg,png,gif,webp'
         ]);
 
         try {

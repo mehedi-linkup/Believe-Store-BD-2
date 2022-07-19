@@ -38,7 +38,7 @@ class ProductController extends Controller
         try {
             $image = $request->file('image');
             $name_gen=hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
-            Image::make($image)->resize(724,480)->save('uploads/product/'.$name_gen);
+            Image::make($image)->resize(768,768)->save('uploads/product/'.$name_gen);
             $save_url = 'uploads/product/'.$name_gen;
 
             $product = new Product();
@@ -48,24 +48,12 @@ class ProductController extends Controller
             // $product->description = $request->description;
             $product->image = $save_url;
             $product->save();
-
-            $notification=array(
-                'message'=>'Product Created Succefully..',
-                'alert-type'=>'success'
-            );
-            return Redirect()->back()->with($notification);
+            return Redirect()->route('admin.products')->with('success', 'Product Insertion Succeful!');
 
         } catch (\Exception $e) {   
-
-            $notification=array(
-                'message'=>'Something went wrong',
-                'alert-type'=>'success'
-            );
-            return $e;
-            return Redirect()->back()->with($notification);
+            return Redirect()->back()->with('error', 'Insertion Failed!');
         }
     }
-
 
     /**
      * Show the form for editing the specified resource.
@@ -116,7 +104,7 @@ class ProductController extends Controller
                 unlink($old_img);
                 $image = $request->file('image');
                 $name_gen=hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
-                Image::make($image)->resize(724,480)->save('uploads/product/'.$name_gen);
+                Image::make($image)->resize(768,768)->save('uploads/product/'.$name_gen);
                 $save_url = 'uploads/product/'.$name_gen;
     
                 $product = Product::find($id);
@@ -134,11 +122,7 @@ class ProductController extends Controller
                 // $product->description = $request->description;
                 $product->save();
             }
-            $notification=array(
-                'message'=>'Product Updated Succefully..',
-                'alert-type'=>'success'
-            );
-            return Redirect()->route('admin.products')->with($notification);
+            return Redirect()->route('admin.products')->with('success', 'Update Successful!');
             
         } catch (\Throwable $th) {
             return Redirect()->back()->with('failed', 'Product Update Failed!');
@@ -158,11 +142,6 @@ class ProductController extends Controller
             unlink($product->image);
             $product->delete();
         }
-
-        $notification=array(
-            'message'=>'Product Deleted Successfully',
-            'alert-type'=>'success'
-        );
-        return Redirect()->back()->with($notification);
+        return Redirect()->back()->with('success', 'Deleted Successfully!');
     }
 }

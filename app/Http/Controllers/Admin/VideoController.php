@@ -22,8 +22,8 @@ class VideoController extends Controller
             $video->save();
             return redirect()->back()->with('success', 'Video Inserted!');
         } catch (\Exception $e) {
-		    return ["error" => $e->getMessage()];
-            // return Redirect()->back()->with('Failed', 'Photo insertion failed!');
+		    // return ["error" => $e->getMessage()];
+            return Redirect()->back()->with('error', 'Insertion failed!');
         }
     }
     public function edit($id) {

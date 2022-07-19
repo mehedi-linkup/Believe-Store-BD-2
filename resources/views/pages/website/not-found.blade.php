@@ -1,4 +1,4 @@
-@extends('layouts.website', ['pageName' => 'news'])
+@extends('layouts.website')
 @section('web-content')
 
 <section id="product-background" class="product-background d-flex" style="background-image: url('{{ asset('/website/assets/image/section-background/'.$backimage->bgimage_other) }}')">
@@ -9,7 +9,7 @@
 								<ol class="breadcrumb justify-content-center">
 									<li class="breadcrumb-item"><a href="{{ route('home') }}">Home </a></li>
 									<span>&nbsp;/&nbsp;</span>
-									<li class="breadcrumb-item active" aria-current="page"> {{ $news->title }}</li>
+									<li class="breadcrumb-item active" aria-current="page"> Error </li>
 								</ol>
 							</nav>
 					</div>
@@ -21,21 +21,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12 col-12">
-				<h2 class="fs-2 fw-bold text-center text-uppercase text-white"><span class="section-border">News & Events</span></h2>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-6 col-12">
-				<div class="img-box">
-					<img src="{{ asset($news->image) }}" alt="" class="img-fluid">
-				</div>
-			</div>
-			<div class="col-md-6 col-12">
-				<div class="details-box">
-					<div class="date float-end">{{ date('Y-m-d', strtotime($news->created_at)) }}</div>
-					<h4>{{ $news->title }}</h4>
-					<p style="text-align: justify">{{ $news->description }}</p>
-				</div>
+				<h2 class="fs-2 fw-bold text-center text-uppercase text-white"><span>Nothing Found</span></h2>
 			</div>
 		</div>
 	</div>

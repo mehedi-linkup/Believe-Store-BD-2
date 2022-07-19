@@ -23,13 +23,16 @@ class AuthenticationController extends Controller
             'username' => 'required|string',
             'password' => 'required|min:1',
         ]);
-
-        $credentials = $request->only('username', 'password');
-        if(Auth::attempt($credentials))
-        {
-            return redirect()->intended('dashboard');
+        try {
+            $credentials = $request->only('username', 'password');
+            if(Auth::attempt($credentials))
+            {
+                return redirect()->intended('dashboard');
+            }
+        } catch (\Throwable $th) {
+            // return redirect()->route('login')->withInput();
+            return redirect()->route('login')->with('error', 'Login Failed!');
         }
-        return redirect()->route('login')->withInput();
     }
 
     // logout 
@@ -65,7 +68,9 @@ class AuthenticationController extends Controller
         }
         else
         {
-            return 'password does not match';
+            // return 'password does not match';
+            return redirect()->back()->with('error', 'Password didn\'t match!');
+
         }
     }
 }

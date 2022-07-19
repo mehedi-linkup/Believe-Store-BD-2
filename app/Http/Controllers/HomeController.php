@@ -29,18 +29,28 @@ class HomeController extends Controller
         return view('pages.website.index', compact('category', 'slider', 'gallery', 'video', 'management', 'news', 'whatwe', 'backimage'));
     }
     public function submenu($id) {
-        $subcategory = Subcategory::where('category_id', $id)->get();
         $category = Category::find($id);
-        $backimage = BackImage::first();
-        return view('pages.website.submenu', compact('category', 'subcategory', 'backimage'));
+        if (isset($category)) {
+            $subcategory = Subcategory::where('category_id', $id)->get();
+            $backimage = BackImage::first();
+            return view('pages.website.submenu', compact('category', 'subcategory', 'backimage'));
+        } else {
+            $backimage = BackImage::first();
+            return view('pages.website.not-found', compact('backimage'));
+        }
     }
     // subcategory id pass bellow
     public function product($id) {
         $subcategory = Subcategory::find($id); // subcategory id retrieve which the product contain
-        $category = Category::where('id', $subcategory->category_id)->first();
-        $product = Product::where('subcategory_id', $id)->get();
-        $backimage = BackImage::first();
-        return view('pages.website.product', compact('subcategory','product', 'category', 'backimage'));
+        if (isset($subcategory)) {
+            $category = Category::where('id', $subcategory->category_id)->first();
+            $product = Product::where('subcategory_id', $id)->get();
+            $backimage = BackImage::first();
+            return view('pages.website.product', compact('subcategory','product', 'category', 'backimage'));
+        } else {
+            $backimage = BackImage::first();
+            return view('pages.website.not-found', compact('backimage'));
+        }
     }
 
     public function productDetail($id) {

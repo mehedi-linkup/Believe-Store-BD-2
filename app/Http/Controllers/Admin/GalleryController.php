@@ -19,17 +19,20 @@ class GalleryController extends Controller
             'title' => 'required|min:4',
             'image' => 'required|Image|mimes:jpeg,jpg,png,gif',
         ]);
-        $image = $request->file('image');
-        $nameGen = hexdec(uniqid());
-        $imgExt = strtolower($image->getClientOriginalExtension());
-        $imgName = $nameGen. '.' . $imgExt;
-        $upLocation = 'uploads/gallery/';
-        // $image->move($upLocation, $imgName);
-        Image::make($image)->resize(720,480)->save($upLocation . $imgName);
+        
 
         try {
             DB::beginTransaction();
+
             $gallery = new Gallery;
+            //image upload
+            $image = $request->file('image');
+            $nameGen = hexdec(uniqid());
+            $imgExt = strtolower($image->getClientOriginalExtension());
+            $imgName = $nameGen. '.' . $imgExt;
+            $upLocation = 'uploads/gallery/';
+            Image::make($image)->resize(720,480)->save($upLocation . $imgName);
+            //close image upload
             $gallery->title = $request->title;
             $gallery->image = $imgName;
             $gallery->created_at = Carbon::now();

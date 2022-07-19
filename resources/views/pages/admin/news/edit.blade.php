@@ -21,13 +21,23 @@
                                 @enderror
 
                                 <label for="image" class="mt-1">Image</label>
-                                <input class="form-control" id="image" type="file" name="image" onchange="readURL(this);">
+                                <input class="form-control @error('image') is-invalid @enderror" id="image" type="file" name="image" onchange="readURL(this);">
                                 <img class="form-controlo img-thumbnail" src="#" id="previewImage" style="width: 150px;height: 100px; background: #3f4a49;">
+                                @error('image')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                             <div class="col-md-6 mb-2">
                                 <div class="form-group">
-                                    <label for="description">News Details (max: 255 character)</label>
-                                    <textarea name="description" class="form-control" id="description" rows="4">{{ $news->description }}</textarea>
+                                    <label for="description">News Details</label>
+                                    <textarea name="description" class="form-control @error('description') is-invalid @enderror" id="description" rows="4">{{ $news->description }}</textarea>
+                                    @error('description')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
                         </div>

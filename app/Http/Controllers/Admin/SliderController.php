@@ -20,16 +20,18 @@ class SliderController extends Controller
             'description' => 'max:255',
             'image' => 'required|mimes:jpg,png,bmp,jpeg,webp',
         ]);
-        $slider = new Slider();
-        // $slider->slogan = $request->slogan;
-        // $slider->headerline = $request->headerline;
-        // $slider->description = $request->description;
-        $slider->image = $this->imageUpload($request, 'image', 'uploads/slider') ?? '';
-        $slider->save();
-        if($slider) {
+        try {
+            $slider = new Slider();
+            $slider->slogan = $request->slogan;
+            $slider->headerline = $request->headerline;
+            $slider->description = $request->description;
+            $slider->image = $this->imageUpload($request, 'image', 'uploads/slider') ?? '';
+            $slider->save();
             return redirect()->route('slider.index')->with('success', 'Insert Successful');
-        }
-        return redirect()->back()->withInput();       
+        } catch (\Throwable $th) {
+            //throw $th;
+            return redirect()->back()->withInput();       
+        }  
     }
 
     // Edit
@@ -49,27 +51,31 @@ class SliderController extends Controller
             'image' => 'mimes:jpg,png,bmp,jpeg,webp',
         ]);
         // image upload
-        $slider = Slider::find($id);
-        $sliderImage = '';
-        if ($request->hasFile('image')) {
-            if (!empty($slider->image) && file_exists($slider->image)) {
-                unlink($slider->image);
+        try {
+            $slider = Slider::find($id);
+            $sliderImage = '';
+            if ($request->hasFile('image')) {
+                if (!empty($slider->image) && file_exists($slider->image)) {
+                    unlink($slider->image);
+                }
+                $sliderImage = $this->imageUpload($request, 'image', 'uploads/slider');
+            }else{
+                $sliderImage = $slider->image;
             }
-            $sliderImage = $this->imageUpload($request, 'image', 'uploads/slider');
-        }else{
-            $sliderImage = $slider->image;
-        }
+            $slider->slogan = $request->slogan;
+            $slider->headerline = $request->headerline;
+            $slider->description = $request->description;
+            $slider->image = $sliderImage;
+            $slider->save();
+            if($slider)
+            {
+                return redirect()->route('slider.index')->with('success', 'Update Successful');
+            }
 
-        $slider->slogan = $request->slogan;
-        $slider->headerline = $request->headerline;
-        $slider->description = $request->description;
-        $slider->image = $sliderImage;
-        $slider->save();
-        if($slider)
-        {
-            return redirect()->route('slider.index')->with('success', 'Update Successful');
+        } catch (\Throwable $th) {
+            //throw $th;
+            return redirect()->back()->withInput()->with('error', 'Update Failed!');
         }
-        return redirect()->back()->withInput()->with('faild', 'Update Unsuccess');
     }
 
     public function delete($id)

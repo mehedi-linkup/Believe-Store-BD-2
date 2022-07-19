@@ -30,51 +30,53 @@ class CompanyProfileController extends Controller
             'bg_image' => 'mimes:jpg,jpeg,png,bmp',
         ]);
 
-        // Image Update 
-        $companyLogo = $company->logo;
-        $AboutImage = $company->about_image;
-        $BgImage = $company->bg_image;
+        // Image Update
+        try {
+            $companyLogo = $company->logo;
+            $AboutImage = $company->about_image;
+            $BgImage = $company->bg_image;
 
-        if($request->hasFile('logo')) {
-            if(!empty($company->logo) && file_exists($company->logo))
-            {
-                unlink($company->logo);
+            if($request->hasFile('logo')) {
+                if(!empty($company->logo) && file_exists($company->logo))
+                {
+                    unlink($company->logo);
+                }
+                $companyLogo = $this->imageUpload($request, 'logo', 'uploads/about');
             }
-            $companyLogo = $this->imageUpload($request, 'logo', 'uploads/about');
-        }
 
-        if($request->hasFile('about_image')) {
-            if(!empty($company->about_image) && file_exists($company->about_image))
-            {
-                unlink($company->about_image);
+            if($request->hasFile('about_image')) {
+                if(!empty($company->about_image) && file_exists($company->about_image))
+                {
+                    unlink($company->about_image);
+                }
+                $AboutImage = $this->imageUpload($request, 'about_image', 'uploads/about');
             }
-            $AboutImage = $this->imageUpload($request, 'about_image', 'uploads/about');
-        }
 
-        if($request->hasFile('bg_image')) {
-            if(!empty($company->bg_image) && file_exists($company->bg_image))
-            {
-                unlink($company->bg_image);
+            if($request->hasFile('bg_image')) {
+                if(!empty($company->bg_image) && file_exists($company->bg_image))
+                {
+                    unlink($company->bg_image);
+                }
+                $BgImage = $this->imageUpload($request, 'bg_image', 'uploads/about');
             }
-            $BgImage = $this->imageUpload($request, 'bg_image', 'uploads/about');
-        }
+            $company->name = $request->name;
+            $company->email = $request->email;
+            $company->phone = $request->phone;
+            $company->address = $request->address;
+            $company->about = $request->about;
+            $company->facebook = $request->facebook;
+            $company->instagram = $request->instagram;
+            $company->twitter = $request->twitter;
+            $company->linkedin = $request->linkedin;
+            $company->logo = $companyLogo;
+            $company->about_image = $AboutImage;
+            $company->bg_image = $BgImage;
+            $company->save();
+            return redirect()->back()->with('success','Update Successful!');        
 
-        $company->name = $request->name;
-        $company->email = $request->email;
-        $company->phone = $request->phone;
-        $company->address = $request->address;
-        $company->about = $request->about;
-        $company->facebook = $request->facebook;
-        $company->instagram = $request->instagram;
-        $company->twitter = $request->twitter;
-        $company->linkedin = $request->linkedin;
-        $company->logo = $companyLogo;
-        $company->about_image = $AboutImage;
-        $company->bg_image = $BgImage;
-        $company->save();
-        if($company){
-            return redirect()->back()->with('Update Successfull!');
-        }
-        return redirect()->back()->withInput();
+        } catch (\Throwable $th) {
+            // return redirect()->back()->withInput();
+            return redirect()->back()->with('error', 'Update Failed!');
+        }    
     }
 }

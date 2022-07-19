@@ -59,8 +59,7 @@ class BackImageController extends Controller
         $db_exits->save();
         return redirect()->back()->with('success', 'Update Successfull!');
         } catch (\Throwable $th) {
-            // return redirect()->back()->withInput();
-            return redirect()->back()->('error', 'Update Failed!');
+            return redirect()->back()->with('error', 'Update Failed!');
         }
 
     }

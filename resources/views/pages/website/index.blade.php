@@ -38,7 +38,10 @@
             </div>
             <div class="col-md-4 col-12">
                 <div class="custom-card">
-                    <h2 class="welcome-title fs-3 fw-bold text-uppercase">Welcome To {{ $content->name }}</h2>
+                    <h2 class="welcome-title fs-3 fw-bold text-uppercase">Welcome To @isset($content->name)
+                      {{ $content->name }}
+                    @endisset
+                  </h2>
                     {{-- <p class="semi-title">Customize any case with our premium marble design which has a matching POP as well! Customization available for 300+ phone cases! Customizing cases has never been easier.</p> --}}
                     <div class="description">{!! $content->about !!}</div>
                 </div>

@@ -19,16 +19,26 @@
                                     </span>
                                 @enderror
                                 <label for="image">Image</label>
-                                <input class="form-control form-control-sm" id="image" type="file" name="image" onchange="readURL(this);">
-                                
+                                <input class="form-control form-control-sm @error('image') is-invalid @enderror" id="image" type="file" name="image" onchange="readURL(this);">
+                                @error('image')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+
                                 <div class="form-group mt-2">
                                     <img class="form-controlo img-thumbnail" src="#" id="previewImage" style="width: 150px;height: 120px; background: #3f4a49;">
                                 </div>
                             </div>
                             <div class="col-md-6 mb-2">
                                 <div class="form-group">
-                                    <label for="description">News Details (max: 255 character)</label>
-                                    <textarea name="description" class="form-control" id="description" rows="4" placeholder="News Details"></textarea>
+                                    <label for="description">News Details</label>
+                                    <textarea name="description" class="form-control @error('description') is-invalid @enderror" id="description" rows="4" placeholder="News Details"></textarea>
+                                    @error('description')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
                         </div>

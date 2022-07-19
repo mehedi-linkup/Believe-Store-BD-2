@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Category;
 use DB;
+use Illuminate\Support\Facades\Redirect;
 use Image;
 
 class CategoryController extends Controller
@@ -30,18 +31,18 @@ class CategoryController extends Controller
             'name' => 'required|unique:categories,name|max:100',
             'image' => 'mimes:jpeg,png,jpg,gif,webp',
         ]);
-        $imgName = '';
-        if($request->hasFile('image')){
-            $image = $request->file('image');
-            $nameGen = hexdec(uniqid());
-            $imgExt = strtolower($image->getClientOriginalExtension());
-            $imgName = $nameGen. '.' . $imgExt;
-            $upLocation = 'uploads/category/';
-            // $image->move($upLocation, $imgName);
-            Image::make($image)->resize(768,768)->save($upLocation . $imgName);
-            $lastImage = $upLocation . $imgName;
-        }
         try {
+            $imgName = '';
+            if($request->hasFile('image')){
+                $image = $request->file('image');
+                $nameGen = hexdec(uniqid());
+                $imgExt = strtolower($image->getClientOriginalExtension());
+                $imgName = $nameGen. '.' . $imgExt;
+                $upLocation = 'uploads/category/';
+                // $image->move($upLocation, $imgName);
+                Image::make($image)->resize(768,768)->save($upLocation . $imgName);
+                $lastImage = $upLocation . $imgName;
+            }
             $category = new Category();
             $category->name = $request->name;
             $category->image = $lastImage;
@@ -105,19 +106,20 @@ class CategoryController extends Controller
             }
             $category->save();
 
-            $notification=array(
-                'message'=>'Category Updated Succefully..',
-                'alert-type'=>'success'
-            );
-            return Redirect()->route('admin.categories')->with($notification);
+            // $notification=array(
+            //     'message'=>'Category Updated Succefully..',
+            //     'alert-type'=>'success'
+            // );
+            // return Redirect()->route('admin.categories')->with($notification);
+            return Redirect()->route('admin.categories')->with('success', 'Category Insertion Successful!');
 
         } catch (\Exception $e) {
-
-            $notification=array(
-                'message'=>'Something went wrong',
-                'alert-type'=>'success'
-            );
-            return Redirect()->back()->with($notification);
+            return Redirect()->back()->with('error', 'Category Insertion Failed!');
+            // $notification=array(
+            //     'message'=>'Something went wrong',
+            //     'alert-type'=>'success'
+            // );
+            // return Redirect()->back()->with($notification);
         }
     }
 
@@ -136,10 +138,11 @@ class CategoryController extends Controller
             }
             $category->delete();
         }
-        $notification=array(
-            'message'=>'Category Deleted Succefully..',
-            'alert-type'=>'success'
-        );
-        return Redirect()->back()->with($notification);
+        // $notification=array(
+        //     'message'=>'Category Deleted Succefully..',
+        //     'alert-type'=>'success'
+        // );
+        // return Redirect()->back()->with($notification);
+        return Redirect()->back()->with('success', 'Deleted Successfully!');
     }
 }

@@ -92,7 +92,7 @@
                                     <td><img class="border" style="height: 40px; width:50px;" src="{{ asset($slider->image) }}" alt=""></td>
                                     <td>
                                         <a href="{{ route('slider.edit',$slider->id) }}" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></a>
-                                        <a href="{{ route('slider.delete', $slider->id) }}" type="submit" class="btn btn-danger btn-sm" onclick="return Are you Sure?"><i class="fa fa-trash"></i></a>
+                                        <a href="{{ route('slider.delete', $slider->id) }}" type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you Sure?')"><i class="fa fa-trash"></i></a>
                                     </td>
                                 </tr>
                             @empty
