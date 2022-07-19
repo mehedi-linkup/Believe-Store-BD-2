@@ -18,7 +18,7 @@
             <div class="img-box">
               <img src="{{ asset( $item->image ) }}" alt="{{ $item->name }}" class="img-fluid"/>
             </div>
-            <h5 class="product-title mt-2">{{ $item->name }}</h5>
+            <h5 class="product-title mt-2">{{ Str::limit($item->name, 25, '') }}</h5>
           </div>
         </a>
       </div>

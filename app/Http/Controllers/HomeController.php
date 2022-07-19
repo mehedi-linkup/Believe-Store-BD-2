@@ -63,8 +63,13 @@ class HomeController extends Controller
 
     public function newsDetail($id) {
         $news = News::find($id);
-        $backimage = BackImage::first();
-        return view('pages.website.news-details', compact('news', 'backimage'));
+        if (isset($news)) {
+            $backimage = BackImage::first();
+            return view('pages.website.news-details', compact('news', 'backimage'));
+        } else {
+            $backimage = BackImage::first();
+            return view('pages.website.not-found', compact('backimage'));
+        }
     }
 
 }
