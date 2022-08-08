@@ -158,14 +158,14 @@ nav .navbar-brand img {
         height: 500px;
     }
 }
-@media(min-width: 992px) {
+/* @media(min-width: 992px) {
    .carousel-inner {
     height: 650px;
    }     
-}
+} */
 @media(min-width: 1200px) {
     .carousel-inner {
-        height: 850px;
+        height: 550px;
     }
 }
 .carousel-item img {
@@ -209,13 +209,13 @@ nav .navbar-brand img {
 /* ---Category-menu start--- */
 .category-menu {
     /* background-image: linear-gradient(90deg, #B48DF8, #B7F7F9); */
-    background-color:#f24c34e6;
+    background-color:#c80114;
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
 }
 .filter-box {
-    padding: 20px;
+    padding: 0px;
     background-color: #fff;
     border: 2px solid transparent;
     transition: all 0.3s;
@@ -229,10 +229,12 @@ nav .navbar-brand img {
 }
 
 .filter-box:hover img {
-    transform: scale(0.9);
+    transform: scale(1.1);
 }
 
 .product-title {
+    padding-top: 5px;
+    padding-bottom: 5px;
     font-size: 18px;
     margin-bottom: 2px;
 }
@@ -255,7 +257,7 @@ nav .navbar-brand img {
 
 /* ---Our Team Started--- */
 .our-team {
-    background-color: rgba(242, 76, 52, 0.9);
+    background-color: #c80114;
 }
 
 .team-box {
@@ -271,6 +273,7 @@ nav .navbar-brand img {
 
 .img-box {
     position: relative;
+    overflow: hidden;
 }
 
 .icon-box {
@@ -368,7 +371,7 @@ nav .navbar-brand img {
 
 /* News-Event */
 .news-event {
-    background-color: rgba(242, 76, 52, 0.9);
+    background-color: #c80114;
 }
 
 .news-event .post-date-box {
@@ -421,6 +424,17 @@ nav .navbar-brand img {
     height: 100%;
 }
 
+/* Partners */
+.client-box .icon-box-client {
+    box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
+}
+.partner .client-title {
+    text-align: center;
+    background-color: transparent;
+    font-weight: 700;
+    color: #3c4554;
+    text-shadow: 2px 2px 6px rgb(60 69 84 / 30%);
+}
 
 /* Footer Start */
 .site-footer {

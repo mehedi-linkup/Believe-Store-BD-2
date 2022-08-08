@@ -13,6 +13,7 @@ use App\Models\Video;
 use App\Models\News;
 use App\Models\Management;
 use App\Models\BackImage;
+use App\Models\Partner;
 
 class HomeController extends Controller
 {
@@ -26,7 +27,8 @@ class HomeController extends Controller
         $management = Management::latest()->get();
         $news = News::latest()->get();
         $backimage = BackImage::first();
-        return view('pages.website.index', compact('category', 'slider', 'gallery', 'video', 'management', 'news', 'whatwe', 'backimage'));
+        $partner = Partner::latest()->get();
+        return view('pages.website.index', compact('category', 'slider', 'gallery', 'video', 'management', 'news', 'whatwe', 'backimage', 'partner'));
     }
     public function submenu($id) {
         $category = Category::find($id);

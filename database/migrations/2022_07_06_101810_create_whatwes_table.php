@@ -19,9 +19,6 @@ class CreateWhatwesTable extends Migration
             $table->text('description1');
             $table->string('title2');
             $table->text('description2');
-            $table->string('title3');
-            $table->text('description3');
-            $table->string('image');
             $table->timestamps();
         });
 

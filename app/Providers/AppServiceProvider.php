@@ -2,9 +2,10 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
-use App\Models\CompanyProfile;
+use App\Models\Map;
 use App\Models\BackImage;
+use App\Models\CompanyProfile;
+use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,6 +27,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         view()->share('content', CompanyProfile::first());
-        // view()->share('backimage', BackImage::first());
+        view()->share('map', Map::first());
     }
 }

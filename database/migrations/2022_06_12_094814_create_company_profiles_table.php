@@ -21,6 +21,7 @@ class CreateCompanyProfilesTable extends Migration
             $table->string('address');
             $table->text('about')->nullable();
             $table->string('facebook')->nullable();
+            $table->text('youtube')->nullable();
             $table->string('twitter')->nullable();
             $table->string('linkedin')->nullable();
             $table->string('instagram')->nullable();

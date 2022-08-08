@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             CompanyProfileSeeder::class,
             WhatweSeeder::class,
             BackImageSeeder::class,
+            MapSeeder::class,
         ]);
     }
 }

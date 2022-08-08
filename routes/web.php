@@ -1,25 +1,26 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\AuthenticationController;
-use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\CompanyProfileController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Admin\MapController;
+use App\Http\Controllers\Admin\NewsController;
+use App\Http\Controllers\Admin\QueryController;
+use App\Http\Controllers\Admin\VideoController;
+use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\Admin\WhatweController;
 use App\Http\Controllers\Admin\GalleryController;
-use App\Http\Controllers\Admin\ManagementController;
 use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\ProductController;
-use App\Http\Controllers\Admin\QueryController;
-use App\Http\Controllers\Admin\RegistrationController;
 use App\Http\Controllers\Admin\ServiceController;
-use App\Http\Controllers\Admin\SubcategoryController;
-use App\Http\Controllers\Admin\SliderController;
-use App\Http\Controllers\Admin\VideoController;
-use App\Http\Controllers\Admin\NewsController;
-use App\Http\Controllers\Admin\WhatweController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\BackImageController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ManagementController;
+use App\Http\Controllers\Admin\SubcategoryController;
+use App\Http\Controllers\Admin\RegistrationController;
+use App\Http\Controllers\Admin\AuthenticationController;
+use App\Http\Controllers\Admin\CompanyProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -125,6 +126,9 @@ Route::group(['middleware' => ['auth']] , function(){
 
     Route::get('whatwe', [WhatweController::class, 'edit'])->name('whatwe.edit');
     Route::put('whatwe/{whatwe}', [WhatweController::class, 'update'])->name('whatwe.update');
+
+    Route::get('/map', [MapController::class, 'edit'])->name('maps.edit');
+    Route::put('/map/{map}', [MapController::class, 'update'])->name('maps.update');
 
     Route::get('backimage', [BackImageController::class, 'edit'])->name('backimage.edit');
     Route::put('backimage/{backimage}', [BackImageController::class, 'update'])->name('backimage.update');

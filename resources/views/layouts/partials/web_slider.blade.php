@@ -1,13 +1,13 @@
 <section id="slider" class="slider">
     <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
         <div class="carousel-inner">
-        @foreach($slider as $item)
+        @foreach($slider as $key => $item)
             @php $count = 0 @endphp
-          <div class="carousel-item h-100 {{ ($count == 0) ? 'active' : ''}}">
+          <div class="carousel-item h-100 {{ ($key == 0) ? 'active' : ''}}">
             <img src="{{ asset($item->image) }}" class="d-block w-100 h-100" alt="{{ $item->slogan }}">
             <div class="carousel-caption d-none d-md-block">
-                <h5>{{ $item->headerline }}</h5>
-                <p>{{ $item->description }}</p>
+                <h2 style="color: #fff; font-weight: 600; text-transform: uppercase;">{{ $item->headerline }}</h2>
+                <p style="text-transform: uppercase">{{ $item->description }}</p>
             </div>
           </div>
         @endforeach

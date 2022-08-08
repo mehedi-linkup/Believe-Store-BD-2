@@ -69,8 +69,8 @@
 
                             <div class="clearfix border-top">
                                 <div class="float-md-right mt-2">
-                                    <button type="reset" class="btn btn-dark">Reset</button>
-                                    <button type="submit" class="btn btn-info">{{(@$productData)?'Update':'Create'}}</button>
+                                    <button type="reset" class="btn btn-sm btn-dark">Reset</button>
+                                    <button type="submit" class="btn btn-sm btn-info">{{(@$productData)?'Update':'Create'}}</button>
                                 </div>
                             </div>
 

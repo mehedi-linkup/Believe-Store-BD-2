@@ -52,8 +52,16 @@
                             </div>
                             <div class="col-md-6 mb-2">
                                 <label for="facebook">Company Facebook</label>
-                                <input type="url" name="facebook" value="{{ $company->facebook }}" class="form-control form-control-sm shadow-none @error('facebook') is-invalid @enderror" id="facebook">
+                                <input type="url" name="facebook" value="{{ $company->facebook }}" class="form-control form-control-sm shadow-none @error('facebook') is-invalid @enderror mb-2" id="facebook">
                                 @error('facebook')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+
+                                <label for="youtube">Company Youtube</label>
+                                <input type="url" name="youtube" value="{{ $company->youtube }}" class="form-control form-control-sm shadow-none @error('youtube') is-invalid @enderror" id="youtube">
+                                @error('youtube')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -70,7 +78,7 @@
                             </div>
                             <div class="col-md-6 mb-2">
                                 <label for="linkedin">Company Linkedin</label>
-                                <input type="url" name="linkedin" value="{{ $company->linkedin }}" class="form-control form-control-sm shadow-none @error('linkedin') is-invalid @enderror" id="linkedin">
+                                <input type="url" name="linkedin" value="{{ $company->linkedin }}" class="form-control form-control-sm shadow-none @error('linkedin') is-invalid @enderror mb-2" id="linkedin">
                                 @error('linkedin')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -91,7 +99,7 @@
                             </div>
                             <div class="col-md-6 mb-2">
                                 <label for="instagram">Company Instagram</label>
-                                <input type="url" name="instagram" value="{{ $company->instagram }}" class="form-control form-control-sm shadow-none @error('instagram') is-invalid @enderror" id="instagram">
+                                <input type="url" name="instagram" value="{{ $company->instagram }}" class="form-control form-control-sm shadow-none @error('instagram') is-invalid @enderror mb-2" id="instagram">
                                 @error('instagram')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

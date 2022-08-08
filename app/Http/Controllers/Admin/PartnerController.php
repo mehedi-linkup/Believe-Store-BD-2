@@ -20,9 +20,8 @@ class PartnerController extends Controller
         // dd($request->all());
         $request->validate([
             'name' => 'required|string|min:3',
-            'image' => 'required|mimes:jpg,png,bmp,jpeg',
+            'image' => 'required|mimes:jpg,png,bmp,jpeg,webp|image',
         ]);
-
         $partner = new Partner();
         $partner->name = $request->name;
         $partner->image = $this->imageUpload($request, 'image', 'uploads/partner') ?? '';

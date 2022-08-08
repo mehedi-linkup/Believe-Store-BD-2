@@ -19,7 +19,7 @@
                         <div class="row">
                             <div class="col-md-6 mb-2">
                                 <label for="name">Partner Name <span class="text-danger"> * </span></label>
-                                <input class="form-control @error('name') is-invalid @enderror" id="name" type="text" name="name" value="{{ old('name') }}" placeholder="partner company name">
+                                <input class="form-control form-control-sm @error('name') is-invalid @enderror" id="name" type="text" name="name" value="{{ old('name') }}" placeholder="partner company name">
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -27,7 +27,7 @@
                                 @enderror
 
                                 <label for="image" class="mt-1">Partner Image</label>
-                                <input class="form-control" id="image" type="file" name="image" onchange="readURL(this);">
+                                <input class="form-control form-control-sm" id="image" type="file" name="image" onchange="readURL(this);">
                             </div>
                             <div class="col-md-4 offset-md-1 mt-3">
                                 <img class="form-controlo img-thumbnail" src="#" id="previewImage" style="width: 150px;height: 120px; background: #3f4a49;">
@@ -36,8 +36,8 @@
                         <hr class="my-2">
                         <div class="clearfix mt-1">
                             <div class="float-md-left">
-                                <button type="reset" class="btn btn-dark">Reset</button>
-                                <button type="submit" class="btn btn-info">Save</button>
+                                <button type="reset" class="btn btn-sm btn-dark">Reset</button>
+                                <button type="submit" class="btn btn-sm btn-info">Save</button>
                             </div>
                         </div>
 

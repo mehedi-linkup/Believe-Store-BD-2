@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{{ asset('website/assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('website/assets/css/viewbox.css') }}">
     <link rel="stylesheet" href="{{ asset('website/assets/style.css') }}">
+    @stack('web-css')
 	<!-- PAGE TITLE HERE -->
     <title>Believe Store BD</title>
 </head>
@@ -38,5 +39,6 @@
     </script>
     <script src="{{ asset('website/assets/js/fontawesome.min.js') }}"></script>
     <script src="{{ asset('website/assets/main.js') }}"></script>
+    @stack('web-js')
 </body>
 </html>
