@@ -29,7 +29,7 @@ class CategoryController extends Controller
     {
         $request->validate([
             'name' => 'required|unique:categories,name|max:100',
-            'image' => 'mimes:jpeg,png,jpg,gif,webp',
+            'image' => 'required|mimes:jpeg,png,jpg,gif,webp',
         ]);
         try {
             $imgName = '';

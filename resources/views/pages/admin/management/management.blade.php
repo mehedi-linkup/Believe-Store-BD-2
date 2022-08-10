@@ -22,7 +22,7 @@
                         <div class="row">
                             <div class="col-md-6 mb-2">
                                 <label for="name"> Name <span class="text-danger">*</span> </label>
-                                <input type="text" name="name" class="form-control form-control-sm shadow-none @error('name') is-invalid @enderror" value="{{ @$managementData->name }}" id="name" placeholder="Enter a Name">
+                                <input type="text" name="name" class="form-control form-control-sm shadow-none @error('name') is-invalid @enderror" value="{{ @$managementData ? $managementData->name : old('name')}}" id="name" placeholder="Enter a Name">
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -31,7 +31,7 @@
                             </div>
                             <div class="col-md-6 mb-2">
                                 <label for="designation"> Designation <span class="text-danger">*</span> </label>
-                                <input type="text" name="designation" class="form-control form-control-sm shadow-none  @error('designation') is-invalid @enderror" value="{{ @$managementData->designation }}" id="designation" placeholder="Enter a Designation">
+                                <input type="text" name="designation" class="form-control form-control-sm shadow-none  @error('designation') is-invalid @enderror" value="{{ @$managementData ? $managementData->designation : old('designation') }}" id="designation" placeholder="Enter a Designation">
                                 @error('designation')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -40,7 +40,7 @@
                             </div>
                             <div class="col-md-6 mb-2">
                                 <label for="facebook"> Facebook </label>
-                                <input type="url" name="facebook" class="form-control form-control-sm shadow-none  @error('facebook') is-invalid @enderror" value="{{ @$managementData->facebook }}" id="facebook" placeholder="Facebook Link">
+                                <input type="url" name="facebook" class="form-control form-control-sm shadow-none  @error('facebook') is-invalid @enderror" value="{{ @$managementData ? $managementData->facebook : old('facebook') }}" id="facebook" placeholder="Facebook Link">
                                 @error('facebook')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -49,7 +49,7 @@
                             </div>
                             <div class="col-md-6 mb-2">
                                 <label for="twitter"> Twitter </label>
-                                <input type="text" name="twitter" class="form-control form-control-sm shadow-none  @error('twitter') is-invalid @enderror" value="{{ @$managementData->twitter }}" id="twitter" placeholder="Twitter Link">
+                                <input type="text" name="twitter" class="form-control form-control-sm shadow-none  @error('twitter') is-invalid @enderror" value="{{ @$managementData ? $managementData->twitter : old('twitter') }}" id="twitter" placeholder="Twitter Link">
                                 @error('twitter')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -58,7 +58,7 @@
                             </div>
                             <div class="col-md-6 mb-2">
                                 <label for="instagram"> Instagram </label>
-                                <input type="text" name="instagram" class="form-control form-control-sm shadow-none  @error('instagram') is-invalid @enderror" value="{{ @$managementData->instagram }}" id="designation" placeholder="Enter a Designation">
+                                <input type="text" name="instagram" class="form-control form-control-sm shadow-none  @error('instagram') is-invalid @enderror" value="{{ @$managementData ? $managementData->instagram : old('instagram') }}" id="instagram" placeholder="Instagram Link">
                                 @error('instagram')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -66,8 +66,13 @@
                                 @enderror
                             </div>
                             <div class="col-md-6 mb-2">
-                                <label for="image">Image <span class="text-danger">*</span> (size: 700px * 800px) </label>
-                                <input class="form-control form-control-sm" id="image" type="file" name="image" onchange="readURL(this);">
+                                <label for="image">Image <span class="text-danger">*</span> (Size: 700px * 800px) </label>
+                                <input class="form-control form-control-sm @error('image') is-invalid @enderror" id="image" type="file" name="image" onchange="readURL(this);">
+                                @error('image')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                                 <div class="form-group mt-2">
                                     <img class="form-controlo img-thumbnail" src="#" id="previewImage" style="width: 160px;height: 130px; background: #3f4a49;">
                                 </div>
@@ -96,8 +101,8 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Title</th>
                                 <th>Image</th>
+                                <th>Title</th>
                                 <th>Designation</th>
                                 <th>Action</th>
                             </tr>
@@ -106,8 +111,8 @@
                             @forelse ($management as $key=>$item)
                                 <tr>
                                     <td>{{ $key+1 }}</td>
+                                    <td><img class="border" style="height: 50px; width:65px;" src="{{ asset('uploads/management/'.$item->image) }}" alt=""></td>
                                     <td>{{ $item->name }}</td>                                    
-                                    <td><img class="border" style="height: 26px; width:35px;" src="{{ asset('uploads/management/'.$item->image) }}" alt=""></td>
                                     <td>{{ $item->designation }}</td>
                                     <td>
                                         <a href="{{ route('management.edit', $item->id) }}" type="submit" class="btn btn-info btn-mod-info btn-sm mr-1"><i class="fas fa-edit"></i></button>

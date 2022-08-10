@@ -29,26 +29,32 @@
                             <div class="row">
                                 <div class="col-md-7 mb-2">
                                     <label for="name" class="mb-2"> Product Name <span class="text-danger">*</span> </label>
-                                    <input type="text" name="name" value="{{ @$productData->name }}" class="form-control form-control-sm mb-2" id="name" placeholder="Enter Category name">
-                                    @error('name') <span style="color: red">{{$message}}</span> @enderror
+                                    <input type="text" name="name" value="{{ @$productData ? $productData->name : old('name')}}" class="form-control form-control-sm mb-2" id="name" placeholder="Enter Category name">
+                                    @error('name') <span style="color: red">{{$message}}</span><br> @enderror
 
                                     <label for="name" class="mb-2"> Category <span class="text-danger">*</span> </label>
                                     <select name="category_id" class="form-control form-control-sm mb-2">
                                         <option value="">Select Category Option</option>
-                                        @foreach ($category as $item)
-                                            <option value="{{ $item->id }}" {{ $item->id == @$productData->category_id ? 'selected' : '' }} >{{ $item->name }}</option>
-                                        @endforeach
+                                        @if (@$productData)
+                                            @foreach ($category as $item)
+                                                <option value="{{ $item->id }}" {{ $item->id == @$productData->category_id ? 'selected' : '' }} >{{ $item->name }}</option>
+                                            @endforeach
+                                        @else
+                                            @foreach ($category as $item)
+                                                <option value="{{ $item->id }}" {{ $item->id == old('category_id')? 'selected' : '' }} >{{ $item->name }}</option>
+                                            @endforeach
+                                        @endif
                                     </select>
-                                    @error('category_id') <span style="color: red">{{$message}}</span> @enderror
+                                    @error('category_id') <span style="color: red">{{$message}}</span><br> @enderror
 
 
                                     <label for="name" class="mb-2"> Subcategory <span class="text-danger">*</span> </label>
                                     <select name="subcategory_id" class="form-control form-control-sm mb-2">
                                         <option value="">Select Subcategory Option</option>
                                         @if(@$productSubData)
-                                        @foreach ($productSubData as $item)
-                                            <option value="{{ $item->id }}" {{ $item->id == @$productData->subcategory_id ? 'selected' : '' }} >{{ $item->name }}</option>
-                                        @endforeach
+                                            @foreach ($productSubData as $item)
+                                                <option value="{{ $item->id }}" {{ $item->id == @$productData->subcategory_id ? 'selected' : '' }} >{{ $item->name }}</option>
+                                            @endforeach
                                         @endif
                                     </select>
                                     @error('subcategory_id') <span style="color: red">{{$message}}</span> @enderror
@@ -58,7 +64,7 @@
                                 </div>
 
                                 <div class="col-md-5 mb-2">
-                                    <label for="about_image" class="mb-2">Product Image</label>
+                                    <label for="about_image" class="mb-2">Product Image <small>(Size: 768px * 768px)</small></label>
                                     <input class="form-control form-control-sm" id="image" type="file" name="image" onchange="mainThambUrl(this)">
                                     <div class="form-group mt-2">
                                         <img class="form-controlo img-thumbnail" src="{{(@$productData) ? asset($productData->image) : asset('uploads/no.png') }}" id="mainThmb" style="width: 150px;height: 120px;">
@@ -69,7 +75,11 @@
 
                             <div class="clearfix border-top">
                                 <div class="float-md-right mt-2">
+                                    @if(@$productData)
+                                    <a href="{{ route('admin.products') }}" class="btn btn-sm btn-dark">Back</a>
+                                    @else
                                     <button type="reset" class="btn btn-sm btn-dark">Reset</button>
+                                    @endif
                                     <button type="submit" class="btn btn-sm btn-info">{{(@$productData)?'Update':'Create'}}</button>
                                 </div>
                             </div>
@@ -96,10 +106,10 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Product Name</th>
                                         <th>Image</th>
                                         <th>Category</th>
                                         <th>Subcategory</th>
+                                        <th>Product Name</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -107,10 +117,10 @@
                                     @foreach ($product as $item)
                                     <tr>
                                         <td>{{ $loop->index + 1 }}</td>
-                                        <td>{{ $item->name }}</td>
-                                        <td><img src="{{ asset($item->image) }}" width="30" height="30" alt=""></td>
+                                        <td><img src="{{ asset($item->image) }}" width="65" height="50" alt=""></td>
                                         <td>{{ $item->category->name }}</td>
                                         <td>{{ $item->subcategory->name }}</td>
+                                        <td>{{ $item->name }}</td>
                                         <td>
                                             <a href="{{ route('admin.product.edit', $item->id) }}" class="btn-sm btn btn-info"><i class="fas fa-edit"></i></a>
                                             <a href="{{ route('admin.product.delete', $item->id) }}" onclick="return confirm('Are you sure to Delete?')" class="btn-sm btn btn-danger"><i class="fas fa-trash"></i></a>

@@ -25,25 +25,31 @@
                                     <label for="name"> Category <span class="text-danger">*</span> </label>
                                     <select name="category_id" class="form-control form-control-sm mb-2">
                                         <option value="">Select Category Option</option>
-                                        @foreach ($category as $item)
-                                            <option value="{{ $item->id }}" {{ $item->id == @$subcategoryData->category_id ? 'selected' : '' }} >{{ $item->name }}</option>
-                                        @endforeach
+                                        @if (@$subcategoryData)
+                                            @foreach ($category as $item)
+                                                <option value="{{ $item->id }}" {{ $item->id == $subcategoryData->category_id ? 'selected' : '' }} >{{ $item->name }}</option>
+                                            @endforeach
+                                        @else
+                                            @foreach ($category as $item)
+                                                <option value="{{ $item->id }}" {{ $item->id == old('category_id')? 'selected' : '' }} >{{ $item->name }}</option>
+                                            @endforeach
+                                        @endif
                                     </select>
-                                    @error('category_id') <span style="color: red">{{$message}}</span> @enderror
+                                    @error('category_id') <span style="color: red">{{$message}}</span><br> @enderror
 
 
                                     <label for="name"> Subcategory Name <span class="text-danger">*</span> </label>
-                                    <input type="text" name="name" value="{{ @$subcategoryData->name }}" class="form-control form-control-sm mb-2" id="name" placeholder="Enter Category name">
-                                    @error('name') <span style="color: red">{{$message}}</span> @enderror
+                                    <input type="text" name="name" value="{{ @$subcategoryData ? $subcategoryData->name : old('name') }}" class="form-control form-control-sm mb-2" id="name" placeholder="Enter Category name">
+                                    @error('name') <span style="color: red">{{$message}}</span><br> @enderror
 
 
-                                    <label for="image"> Subcategory Image <span class="text-danger">*</span></label>
+                                    <label for="image"> Subcategory Image<span class="text-danger">*</span> <small>(Size: 768px * 768px)</small></label>
                                     <input type="file" name="image" value="{{ @$subcategoryData->image }}" class="form-control form-control-sm mb-2" id="image" onchange="mainThambUrl(this)">
                                     @error('image') <span style="color: red">{{$message}}</span> @enderror
                                 </div>
-                                <div class="col-md-6 mb-2">
-                                    <div class="form-group mt-4 ml-5">
-                                        <img class="form-controlo img-thumbnail" src="{{(@$subcategoryData) ? asset('uploads/subcategory/'.$subcategoryData->image) : asset('uploads/no.png') }}" id="mainThmb" style="width: 150px;height: 120px;">
+                                <div class="col-md-6 mb-2 d-flex align-items-center justify-content-center">
+                                    <div class="form-group mb-0">
+                                        <img class="form-controlo img-thumbnail" src="{{(@$subcategoryData) ? asset('uploads/subcategory/'.$subcategoryData->image) : asset('uploads/no.png') }}" id="mainThmb" style="width: 180px;height: 135px;">
                                     </div>
                                 </div>
                             </div>
@@ -72,9 +78,9 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Subcategory Name</th>
-                                        <th>SubCategory Image</th>
+                                        <th>Image</th>
                                         <th>Category</th>
+                                        <th>Name</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -82,12 +88,12 @@
                                     @foreach ($subcategory as $item)
                                     <tr>
                                         <td>{{ $loop->index + 1 }}</td>
-                                        <td>{{ $item->name }}</td>
-                                        <td><img src="{{ asset('uploads/subcategory/'. $item->image) }}" alt="" style="width: 60px; height: 60px"></td>
+                                        <td><img src="{{ asset('uploads/subcategory/'. $item->image) }}" alt="" style="width: 65px; height: 50px"></td>
                                         <td>{{ $item->category->name }}</td>
+                                        <td>{{ $item->name }}</td>
                                         <td>
-                                            <a href="{{ route('admin.subcategory.edit', $item->id) }}" class="btn btn-info btn-mod-info btn-sm"><i class="fas fa-edit"></i></a>
-                                            <a href="{{ route('admin.subcategory.delete', $item->id) }}" onclick="return confirm('Are you sure to Delete?')" class="btn btn-danger btn-mod-danger btn-sm"><i class="fas fa-trash"></i></a>
+                                            <a href="{{ route('admin.subcategory.edit', $item->id) }}" class="btn btn-info btn-sm"><i class="fas fa-edit"></i></a>
+                                            <a href="{{ route('admin.subcategory.delete', $item->id) }}" onclick="return confirm('Are you sure to Delete?')" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
                                         </td>
                                     </tr>
                                     @endforeach

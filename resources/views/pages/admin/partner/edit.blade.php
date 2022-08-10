@@ -27,7 +27,7 @@
                                     </span>
                                 @enderror
 
-                                <label for="image" class="mt-1">Partner Image</label>
+                                <label for="image" class="mt-1">Partner Image <small>(Size: 400px * 150px)</small></label>
                                 <input class="form-control" id="image" type="file" name="image" onchange="readURL(this);">
                             </div>
                             <div class="col-md-4 offset-md-1 mt-3">
@@ -41,9 +41,7 @@
                                 <button type="submit" class="btn btn-info">Update</button>
                             </div>
                         </div>
-
                     </form>
-
                 </div>
             </div>
         </div>

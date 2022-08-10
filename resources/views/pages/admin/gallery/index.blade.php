@@ -14,17 +14,17 @@
                         <div class="row">
                             <div class="col-md-6 mb-2">
                                 <label for="title"> Image Name <span class="text-danger">*</span> </label>
-                                <input type="text" name="title" class="form-control form-control-sm shadow-none @error('title') is-invalid @enderror" id="title" placeholder="Enter Image Name">
+                                <input type="text" name="title" class="form-control form-control-sm shadow-none @error('title') is-invalid @enderror" id="title" placeholder="Enter Image Name" value="{{ old('title') }}">
                                 @error('title')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                                <label for="image">Image</label>
+                                <label for="image">Image <span class="text-danger">*</span> <small>(Size: 720 * 480)</small></label>
                                 <input class="form-control form-control-sm" id="image" type="file" name="image" onchange="readURL(this);">
                             </div>
-                            <div class="col-md-4 offset-md-1 mt-3">
-                                <div class="form-group mt-2">
+                            <div class="col-md-6 d-md-flex justify-content-center align-items-center">
+                                <div class="form-group mb-0">
                                     <img class="form-controlo img-thumbnail" src="#" id="previewImage" style="width: 150px;height: 120px; background: #3f4a49;">
                                 </div>
                             </div>
@@ -53,8 +53,8 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Title</th>
                                 <th>Image</th>
+                                <th>Title</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -62,8 +62,8 @@
                             @forelse ($galleries as $key=>$user)
                                 <tr>
                                     <td>{{ $key+1 }}</td>
+                                    <td><img class="border" style="height: 50px; width:65px;" src="{{ asset('uploads/gallery/'.$user->image) }}" alt=""></td>
                                     <td>{{ $user->title }}</td>                                    
-                                    <td><img class="border" style="height: 26px; width:35px;" src="{{ asset('uploads/gallery/'.$user->image) }}" alt=""></td>
                                     <td>
                                         <a href="{{ url('gallery/edit/'. $user->id) }}" type="submit" class="btn btn-info btn-mod-info btn-sm mr-1"><i class="fas fa-edit"></i></button>
                                         <a href="{{ url('gallery/delete/'.$user->id) }}" type="submit" class="btn btn-danger btn-mod-danger btn-sm" onclick="return confirmDel()"><i class="fas fa-trash"></i></button>

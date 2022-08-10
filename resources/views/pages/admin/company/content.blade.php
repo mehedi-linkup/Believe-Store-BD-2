@@ -9,7 +9,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="form-area">
-                    <h4 class="heading"><i class="fa fa-address-card"></i> Update Company Information</h4>
+                    <h4 class="heading"><i class="fa fa-plus"></i> Update Company Information</h4>
                     <form action="{{ route('company.update', $company) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
@@ -52,13 +52,15 @@
                             </div>
                             <div class="col-md-6 mb-2">
                                 <label for="facebook">Company Facebook</label>
-                                <input type="url" name="facebook" value="{{ $company->facebook }}" class="form-control form-control-sm shadow-none @error('facebook') is-invalid @enderror mb-2" id="facebook">
+                                <input type="url" name="facebook" value="{{ $company->facebook }}" class="form-control form-control-sm shadow-none @error('facebook') is-invalid @enderror" id="facebook">
                                 @error('facebook')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
 
+                            </div>
+                            <div class="col-md-6 mb-2">
                                 <label for="youtube">Company Youtube</label>
                                 <input type="url" name="youtube" value="{{ $company->youtube }}" class="form-control form-control-sm shadow-none @error('youtube') is-invalid @enderror" id="youtube">
                                 @error('youtube')
@@ -84,18 +86,6 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                                
-                                <label for="about_image">About Image 1</label>
-                                <input class="form-control form-control-sm" id="about_image" type="file" name="about_image" onchange="readAboutURL(this);">
-                                <div class="form-group mt-2">
-                                    <img class="form-controlo img-thumbnail" src="#" id="previewAboutImage" style="width: 160px;height: 130px;">
-                                </div>
-
-                                <label for="logo" class="mt-2">Company Logo</label>
-                                <input class="form-control form-control-sm" id="logo" type="file" name="logo" onchange="readURL(this);">
-                                <div class="form-group my-2">
-                                    <img class="form-controlo img-thumbnail" src="#" id="previewImage" style="width: 160px;height: 130px;">
-                                </div>
                             </div>
                             <div class="col-md-6 mb-2">
                                 <label for="instagram">Company Instagram</label>
@@ -105,13 +95,8 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-
-                                <label for="bg_image">About Image 2</label>
-                                <input class="form-control form-control-sm" id="bg_image" type="file" name="bg_image" onchange="readBgURL(this);">
-                                <div class="form-group mt-2">
-                                    <img class="form-controlo img-thumbnail" src="#" id="previewBgImage" style="width: 160px;height: 130px;">
-                                </div>
-
+                            </div>
+                            <div class="col-md-6 mb-2">
                                 <label for="about" class="mt-2">Company About</label>
                                 <textarea class="form-control form-control-sm" name="about" id="about_description" cols="4" rows="4">{{ $company->about }}</textarea>
                                 @error('about')
@@ -121,6 +106,30 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-4 mb-2">
+                                <label for="logo">Company Logo</label>
+                                <input class="form-control form-control-sm" id="logo" type="file" name="logo" onchange="readURL(this);">
+                                <div class="form-group my-2">
+                                    <img class="form-controlo img-thumbnail" src="#" id="previewImage" style="width: 160px;height: 130px;">
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-2">
+                                <label for="about_image">About Image 1</label>
+                                <input class="form-control form-control-sm" id="about_image" type="file" name="about_image" onchange="readAboutURL(this);">
+                                <div class="form-group mt-2">
+                                    <img class="form-controlo img-thumbnail" src="#" id="previewAboutImage" style="width: 160px;height: 130px;">
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-2">
+                                <label for="bg_image">About Image 2</label>
+                                <input class="form-control form-control-sm" id="bg_image" type="file" name="bg_image" onchange="readBgURL(this);">
+                                <div class="form-group mt-2">
+                                    <img class="form-controlo img-thumbnail" src="#" id="previewBgImage" style="width: 160px;height: 130px;">
+                                </div>
+                            </div>
+                        </div>
+                        
                         <hr class="mt-0">
                         <div class="clearfix mt-1">
                             <div class="float-md-right">
@@ -140,7 +149,7 @@
 <script>
     $('#about_description').summernote({
         tabsize: 2,
-        height: 160,
+        height: 100,
         placeholder: 'Write about your company'
     });
 </script>

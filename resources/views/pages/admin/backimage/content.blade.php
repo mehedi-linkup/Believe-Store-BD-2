@@ -17,22 +17,23 @@
                                 <div class="form-group my-2 text-center">
                                     <img class="form-controlo img-thumbnail" src="#" id="previewImage1" style="width: auto;height: 130px;">
                                 </div>
-                                <label for="bgimage_other" class="">Page's cover (size 1600 * 600)</label>
+                                <label for="bgimage_other" class="">Page's cover (Size: 1600px x 600px)</label>
                                 <input style="padding: 1px;" class="form-control form-control-sm" id="bgimage_other" type="file" name="bgimage_other" onchange="readURL1(this);">
                             </div>
-                            <div class="col-md-5 mb-2">
+                            <div class="col-md-1 mb-2"></div>
+                            <div class="col-md-5 offset-md-1 mb-2">
                                 <div class="form-group my-2 text-center">
                                     <img class="form-controlo img-thumbnail" src="#" id="previewImage2" style="width: auto;height: 130px;">
                                 </div>
-                                <label for="bgimage_news" class="">Section cover (size 400 * 600)</label>
+                                <label for="bgimage_news" class="">Section cover (Size: 400px x 600px)</label>
                                 <input style="padding: 1px;" class="form-control form-control-sm" id="bgimage_news" type="file" name="bgimage_news" onchange="readURL2(this);">
                             </div>
-                        </div>
-                        {{-- <hr class="mt-0"> --}}
-                        <div class="clearfix mt-1">
-                            <div class="float-md-right">
-                                <button type="reset" class="btn btn-dark btn-sm">Reset</button>
-                                <button type="submit" class="btn btn-info btn-sm">Update</button>
+                            <div class="col-md-12 clearfix mt-1">
+                                <hr class="mt-0">
+                                <div class="float-md-right">
+                                    <button type="reset" class="btn btn-dark btn-sm">Reset</button>
+                                    <button type="submit" class="btn btn-info btn-sm">Update</button>
+                                </div>
                             </div>
                         </div>
                     </form>
@@ -51,8 +52,8 @@
             reader.onload = function (e) {
                 $('#previewImage1')
                     .attr('src', e.target.result)
-                    .width(160)
-                    .height(130);
+                    .width(auto)
+                    .height(120);
             };
 
             reader.readAsDataURL(input.files[0]);
@@ -67,8 +68,8 @@
             reader.onload = function (e) {
                 $('#previewImage2')
                     .attr('src', e.target.result)
-                    .width(160)
-                    .height(130);
+                    .width(auto)
+                    .height(120);
             };
 
             reader.readAsDataURL(input.files[0]);

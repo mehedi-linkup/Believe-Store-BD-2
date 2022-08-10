@@ -8,7 +8,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-xl-3 col-md-6">
-                <div class="card text-white mb-4" style="background: #484d52">
+                <div class="card text-white mb-4" style="background: #007d00">
                     <div class="card-body">
                         <div>Users</div>
                         <span>{{ $users }}</span>
@@ -20,7 +20,7 @@
                 </div>
             </div>
             <div class="col-xl-3 col-md-6">
-                <div class="card text-white mb-4" style="background: #484d52">
+                <div class="card text-white mb-4" style="background: #bb99ff">
                     <div class="card-body">
                         <div>Total Slider</div>
                         <span>{{ $slider }}</span>
@@ -32,7 +32,7 @@
                 </div>
             </div>
             <div class="col-xl-3 col-md-6">
-                <div class="card text-white mb-4" style="background: #484d52">
+                <div class="card text-white mb-4" style="background: #facd60">
                     <div class="card-body">
                         <div>Product Category</div>
                         <span>{{ $category }}</span>

@@ -79,20 +79,20 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
+                                <th>Image</th>
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Username</th>
-                                <th>Image</th>
                             </tr>
                         </thead>
                         <tbody>
                             @forelse ($users as $key=>$user)
                                 <tr>
                                     <td>{{ $key+1 }}</td>
+                                    <td><img class="border" style="height: 24px; width:40px;" src="{{ asset($user->image) }}" alt=""></td>
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>{{ $user->username }}</td>
-                                    <td><img class="border" style="height: 24px; width:40px;" src="{{ asset($user->image) }}" alt=""></td>
                             
                                 </tr>
                             @empty

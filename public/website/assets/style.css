@@ -158,16 +158,21 @@ nav .navbar-brand img {
         height: 500px;
     }
 }
+@media(min-width: 992px) {
+    .carousel-inner {
+        height: 550px;
+    }
+}
 /* @media(min-width: 992px) {
    .carousel-inner {
     height: 650px;
    }     
 } */
-@media(min-width: 1200px) {
+/* @media(min-width: 1200px) {
     .carousel-inner {
         height: 550px;
     }
-}
+} */
 .carousel-item img {
     object-fit: cover;
 }

@@ -10,16 +10,13 @@
                 <div class="form-area">
                     <div class="d-flex justify-content-between heading">
                         <h4 class=""><i class="fas fa-plus"></i> Add new Partner</h4>
-                        <div>
-                            <a href="{{ route('dashboard') }}" class="btn btn-primary btn-sm overflow-hidden">Dashboard</a>
-                        </div>
                     </div>
                     <form action="{{ route('partner.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-md-6 mb-2">
                                 <label for="name">Partner Name <span class="text-danger"> * </span></label>
-                                <input class="form-control form-control-sm @error('name') is-invalid @enderror" id="name" type="text" name="name" value="{{ old('name') }}" placeholder="partner company name">
+                                <input class="form-control form-control-sm @error('name') is-invalid @enderror" id="name" type="text" name="name" value="{{ old('name') }}" placeholder="Partner Name">
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -27,15 +24,20 @@
                                 @enderror
 
                                 <label for="image" class="mt-1">Partner Image</label>
-                                <input class="form-control form-control-sm" id="image" type="file" name="image" onchange="readURL(this);">
+                                <input class="form-control form-control-sm @error('image') is-invalid @enderror" id="image" type="file" name="image" onchange="readURL(this);">
+                                @error('image')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
-                            <div class="col-md-4 offset-md-1 mt-3">
+                            <div class="col-md-4 d-md-flex justify-content-center align-items-center">
                                 <img class="form-controlo img-thumbnail" src="#" id="previewImage" style="width: 150px;height: 120px; background: #3f4a49;">
                             </div>
                         </div>
                         <hr class="my-2">
                         <div class="clearfix mt-1">
-                            <div class="float-md-left">
+                            <div class="float-md-right">
                                 <button type="reset" class="btn btn-sm btn-dark">Reset</button>
                                 <button type="submit" class="btn btn-sm btn-info">Save</button>
                             </div>
@@ -59,9 +61,8 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Name</th>
-                                <th>Slug</th>
                                 <th>Image</th>
+                                <th>Name</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -69,9 +70,8 @@
                             @forelse ($partners as $key=>$partner)
                                 <tr>
                                     <td>{{ $key+1 }}</td>
-                                    <td>{{ $partner->name }}</td>
-                                    <td>{{ $partner->slug }}</td>
                                     <td><img class="border" style="height: 40px; width:50px;" src="{{ asset($partner->image) }}" alt=""></td>
+                                    <td>{{ $partner->name }}</td>
                                     <td>
                                         <a href="{{ route('partner.edit',$partner) }}" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></a>
                                         <button type="submit" class="btn btn-danger btn-sm" onclick="deletePartner({{ $partner->id }})"><i class="fa fa-trash"></i></button>

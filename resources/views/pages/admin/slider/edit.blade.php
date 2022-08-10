@@ -42,7 +42,7 @@
                                     </span>
                                 @enderror
 
-                                <label for="image" class="mt-1">Slider Image</label>
+                                <label for="image" class="mt-1">Slider Image <small>(Size: 1350px x 550px)</small></label>
                                 <input class="form-control form-control-sm" id="image" type="file" name="image" onchange="readURL(this);">
                             </div>
                             <div class="col-md-4 offset-md-1 mt-3">

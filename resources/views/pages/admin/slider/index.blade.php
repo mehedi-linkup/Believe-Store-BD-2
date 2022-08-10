@@ -10,14 +10,11 @@
                 <div class="form-area">
                     <div class="d-flex justify-content-between heading">
                         <h4 class=""><i class="fas fa-plus"></i> Add new Slider</h4>
-                        <div>
-                            <a href="{{ route('dashboard') }}" class="btn btn-primary btn-sm overflow-hidden">Dashboard</a>
-                        </div>
                     </div>
                     <form action="{{ route('slider.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
-                            <div class="col-md-6 mb-2">
+                            <div class="col-12 col-md-6 mb-2">
                                 <label for="slogan">Slider Slogan</label>
                                 <input class="form-control form-control-sm @error('slogan') is-invalid @enderror" id="slogan" type="text" name="slogan" value="{{ old('slogan') }}" placeholder="slider slogan">
                                 @error('slogan')
@@ -42,16 +39,16 @@
                                     </span>
                                 @enderror
 
-                                <label for="image" class="mt-1">Slider Image</label>
+                                <label for="image" class="mt-1">Slider Image <small>(Size: 1350px x 550px)</small></label>
                                 <input class="form-control form-control-sm" id="image" type="file" name="image" onchange="readURL(this);">
                             </div>
-                            <div class="col-md-4 offset-md-1 mt-3">
+                            <div class="col-12 col-md-4 offset-md-1 mt-3 mt-md-4">
                                 <img class="form-controlo img-thumbnail" src="#" id="previewImage" style="height: 205px; width:400px; background: #3f4a49;">
                             </div>
                         </div>
                         <hr class="my-2">
                         <div class="clearfix mt-1">
-                            <div class="float-md-left">
+                            <div class="float-md-right">
                                 <button type="reset" class="btn btn-dark btn-sm">Reset</button>
                                 <button type="submit" class="btn btn-info btn-sm">Save</button>
                             </div>
@@ -75,10 +72,10 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
+                                <th>Image</th>
                                 <th>Slogan</th>
                                 <th>Headline</th>
                                 <th>Text</th>
-                                <th>Image</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -86,10 +83,10 @@
                             @forelse ($sliders as $key=>$slider)
                                 <tr>
                                     <td>{{ $key+1 }}</td>
+                                    <td><img class="border" style="height: 50px; width:65px;" src="{{ asset($slider->image) }}" alt=""></td>
                                     <td>{{ $slider->slogan }}</td>
                                     <td>{{ $slider->headerline }}</td>
                                     <td>{{ $slider->description }}</td>
-                                    <td><img class="border" style="height: 40px; width:50px;" src="{{ asset($slider->image) }}" alt=""></td>
                                     <td>
                                         <a href="{{ route('slider.edit',$slider->id) }}" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></a>
                                         <a href="{{ route('slider.delete', $slider->id) }}" type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you Sure?')"><i class="fa fa-trash"></i></a>

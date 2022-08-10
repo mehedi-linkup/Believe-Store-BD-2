@@ -12,13 +12,13 @@
                         <div class="row">
                             <div class="col-md-6 mb-2">
                                 <label for="title"> News Title <span class="text-danger">*</span> </label>
-                                <input type="text" name="title" class="form-control form-control-sm shadow-none @error('title') is-invalid @enderror" id="title" placeholder="Enter a News Title">
+                                <input type="text" name="title" class="form-control form-control-sm shadow-none @error('title') is-invalid @enderror" id="title" placeholder="Enter a News Title" value="{{ old('title') }}">
                                 @error('title')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                                <label for="image">Image</label>
+                                <label for="image">Image <small>(Size: 600px * 500px)</small></label>
                                 <input class="form-control form-control-sm @error('image') is-invalid @enderror" id="image" type="file" name="image" onchange="readURL(this);">
                                 @error('image')
                                     <span class="invalid-feedback" role="alert">
@@ -33,7 +33,7 @@
                             <div class="col-md-6 mb-2">
                                 <div class="form-group">
                                     <label for="description">News Details</label>
-                                    <textarea name="description" class="form-control @error('description') is-invalid @enderror" id="description" rows="4" placeholder="News Details"></textarea>
+                                    <textarea name="description" class="form-control @error('description') is-invalid @enderror" id="description" rows="4" placeholder="News Details">{{ old('description') }}</textarea>
                                     @error('description')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -44,7 +44,7 @@
                         </div>
                         <hr class="my-2">
                         <div class="clearfix mt-1">
-                            <div class="float-md-left">
+                            <div class="float-md-right">
                                 <button type="reset" class="btn btn-dark btn-sm">Reset</button>
                                 <button type="submit" class="btn btn-info btn-sm">Save</button>
                             </div>
@@ -66,8 +66,8 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Title</th>
                                 <th>Image</th>
+                                <th>Title</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -75,8 +75,8 @@
                             @forelse ($news as $key=>$item)
                                 <tr>
                                     <td>{{ $key+1 }}</td>
+                                    <td><img class="border" style="height: 50px; width:65px;" src="{{ asset($item->image) }}" alt=""></td>
                                     <td>{{ $item->title }}</td>                                    
-                                    <td><img class="border" style="height: 26px; width:35px;" src="{{ asset($item->image) }}" alt=""></td>
                                     <td>
                                         <a href="{{ route('news.edit', $item->id) }}" class="btn btn-info btn-mod-info btn-sm mr-1"><i class="fas fa-edit"></i></button>
                                         <a href="{{ route('news.delete', $item->id) }}" class="btn btn-danger btn-mod-danger btn-sm" onclick="return confirm('Are you sure you want to delete this item?');"><i class="fas fa-trash"></i></button>
