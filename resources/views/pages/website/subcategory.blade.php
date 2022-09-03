@@ -10,7 +10,7 @@
                       <span>&nbsp;/&nbsp;</span>
                       <li class="breadcrumb-item active" aria-current="page"> {{ $category->name }}</li>
                     </ol>
-                  </nav>
+                </nav>
             </div>
         </div>
     </div>
@@ -26,7 +26,7 @@
       <div class="row gy-3">
         @foreach($subcategory as $item)
         <div class="col-md-3 col-12 text-center">
-          <a href="{{ route('product', $item->id) }}" class="filter-anchor">
+          <a href="{{ route('product.subcate', $item->id) }}" class="filter-anchor">
             <div class="filter-box">
               <div class="img-box">
                 <img src="{{ asset('uploads/subcategory/'. $item->image) }}" alt="{{ $item->name }}" class="img-fluid">

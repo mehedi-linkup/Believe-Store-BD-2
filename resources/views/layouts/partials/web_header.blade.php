@@ -28,7 +28,7 @@
               <a class="nav-link px-3 text-uppercase" href="{{ route('home') }}#video-gallery">Videos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link {{ @($pageName == 'news')? 'active' : '' }} px-3 text-uppercase" href="{{ route('home') }}#news-event">News & Events</a>
+              <a class="nav-link {{ @($pageName == 'news')? 'active' : '' }} px-3 text-uppercase" href="{{ route('news') }}">News & Offers</a>
             </li>
             {{-- <li class="nav-item">
               <a class="nav-link px-3 text-uppercase" href="#"><i class="fa-solid fa-magnifying-glass"></i></a>

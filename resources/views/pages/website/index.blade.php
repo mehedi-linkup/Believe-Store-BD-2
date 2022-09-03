@@ -1,5 +1,5 @@
 @extends('layouts.website', ['pageName' => 'home'])
-
+@section('title', 'Home')
 @push('web-css')
 <link rel="stylesheet" href="{{ asset('website/assets/owl-carousel/owl.carousel.min.css') }}">
 <link rel="stylesheet" href="{{ asset('website/assets/owl-carousel/owl.theme.default.min.css') }}">
@@ -19,7 +19,7 @@
             <div class="row gy-3">
                 @foreach ($category->take(8) as $item)
                     <div class="col-md-3 col-12 text-center">
-                        <a href="{{ route('submenu', $item->id) }}" class="filter-anchor">
+                        <a href="{{ route('subcategory', $item->id) }}" class="filter-anchor">
                             <div class="filter-box">
                                 <div class="img-box">
                                     <img src="{{ asset($item->image) }}" alt="{{ $item->name }}" class="img-fluid" />
@@ -37,10 +37,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4 col-12">
-                    <img src="{{ asset($content->about_image) }}" alt="" class="w-100">
+                    <img src="{{ asset($content->about_image) }}" alt="" class="w-100 h-100">
                 </div>
                 <div class="col-md-4 col-12">
-                    <img src="{{ asset($content->bg_image) }}" alt="" class="w-100">
+                    <img src="{{ asset($content->bg_image) }}" alt="" class="w-100 h-100">
                 </div>
                 <div class="col-md-4 col-12">
                     <div class="custom-card">
@@ -192,7 +192,7 @@
                     <div class="row">
                         <div class="col-md-12 col-12">
                             <h2 class="fs-2 fw-bold text-center text-uppercase text-white"><span
-                                    class="section-border">News & Events</span></h2>
+                                    class="section-border">News & Offer</span></h2>
                         </div>
                     </div>
                     <div class="row gy-2 gy-md-0">

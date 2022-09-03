@@ -44,8 +44,8 @@
                         <hr class="my-2">
                         <div class="clearfix mt-1">
                             <div class="float-md-left">
-                                <a href="{{ route('news') }}" class="btn btn-dark">Back</a>
-                                <button type="submit" class="btn btn-info">Update</button>
+                                <a href="{{ route('news.index') }}" class="btn btn-sm btn-dark">Back</a>
+                                <button type="submit" class="btn btn-sm btn-info">Update</button>
                             </div>
                         </div>
 

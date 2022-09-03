@@ -13,6 +13,7 @@ use App\Models\Video;
 use App\Models\News;
 use App\Models\Management;
 use App\Models\BackImage;
+use App\Models\Messenger;
 use App\Models\Partner;
 
 class HomeController extends Controller
@@ -30,25 +31,26 @@ class HomeController extends Controller
         $partner = Partner::latest()->get();
         return view('pages.website.index', compact('category', 'slider', 'gallery', 'video', 'management', 'news', 'whatwe', 'backimage', 'partner'));
     }
-    public function submenu($id) {
+    public function subcategory($id) {
         $category = Category::find($id);
         if (isset($category)) {
             $subcategory = Subcategory::where('category_id', $id)->get();
             $backimage = BackImage::first();
-            return view('pages.website.submenu', compact('category', 'subcategory', 'backimage'));
+            return view('pages.website.subcategory', compact('category', 'subcategory', 'backimage'));
         } else {
             $backimage = BackImage::first();
             return view('pages.website.not-found', compact('backimage'));
         }
     }
     // subcategory id pass bellow
-    public function product($id) {
+    public function productSubcate($id) {
+        $messenger = Messenger::first();
         $subcategory = Subcategory::find($id); // subcategory id retrieve which the product contain
         if (isset($subcategory)) {
             $category = Category::where('id', $subcategory->category_id)->first();
             $product = Product::where('subcategory_id', $id)->get();
             $backimage = BackImage::first();
-            return view('pages.website.product', compact('subcategory','product', 'category', 'backimage'));
+            return view('pages.website.product-subcat', compact('subcategory','product', 'category', 'backimage', 'messenger'));
         } else {
             $backimage = BackImage::first();
             return view('pages.website.not-found', compact('backimage'));
@@ -61,6 +63,11 @@ class HomeController extends Controller
         $category = Category::where('id', $product->category_id)->first();
         $backimage = BackImage::first();
         return view('pages.website.product-detail', compact('product', 'subcategory', 'category', 'backimage'));
+    }
+    public function news() {
+        $news = News::latest()->get();
+        $backimage = BackImage::first();
+        return view('pages.website.news', compact('news', 'backimage'));
     }
 
     public function newsDetail($id) {

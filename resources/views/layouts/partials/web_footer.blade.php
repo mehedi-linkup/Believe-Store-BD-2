@@ -32,7 +32,7 @@
           </div>
       </div>
   </div>
-  <div class="footer-end">
+  {{-- <div class="footer-end">
       <div class="container">
           <div class="row">
               <div class="col-md-6 col-12">
@@ -47,5 +47,5 @@
               </div>
           </div>
       </div>
-  </div>
+  </div> --}}
 </footer>

@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\BackImageController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\MessengerController;
 use App\Http\Controllers\Admin\ManagementController;
 use App\Http\Controllers\Admin\SubcategoryController;
 use App\Http\Controllers\Admin\RegistrationController;
@@ -34,9 +35,12 @@ use App\Http\Controllers\Admin\CompanyProfileController;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/submenu/{id}', [HomeController::class, 'submenu'])->name('submenu');
-Route::get('/product/{id}', [HomeController::class, 'product'])->name('product');
+
+Route::get('/category/subcategroy/{id}', [HomeController::class, 'subcategory'])->name('subcategory');
+Route::get('/category/subcategory/product/{id}', [HomeController::class, 'productSubcate'])->name('product.subcate');
+// Route::get('/product/{id?}', [HomeController::class, 'product'])->name('product');
 Route::get('/product-detail/{id}', [HomeController::class, 'productDetail'])->name('productDetail');
+Route::get('/news-offers', [HomeController::class, 'news'])->name('news');
 Route::get('/news-detail/{id}', [HomeController::class, 'newsDetail'])->name('newsDetail');
 
 // login
@@ -104,7 +108,7 @@ Route::group(['middleware' => ['auth']] , function(){
     Route::get('video/delete/{id}', [VideoController::class, 'delete'])->name('delete.video');
 
     // News Route
-    Route::get('/news', [NewsController::class, 'index'])->name('news');
+    Route::get('/news', [NewsController::class, 'index'])->name('news.index');
     Route::post('news/insert', [NewsController::class, 'store'])->name('store.news');
     Route::get('news/edit/{id}', [NewsController::class, 'edit'])->name('news.edit');
     Route::post('news/update/{id}', [NewsController::class, 'update'])->name('news.update');
@@ -129,6 +133,9 @@ Route::group(['middleware' => ['auth']] , function(){
 
     Route::get('/map', [MapController::class, 'edit'])->name('maps.edit');
     Route::put('/map/{map}', [MapController::class, 'update'])->name('maps.update');
+
+    Route::get('/messenger', [MessengerController::class, 'edit'])->name('messenger.edit');
+    Route::put('/messenger/{messenger}', [MessengerController::class, 'update'])->name('messenger.update');
 
     Route::get('backimage', [BackImageController::class, 'edit'])->name('backimage.edit');
     Route::put('backimage/{backimage}', [BackImageController::class, 'update'])->name('backimage.update');

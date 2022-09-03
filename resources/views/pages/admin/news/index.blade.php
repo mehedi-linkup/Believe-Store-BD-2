@@ -6,7 +6,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="form-area">
-                    <h4 class="heading"><i class="fas fa-plus"></i> Add a News (At most 2 news)</h4>
+                    <h4 class="heading"><i class="fas fa-plus"></i> Add a News</h4>
                     <form action="{{ route('store.news') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row">

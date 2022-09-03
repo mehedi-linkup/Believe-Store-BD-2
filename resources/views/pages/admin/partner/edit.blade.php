@@ -37,8 +37,8 @@
                         <hr class="my-2">
                         <div class="clearfix mt-1">
                             <div class="float-md-left">
-                                <button type="reset" class="btn btn-dark">Reset</button>
-                                <button type="submit" class="btn btn-info">Update</button>
+                                <a href="{{route('partner.index')}}" class="btn btn-sm btn-dark">Back</a>
+                                <button type="submit" class="btn btn-sm btn-info">Update</button>
                             </div>
                         </div>
                     </form>
