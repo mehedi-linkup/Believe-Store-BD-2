@@ -33,9 +33,9 @@
                         <a class="nav-link" href="{{ route('admin.subcategories') }}"><i class="fas fa-minus"></i>&nbsp;Subcategory</a>
                         <a class="nav-link" href="{{ route('admin.products') }}"><i class="fas fa-minus"></i>&nbsp;Product</a>
                         <a class="nav-link" href="{{ route('management.index') }}"><i class="fas fa-minus"></i>&nbsp;Management</a>
-                        <a class="nav-link" href="{{ route('gallery') }}"><i class="fas fa-minus"></i>&nbsp;Gallery</a>
+                        <a class="nav-link" href="{{ route('gallery.index') }}"><i class="fas fa-minus"></i>&nbsp;Gallery</a>
                         <a class="nav-link" href="{{ route('videos') }}"><i class="fas fa-minus"></i>&nbsp;Video</a>
-                        <a class="nav-link" href="{{ route('news.index') }}"><i class="fas fa-minus"></i>&nbsp;News & Events</a>
+                        <a class="nav-link" href="{{ route('news.index') }}"><i class="fas fa-minus"></i>&nbsp;News & Offers</a>
                         <a class="nav-link" href="{{ route('partner.index') }}"><i class="fas fa-minus"></i>&nbsp;Partner</a>
                     </nav>
                 </div>

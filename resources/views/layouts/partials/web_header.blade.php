@@ -1,5 +1,5 @@
 <header>
-  <nav class="navbar navbar-expand-lg fixed-top scrolling-navbar">
+  <nav class="navbar navbar-expand-lg header fixed-top ">
       <div class="container-lg">
         <a class="navbar-brand" href="{{ route('home') }}">
           <img src="{{ asset($content->logo) }}" alt="" >
@@ -10,22 +10,22 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link {{ @($pageName == 'home')? 'active' : '' }} px-3 text-uppercase" aria-current="page" href="{{ route('home') }}#">Home</a>
+              <a class="nav-link {{@($pageName == 'home')? 'active' : ''}} px-3 text-uppercase" aria-current="page" href="{{ route('home') }}">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link {{ @($pageName == 'product')? 'active' : '' }} px-3 text-uppercase" href="{{ route('home') }}#category-menu">Product</a>
+              <a class="nav-link {{@($pageName == 'product')? 'active' : ''}} px-3 text-uppercase" href="{{ route('product') }}">Product</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link px-3 text-uppercase" href="{{ route('home') }}#our-service">About</a>
+              <a class="nav-link {{@($pageName == 'about')? 'active':''}} px-3 text-uppercase" href="{{ route('about') }}">About</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link px-3 text-uppercase" href="{{ route('home') }}#team">Team</a>
+              <a class="nav-link {{@($pageName == 'management')? 'active':''}} px-3 text-uppercase" href="{{ route('management') }}">Management</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link px-3 text-uppercase" href="{{ route('home') }}#gallery">Photos</a>
+              <a class="nav-link {{@($pageName == 'gallery')? 'active':''}} px-3 text-uppercase" href="{{ route('gallery') }}">Photos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link px-3 text-uppercase" href="{{ route('home') }}#video-gallery">Videos</a>
+              <a class="nav-link {{@($pageName == 'video')? 'active':''}} px-3 text-uppercase" href="{{ route('video') }}">Videos</a>
             </li>
             <li class="nav-item">
               <a class="nav-link {{ @($pageName == 'news')? 'active' : '' }} px-3 text-uppercase" href="{{ route('news') }}">News & Offers</a>

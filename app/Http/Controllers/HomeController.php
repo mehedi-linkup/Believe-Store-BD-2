@@ -31,6 +31,31 @@ class HomeController extends Controller
         $partner = Partner::latest()->get();
         return view('pages.website.index', compact('category', 'slider', 'gallery', 'video', 'management', 'news', 'whatwe', 'backimage', 'partner'));
     }
+    public function about() {
+        $backimage = BackImage::first();
+        return view('pages.website.about', compact('backimage'));
+    }
+    public function management() {
+        $backimage = BackImage::first();
+        $management = Management::latest()->get();
+        return view('pages.website.management', compact('backimage', 'management'));
+    }
+    public function gallery() {
+        $backimage = BackImage::first();
+        $gallery = Gallery::latest()->get();
+        return view('pages.website.gallery', compact('backimage', 'gallery'));
+    }
+    public function video() {
+        $backimage = BackImage::first();
+        $video = Video::latest()->get();
+        return view('pages.website.video', compact('video', 'backimage'));
+    }
+    public function product() {
+        $backimage = BackImage::first();
+        $messenger = Messenger::first();
+        $product = Product::latest()->get();
+        return view('pages.website.product', compact('backimage', 'product', 'messenger'));
+    }
     public function subcategory($id) {
         $category = Category::find($id);
         if (isset($category)) {

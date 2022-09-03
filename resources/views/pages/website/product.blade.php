@@ -1,4 +1,5 @@
 @extends('layouts.website', ['pageName' => 'product'])
+@section('title', 'Product-all')
 @section('web-content')
 
 <section id="product-background" class="product-background d-flex" style="background-image: url('{{ asset('/website/assets/image/section-background/'.$backimage->bgimage_other) }}')">
@@ -9,9 +10,7 @@
                   <ol class="breadcrumb justify-content-center">
                     <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
                     <span>&nbsp;/&nbsp;</span>
-                    <li class="breadcrumb-item"><a href="{{ route('submenu', $category->id) }}">{{ $category->name }}</a></li>
-                    <span>&nbsp;/&nbsp;</span>
-                    <li class="breadcrumb-item active" aria-current="page">{{ $subcategory->name }}</li>
+                    <li class="breadcrumb-item active" aria-current="page">All Product</li>
                   </ol>
                 </nav>
           </div>
@@ -23,7 +22,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12 col-12">
-          <h2 class="section-title fs-2 fw-bold text-center text-uppercase text-white">{{ $subcategory->name }}</h2>
+          <h2 class="section-title fs-2 fw-bold text-center text-uppercase text-white">Our Products</h2>
         </div>
       </div>
       <div class="row gy-3">

@@ -1,4 +1,5 @@
 @extends('layouts.website', ['pageName' => 'product-subcate'])
+@section('title', 'Product')
 @section('web-content')
 
 <section id="product-background" class="product-background d-flex" style="background-image: url('{{ asset('/website/assets/image/section-background/'.$backimage->bgimage_other) }}')">

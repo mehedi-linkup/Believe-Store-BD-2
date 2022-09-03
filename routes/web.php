@@ -35,10 +35,13 @@ use App\Http\Controllers\Admin\CompanyProfileController;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-
+Route::get('/about', [HomeController::class, 'about'])->name('about');
+Route::get('/management', [HomeController::class, 'management'])->name('management');
+Route::get('/gallery', [HomeController::class, 'gallery'])->name('gallery');
+Route::get('/video', [HomeController::class, 'video'])->name('video');
+Route::get('/product', [HomeController::class, 'product'])->name('product');
 Route::get('/category/subcategroy/{id}', [HomeController::class, 'subcategory'])->name('subcategory');
 Route::get('/category/subcategory/product/{id}', [HomeController::class, 'productSubcate'])->name('product.subcate');
-// Route::get('/product/{id?}', [HomeController::class, 'product'])->name('product');
 Route::get('/product-detail/{id}', [HomeController::class, 'productDetail'])->name('productDetail');
 Route::get('/news-offers', [HomeController::class, 'news'])->name('news');
 Route::get('/news-detail/{id}', [HomeController::class, 'newsDetail'])->name('newsDetail');
@@ -94,7 +97,7 @@ Route::group(['middleware' => ['auth']] , function(){
     Route::get('service/delete/{id}', [ServiceController::class, 'serviceDelete'])->name('delete.service');
     
     // Gallery Route
-    Route::get('/galleries', [GalleryController::class, 'gallery'])->name('gallery');
+    Route::get('/galleries', [GalleryController::class, 'gallery'])->name('gallery.index');
     Route::post('gallery/insert', [GalleryController::class, 'galleryInsert'])->name('store.gallery');
     Route::get('gallery/edit/{id}', [GalleryController::class, 'galleryEdit'])->name('edit.gallery');
     Route::post('gallery/update/{id}', [GalleryController::class, 'galleryUpdate'])->name('update.gallery');
