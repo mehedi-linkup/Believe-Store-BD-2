@@ -39,7 +39,9 @@
                 <img src="{{ asset( $item->image ) }}" alt="{{ $item->name }}" class="img-fluid"/>
               </div>
               <h5 class="product-title mt-2">{{ $item->name }}</h5>
-              <a class="btn btn-sm btn-warning" href="{{ $messenger->link }}">Order Now</a>
+              <div class="py-2">
+                <a class="btn btn-sm btn-danger" href="{{ $messenger->link }}">Order Now</a>
+              </div>
             </div>
           </div>
         </div>
