@@ -15,13 +15,13 @@
                         @csrf
                         <div class="row">
                             <div class="col-12 col-md-6 mb-2">
-                                <label for="slogan">Slider Slogan</label>
+                                {{-- <label for="slogan">Slider Slogan</label>
                                 <input class="form-control form-control-sm @error('slogan') is-invalid @enderror" id="slogan" type="text" name="slogan" value="{{ old('slogan') }}" placeholder="slider slogan">
                                 @error('slogan')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror
+                                @enderror --}}
                                 
                                 <label for="headerline">Slider Headline</label>
                                 <input class="form-control form-control-sm @error('headerline') is-invalid @enderror" id="headerline" type="text" name="headerline" value="{{ old('headerline') }}" placeholder="slider headerline">
@@ -31,7 +31,7 @@
                                     </span>
                                 @enderror
 
-                                <label for="description">Slider Text</label>
+                                <label for="description">Slider Sub Text</label>
                                 <input class="form-control form-control-sm @error('description') is-invalid @enderror" id="description" type="text" name="description" value="{{ old('description') }}" placeholder="slider description">
                                 @error('description')
                                     <span class="invalid-feedback" role="alert">
@@ -42,7 +42,7 @@
                                 <label for="image" class="mt-1">Slider Image <small>(Size: 1350px x 550px)</small></label>
                                 <input class="form-control form-control-sm" id="image" type="file" name="image" onchange="readURL(this);">
                             </div>
-                            <div class="col-12 col-md-4 offset-md-1 mt-3 mt-md-4">
+                            <div class="col-12 col-md-4 offset-md-1 mt-2 mt-md-1">
                                 <img class="form-controlo img-thumbnail" src="#" id="previewImage" style="height: 205px; width:400px; background: #3f4a49;">
                             </div>
                         </div>
@@ -73,7 +73,7 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Image</th>
-                                <th>Slogan</th>
+                                {{-- <th>Slogan</th> --}}
                                 <th>Headline</th>
                                 <th>Text</th>
                                 <th>Action</th>
@@ -83,8 +83,8 @@
                             @forelse ($sliders as $key=>$slider)
                                 <tr>
                                     <td>{{ $key+1 }}</td>
-                                    <td><img class="border" style="height: 50px; width:65px;" src="{{ asset($slider->image) }}" alt=""></td>
-                                    <td>{{ $slider->slogan }}</td>
+                                    <td><img class="border" style="height: 80px; width:auto;" src="{{ asset($slider->image) }}" alt=""></td>
+                                    {{-- <td>{{ $slider->slogan }}</td> --}}
                                     <td>{{ $slider->headerline }}</td>
                                     <td>{{ $slider->description }}</td>
                                     <td>
@@ -94,7 +94,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="6">Data Not Found</td>
+                                    <td colspan="5">Data Not Found</td>
                                 </tr>
                             @endforelse
                             
@@ -116,8 +116,8 @@
             reader.onload = function (e) {
                 $('#previewImage')
                     .attr('src', e.target.result)
-                    .width(400)
-                    .height(205);
+                    .width(390)
+                    .height(195);
             };
 
             reader.readAsDataURL(input.files[0]);

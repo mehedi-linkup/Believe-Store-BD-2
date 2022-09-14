@@ -5,8 +5,8 @@
             @php $count = 0 @endphp
           <div class="carousel-item h-100 {{ ($key == 0) ? 'active' : ''}}">
             <img src="{{ asset($item->image) }}" class="d-block w-100 h-100" alt="{{ $item->slogan }}">
-            <div class="carousel-caption d-none d-md-block">
-                <h2 style="color: #fff; font-weight: 600; text-transform: uppercase;">{{ $item->headerline }}</h2>
+            <div class="carousel-caption d-md-block">
+                <h2>{{ $item->headerline }}</h2>
                 <p style="text-transform: uppercase">{{ $item->description }}</p>
             </div>
           </div>

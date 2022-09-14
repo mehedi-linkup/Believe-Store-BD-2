@@ -134,8 +134,6 @@ nav .navbar-brand img {
         width: 50px;
     }
 }
-
-
 .navbar-toggler-icon {
     background-image: none;
 }
@@ -145,14 +143,25 @@ nav .navbar-brand img {
     width: 24px;
 }
 
-
-/* Bootstrap Carousel */
+/* --- Slider Section --- */
 .carousel-inner {
     height: auto;
 }
+.carousel-caption h2 {
+    color: #fff;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 18px;
+}
 @media (max-width: 575px) {
+    .carousel-caption h2 {
+        color: #fff;
+        font-weight: 400;
+        text-transform: uppercase;
+        font-size: 16px;
+    }
     .carousel-inner {
-        height: 370px;
+        height: 220px;
     }
 }
 @media (min-width: 576px) and (max-width: 991px) {
@@ -165,16 +174,6 @@ nav .navbar-brand img {
         height: 550px;
     }
 }
-/* @media(min-width: 992px) {
-   .carousel-inner {
-    height: 650px;
-   }     
-} */
-/* @media(min-width: 1200px) {
-    .carousel-inner {
-        height: 550px;
-    }
-} */
 .carousel-item img {
     object-fit: cover;
 }
@@ -188,7 +187,6 @@ nav .navbar-brand img {
     background-repeat: no-repeat;
     background-size: cover;
     background-blend-mode: darken;
-    /* transform: translate3d(0px, -423.045px, 0px);*/
 }
 .grand-box {
     padding: 6px;
@@ -211,8 +209,6 @@ nav .navbar-brand img {
 .inner-box ul li svg {
     margin-top: 5px;
 }
-
-
 /* ---Category-menu start--- */
 .category-menu {
     /* background-image: linear-gradient(90deg, #B48DF8, #B7F7F9); */
