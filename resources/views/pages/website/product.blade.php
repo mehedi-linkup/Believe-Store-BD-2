@@ -28,7 +28,7 @@
       <div class="row gy-3">
         @foreach($product as $item)
         <div class="col-md-3 col-12 text-center">
-          <div class="filter-anchor">
+          <a href="{{ route('productDetail', $item->id) }}" class="filter-anchor">
             <div class="filter-box">
               <div class="img-box">
                 <img src="{{ asset( $item->image ) }}" alt="{{ $item->name }}" class="img-fluid"/>
@@ -38,7 +38,7 @@
                 <a class="btn btn-sm btn-danger" href="{{ $messenger->link }}">Order Now </a>
               </div>
             </div>
-          </div>
+          </a>
         </div>
         @endforeach
       </div>

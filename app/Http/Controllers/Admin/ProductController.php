@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Subcategory;
+use Facade\FlareClient\Stacktrace\File;
 use Illuminate\Support\Facades\Redirect;
 use Image;
 
@@ -38,19 +39,23 @@ class ProductController extends Controller
         try {
             $image = $request->file('image');
             $name_gen=hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
-            Image::make($image)->resize(768,768)->save('uploads/product/'.$name_gen);
-            $save_url = 'uploads/product/'.$name_gen;
+            Image::make($image)->resize(768,768)->save('uploads/product/thumb/'.$name_gen);
+            $image->move('uploads/product', $name_gen);
+            $image_url = 'uploads/product/'.$name_gen;
+            $thumb_url = 'uploads/product/thumb/'.$name_gen;
 
             $product = new Product();
             $product->category_id = $request->category_id;
             $product->subcategory_id = $request->subcategory_id;
             $product->name = $request->name;
-            // $product->description = $request->description;
-            $product->image = $save_url;
+            $product->description = $request->description;
+            $product->image = $image_url;
+            $product->image_thumb = $thumb_url;
             $product->save();
             return Redirect()->route('admin.products')->with('success', 'Product Insertion Succeful!');
 
         } catch (\Exception $e) {   
+            return $e->getMessage();
             return Redirect()->back()->with('error', 'Insertion Failed!');
         }
     }
@@ -99,32 +104,37 @@ class ProductController extends Controller
             'image' => 'image|mimes:jpeg,jpg,png,gif,webp',
         ]);
         try {
-            $old_img = $request->old_image;
-            if ($request->file('image')) {
-                unlink($old_img);
+            $product = Product::find($id);
+
+            if($request->hasFile('image')) {
                 $image = $request->file('image');
-                $name_gen=hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
-                Image::make($image)->resize(768,768)->save('uploads/product/'.$name_gen);
-                $save_url = 'uploads/product/'.$name_gen;
-    
-                $product = Product::find($id);
-                $product->category_id = $request->category_id;
-                $product->subcategory_id = $request->subcategory_id;
-                $product->name = $request->name;
-                // $product->description = $request->description;
-                $product->image = $save_url;
-                $product->save();
-            } else {
-                $product = Product::find($id);
-                $product->category_id = $request->category_id;
-                $product->subcategory_id = $request->subcategory_id;
-                $product->name = $request->name;
-                // $product->description = $request->description;
-                $product->save();
+                $imgExt = $image->getClientOriginalExtension();
+                $imageName = $product->image;
+                $nameWithoutExt = explode('.', $imageName)[0];
+                $nameWithoutPath = explode('/',$nameWithoutExt)[2];
+                $orinalImageName = 'uploads/product/' . $nameWithoutPath . '.' . $imgExt;
+                $thumbImageName = 'uploads/product/thumb/' . $nameWithoutPath . '.' . $imgExt;
+
+                if(file_exists($product->image) AND $product->image != null) {
+                    unlink($product->image);
+                }
+                if(file_exists($product->image_thumb) AND $product->image_thumb != null) {
+                    unlink($product->image_thumb);
+                }
+                Image::make($image)->resize(768,768)->save($thumbImageName);
+                $image->move('uploads/product', $orinalImageName);
+
+                $product->image = $orinalImageName;
+                $product->image_thumb = $thumbImageName;
             }
-            return Redirect()->route('admin.products')->with('success', 'Update Successful!');
-            
+            $product->category_id = $request->category_id;
+            $product->subcategory_id = $request->subcategory_id;
+            $product->name = $request->name;
+            $product->description = $request->description;
+            $product->save();
+            return Redirect()->route('admin.product.edit', $id)->with('success', 'Update Successful!');
         } catch (\Throwable $th) {
+            // throw $th;
             return Redirect()->back()->with('failed', 'Product Update Failed!');
         }   
     }
@@ -138,10 +148,14 @@ class ProductController extends Controller
     public function destroy($id)
     {
         $product = Product::find($id);
-        if($product){
+       
+        if(file_exists($product->image) AND $product->image != null) {
             unlink($product->image);
-            $product->delete();
         }
+        if(file_exists($product->image_thumb) AND $product->image_thumb != null) {
+            unlink($product->image_thumb);
+        }
+        $product->delete();
         return Redirect()->back()->with('success', 'Deleted Successfully!');
     }
 }

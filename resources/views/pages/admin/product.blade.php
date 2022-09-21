@@ -24,14 +24,25 @@
                     <div class="card-body">
                         <form action="{{ (@$productData) ? route('admin.product.update', $productData->id) : route('admin.product.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            
-                            <input type="hidden" name="old_image" value="{{ @$productData->image }}">
                             <div class="row">
-                                <div class="col-md-7 mb-2">
+                                <div class="col-md-6 mb-2">
                                     <label for="name" class="mb-2"> Product Name <span class="text-danger">*</span> </label>
                                     <input type="text" name="name" value="{{ @$productData ? $productData->name : old('name')}}" class="form-control form-control-sm mb-2" id="name" placeholder="Enter Category name">
                                     @error('name') <span style="color: red">{{$message}}</span><br> @enderror
 
+                                    <div class="form-group">
+                                        <label for="description">Product Description</label>
+                                        @if(@$productData)
+                                        <textarea name="description" class="form-control" id="description" rows="3">{{  $productData->description }}</textarea>
+                                        @else
+                                        <textarea name="description" class="form-control" id="description" rows="3">{{ old('description') ?  old('description') : '' }}</textarea>
+                                        @endif
+                                    </div>
+                                    {{-- <label for="name" class="mb-2"> Product Description <span class="text-danger">*</span> </label>
+                                    <textarea name="description" id="description" rows="4" class="form-control">{{ @$productData->description }}</textarea>
+                                    @error('description') <span style="color: red">{{$message}}</span> @enderror --}}
+                                </div>
+                                <div class="col-md-6 mb-2">
                                     <label for="name" class="mb-2"> Category <span class="text-danger">*</span> </label>
                                     <select name="category_id" class="form-control form-control-sm mb-2">
                                         <option value="">Select Category Option</option>
@@ -55,35 +66,34 @@
                                             @foreach ($productSubData as $item)
                                                 <option value="{{ $item->id }}" {{ $item->id == @$productData->subcategory_id ? 'selected' : '' }} >{{ $item->name }}</option>
                                             @endforeach
+                                        @else
+                                            @foreach ($subcategory as $item)
+                                                <option value="{{ $item->id }}" {{ $item->id == old('subcategory_id')? 'selected' : '' }} >{{ $item->name }}</option>
+                                            @endforeach
                                         @endif
+
+
                                     </select>
                                     @error('subcategory_id') <span style="color: red">{{$message}}</span> @enderror
-                                    {{-- <label for="name" class="mb-2"> Product Description <span class="text-danger">*</span> </label>
-                                    <textarea name="description" id="description" rows="4" class="form-control">{{ @$productData->description }}</textarea>
-                                    @error('description') <span style="color: red">{{$message}}</span> @enderror --}}
-                                </div>
 
-                                <div class="col-md-5 mb-2">
-                                    <label for="about_image" class="mb-2">Product Image <small>(Size: 768px * 768px)</small></label>
+                                    <label for="image" class="mb-2">Product Image <span class="text-danger">*</span> <small>(Size: 4000px * 2667px)</small></label>
                                     <input class="form-control form-control-sm" id="image" type="file" name="image" onchange="mainThambUrl(this)">
                                     <div class="form-group mt-2">
                                         <img class="form-controlo img-thumbnail" src="{{(@$productData) ? asset($productData->image) : asset('uploads/no.png') }}" id="mainThmb" style="width: 150px;height: 120px;">
                                     </div>
                                     @error('image') <span style="color: red">{{$message}}</span> @enderror
                                 </div>
-                            </div>
-
-                            <div class="clearfix border-top">
-                                <div class="float-md-right mt-2">
-                                    @if(@$productData)
-                                    <a href="{{ route('admin.products') }}" class="btn btn-sm btn-dark">Back</a>
-                                    @else
-                                    <button type="reset" class="btn btn-sm btn-dark">Reset</button>
-                                    @endif
-                                    <button type="submit" class="btn btn-sm btn-info">{{(@$productData)?'Update':'Create'}}</button>
+                                <div class="clearfix border-top">
+                                    <div class="float-md-right mt-2">
+                                        @if(@$productData)
+                                        <a href="{{ route('admin.products') }}" class="btn btn-sm btn-dark">Back</a>
+                                        @else
+                                        <button type="reset" class="btn btn-sm btn-dark">Reset</button>
+                                        @endif
+                                        <button type="submit" class="btn btn-sm btn-info">{{(@$productData)?'Update':'Save'}}</button>
+                                    </div>
                                 </div>
                             </div>
-
                         </form>
                     </div>
                 </div>
@@ -117,7 +127,7 @@
                                     @foreach ($product as $item)
                                     <tr>
                                         <td>{{ $loop->index + 1 }}</td>
-                                        <td><img src="{{ asset($item->image) }}" width="65" height="50" alt=""></td>
+                                        <td><img src="{{ asset($item->image) }}" height="70" alt="" style="max-width: 100%"></td>
                                         <td>{{ $item->category->name }}</td>
                                         <td>{{ $item->subcategory->name }}</td>
                                         <td>{{ $item->name }}</td>

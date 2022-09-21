@@ -83,11 +83,12 @@ class HomeController extends Controller
     }
 
     public function productDetail($id) {
-        $product = Product::find( $id);
-        $subcategory = Subcategory::where('id', $product->subcategory_id)->first();
+        $messenger = Messenger::first();
+        $product = Product::find($id);
         $category = Category::where('id', $product->category_id)->first();
+        $subcategory = Subcategory::where('id', $product->subcategory_id)->first();
         $backimage = BackImage::first();
-        return view('pages.website.product-detail', compact('product', 'subcategory', 'category', 'backimage'));
+        return view('pages.website.product-detail', compact('messenger','product', 'category', 'backimage', 'subcategory'));
     }
     public function news() {
         $news = News::latest()->get();

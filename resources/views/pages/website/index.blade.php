@@ -63,13 +63,7 @@
                     <div class="grand-box">
                         <div class="inner-box">
                             <h3 class="card-title text-uppercase fw-bold mb-3">Who we are</h3>
-                            <!-- <p class="card-semi-text w-75 mb-4">Pellentesque ut risus a odio posuere aliquet Pellentesque sapien erat .</p> -->
-                            <!-- <ul class="mb-5">
-                        <li><i class="fa-solid fa-circle-arrow-right"></i> <span>Sed massa tellus, aliquam rhoncus, venenatis quis.</span></li>
-                        <li><i class="fa-solid fa-circle-arrow-right"></i> <span>enim. Suspendisse imperdiet cursus nisi.</span></li>
-                      </ul> -->
-                            <!-- <a href="" class="btn btn-orange text-uppercase rounded-pill">Read More</a> -->
-                            <div>
+                            <div style="max-height: 234px; overflow: auto;">
                                 {!! $whatwe->description1 !!}
                             </div>
                         </div>
