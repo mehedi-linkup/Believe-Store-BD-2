@@ -19,14 +19,13 @@
             <div class="row gy-3">
                 @foreach ($category->take(8) as $item)
                     <div class="col-md-3 col-12 text-center">
-                        <a href="{{ route('subcategory', $item->id) }}" class="filter-anchor">
-                            <div class="filter-box">
-                                <div class="img-box">
-                                    <img src="{{ asset($item->image) }}" alt="{{ $item->name }}" class="img-fluid" />
-                                </div>
-                                <h5 class="product-title mt-2">{{ Str::limit($item->name, 25, '') }}</h5>
+                        <div class="filter-box">
+                            <a href="{{ route('subcategory', $item->id) }}" class="filter-anchor"></a>
+                            <div class="img-box">
+                                <img src="{{ asset($item->image) }}" alt="{{ $item->name }}" class="img-fluid" />
                             </div>
-                        </a>
+                            <h5 class="product-title mt-2">{{ Str::limit($item->name, 25, '') }}</h5>
+                        </div>
                     </div>
                 @endforeach
             </div>
@@ -73,12 +72,6 @@
                     <div class="grand-box">
                         <div class="inner-box">
                             <h3 class="card-title text-uppercase fw-bold mb-3">WHAT WE DO</h3>
-                            <!-- <p class="card-semi-text w-75 mb-4">Pellentesque ut risus a odio posuere aliquet Pellentesque sapien erat .</p>
-                      <ul class="mb-5">
-                        <li><i class="fa-solid fa-circle-arrow-right"></i> <span>Sed massa tellus, aliquam rhoncus, venenatis quis.</span></li>
-                        <li><i class="fa-solid fa-circle-arrow-right"></i> <span>Etiam enim. Suspendisse imperdiet cursus nisi.</span></li>
-                      </ul> -->
-                            <!-- <a href="" class="btn btn-orange text-uppercase rounded-pill">Read More</a> -->
                             <div>
                                 {!! $whatwe->description2 !!}
                             </div>

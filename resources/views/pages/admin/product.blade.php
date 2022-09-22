@@ -27,8 +27,12 @@
                             <div class="row">
                                 <div class="col-md-6 mb-2">
                                     <label for="name" class="mb-2"> Product Name <span class="text-danger">*</span> </label>
-                                    <input type="text" name="name" value="{{ @$productData ? $productData->name : old('name')}}" class="form-control form-control-sm mb-2" id="name" placeholder="Enter Category name">
+                                    <input type="text" name="name" value="{{ @$productData ? $productData->name : old('name')}}" class="form-control form-control-sm mb-2" id="name" placeholder="Enter Category Name">
                                     @error('name') <span style="color: red">{{$message}}</span><br> @enderror
+
+                                    <label for="code" class="mb-2"> Product Code </label>
+                                    <input type="text" name="code" value="{{ @$productData ? $productData->code : old('code')}}" class="form-control form-control-sm mb-2" id="code" placeholder="Enter Product Code">
+                                    @error('code') <span style="color: red">{{$message}}</span><br> @enderror
 
                                     <div class="form-group">
                                         <label for="description">Product Description</label>
@@ -38,9 +42,6 @@
                                         <textarea name="description" class="form-control" id="description" rows="3">{{ old('description') ?  old('description') : '' }}</textarea>
                                         @endif
                                     </div>
-                                    {{-- <label for="name" class="mb-2"> Product Description <span class="text-danger">*</span> </label>
-                                    <textarea name="description" id="description" rows="4" class="form-control">{{ @$productData->description }}</textarea>
-                                    @error('description') <span style="color: red">{{$message}}</span> @enderror --}}
                                 </div>
                                 <div class="col-md-6 mb-2">
                                     <label for="name" class="mb-2"> Category <span class="text-danger">*</span> </label>
@@ -127,7 +128,7 @@
                                     @foreach ($product as $item)
                                     <tr>
                                         <td>{{ $loop->index + 1 }}</td>
-                                        <td><img src="{{ asset($item->image) }}" height="70" alt="" style="max-width: 100%"></td>
+                                        <td><img src="{{ asset($item->image) }}" alt="" style="height: 70px; max-width: 100%"></td>
                                         <td>{{ $item->category->name }}</td>
                                         <td>{{ $item->subcategory->name }}</td>
                                         <td>{{ $item->name }}</td>
@@ -154,7 +155,7 @@
 <script>
     $('#description').summernote({
         tabsize: 2,
-        height: 160
+        height: 100
     });
 </script>
 

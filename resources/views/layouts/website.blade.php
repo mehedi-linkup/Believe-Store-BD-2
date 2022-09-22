@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="keywords" content="Believe Store BD"/>
+    <meta name="keywords" content="Believe Store"/>
 	  <meta name="author" content="Believe Store"/>
-    {{-- <meta property="og:image" content="http://localhost:8080/category/subcategory/product/11" /> --}}
     <!-- FAVICONS ICON -->
 	  <link rel="shortcut icon" href="{{ asset($content->logo) }}">
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Montserrat:wght@100;200;300;400;500;600;700;800&family=Open+Sans:wght@300;400;500;600;700;800&family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">

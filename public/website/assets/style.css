@@ -218,15 +218,12 @@ nav .navbar-brand img {
     background-size: cover;
 }
 .filter-box {
+    position: relative;
     padding: 0px;
     background-color: #fff;
     border: 2px solid transparent;
     transition: all 0.3s;
 }
-.filter-box:hover {
-    border-color: #f00;
-}
-
 .filter-box img {
     transition: all 0.3s;
 }
@@ -234,7 +231,14 @@ nav .navbar-brand img {
 .filter-box:hover img {
     transform: scale(1.1);
 }
-
+.filter-anchor {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    z-index: 1;
+}
 .product-title {
     padding-top: 5px;
     padding-bottom: 5px;
@@ -547,6 +551,25 @@ nav .navbar-brand img {
     margin-top: 50px;
 }
 
+/* Product Detail */
+.product-detail .img-box {
+    width: 35%;
+    margin-left: 40px;
+    margin-right: 40px;
+    height: auto;
+    float: left;
+    border: 1px solid #f2f2f2;
+    border-radius: 15px;
+    overflow: hidden;
+}
+@media(max-width:576px) {
+    .product-detail .img-box {
+        width: 100%;
+        margin-left: 0px;
+        margin-right: 0px;
+        margin-bottom: 30px;
+    }
+}
 /* Third Party app css */
 .viewbox-container {
     z-index: 1031;

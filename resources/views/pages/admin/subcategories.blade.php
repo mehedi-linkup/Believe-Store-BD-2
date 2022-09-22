@@ -88,7 +88,7 @@
                                     @foreach ($subcategory as $item)
                                     <tr>
                                         <td>{{ $loop->index + 1 }}</td>
-                                        <td><img src="{{ asset('uploads/subcategory/'. $item->image) }}" alt="" style="width: 65px; height: 50px"></td>
+                                        <td><img src="{{ asset('uploads/subcategory/'. $item->image) }}" alt="" style="max-width: 100%; height: 70px"></td>
                                         <td>{{ $item->category->name }}</td>
                                         <td>{{ $item->name }}</td>
                                         <td>

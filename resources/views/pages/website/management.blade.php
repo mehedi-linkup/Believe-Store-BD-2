@@ -39,7 +39,6 @@
                                                 class="fa-brands fa-twitter"></i></a></li>
                                     <li><a href="{{ $item->instagram }}" target="_blank"><i
                                                 class="fa-brands fa-instagram"></i></a></li>
-                                    {{-- <li><a href=""><i class="fa-brands fa-linkedin-in"></i></a></li> --}}
                                 </ul>
                             </div>
                             <img src="{{ asset('uploads/management/' . $item->image) }}" alt="{{ $item->name }}"

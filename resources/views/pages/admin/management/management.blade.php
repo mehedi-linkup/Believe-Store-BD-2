@@ -111,7 +111,7 @@
                             @forelse ($management as $key=>$item)
                                 <tr>
                                     <td>{{ $key+1 }}</td>
-                                    <td><img class="border" style="height: 50px; width:65px;" src="{{ asset('uploads/management/'.$item->image) }}" alt=""></td>
+                                    <td><img class="border" style="height: 70px; max-width:100%" src="{{ asset('uploads/management/'.$item->image) }}" alt=""></td>
                                     <td>{{ $item->name }}</td>                                    
                                     <td>{{ $item->designation }}</td>
                                     <td>

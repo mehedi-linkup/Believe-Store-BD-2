@@ -33,6 +33,7 @@ class ProductController extends Controller
             'category_id' => 'required',
             'subcategory_id' => 'required',
             'name' => 'required|max:100',
+            'code' => 'max:50',
             'image' => 'required|image|mimes:jpeg,jpg,png,gif,webp',
         ]);
         
@@ -48,6 +49,7 @@ class ProductController extends Controller
             $product->category_id = $request->category_id;
             $product->subcategory_id = $request->subcategory_id;
             $product->name = $request->name;
+            $product->code = $request->code;
             $product->description = $request->description;
             $product->image = $image_url;
             $product->image_thumb = $thumb_url;
@@ -101,6 +103,7 @@ class ProductController extends Controller
             'category_id' => 'required',
             'subcategory_id' => 'required',
             'name' => 'required|max:100',
+            'code' => 'max:50',
             'image' => 'image|mimes:jpeg,jpg,png,gif,webp',
         ]);
         try {
@@ -130,6 +133,7 @@ class ProductController extends Controller
             $product->category_id = $request->category_id;
             $product->subcategory_id = $request->subcategory_id;
             $product->name = $request->name;
+            $product->code = $request->code;
             $product->description = $request->description;
             $product->save();
             return Redirect()->route('admin.product.edit', $id)->with('success', 'Update Successful!');

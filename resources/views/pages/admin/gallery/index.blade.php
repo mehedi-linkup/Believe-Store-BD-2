@@ -8,7 +8,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="form-area">
-                    <h4 class="heading"><i class="fas fa-plus"></i> Add a Photo (At most 15 photos)</h4>
+                    <h4 class="heading"><i class="fas fa-plus"></i> Add a Photo</h4>
                     <form action="{{ route('store.gallery') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
@@ -61,8 +61,8 @@
                         <tbody>
                             @forelse ($galleries as $key=>$user)
                                 <tr>
-                                    <td>{{ $key+1 }}</td>
-                                    <td><img class="border" style="height: 50px; width:65px;" src="{{ asset('uploads/gallery/'.$user->image) }}" alt=""></td>
+                                    <td>{{ $loop->index+1 }}</td>
+                                    <td><img class="border" style="height: 100px; max-width:100%;" src="{{ asset('uploads/gallery/'.$user->image) }}" alt=""></td>
                                     <td>{{ $user->title }}</td>                                    
                                     <td>
                                         <a href="{{ url('gallery/edit/'. $user->id) }}" type="submit" class="btn btn-info btn-mod-info btn-sm mr-1"><i class="fas fa-edit"></i></button>

@@ -1,35 +1,18 @@
 @extends('layouts.website', ['pageName' => 'product'])
 @section('title', 'Product Detail')
 @push('web-css')
-<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
 <style>
-    .swiper {
-        width: 100%;
-        height: 100%;
+    p {
+        font-size: 15px;
     }
-    .swiper-slide {
-        text-align: center;
-        font-size: 18px;
-        background: #fff;
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: -webkit-flex;
-        display: flex;
-        -webkit-box-pack: center;
-        -ms-flex-pack: center;
-        -webkit-justify-content: center;
-        justify-content: center;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        -webkit-align-items: center;
-        align-items: center;
+    p.title {
+        font-size: 16px;
+        color: #212529;
+        font-weight: 500;
     }
-    .swiper-slide img {
-        display: block;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
+    p.title strong {
+        color: #bf3838;
+    } 
 </style>
 @endpush
 @section('web-content')
@@ -61,45 +44,22 @@
 <section id="product-detail" class="product-detail section-padding">
     <div class="container">
         <div class="row">
-            <div class="col-md-12 col-12">
-                <h2 class="section-title fs-2 fw-bold text-center text-uppercase">Our Products</h2>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6 col-12">
-                <div class="detail-img d-flex justify-content-center align-items-center">
-                    <img src="{{ asset( $product->image ) }}" alt="" class="img-fluid">
+            <div class="col-md-12 col-12 clearfix">
+                <div class="img-box">
+                    <img src="{{ asset($product->image)}}" alt="{{$product->name}}" class="img-fluid">
                 </div>
-            </div>
-            <div class="col-md-6 col-12">
                 <div class="detail-product">
-                    <div class="title"><strong>Product Name: </strong>{{ $product->name}}</div>
-                    {{-- <div class="title"><strong>Product color available: </strong>Red, Green, Blue</div> --}}
-                    <div class="title"><strong>Product Category: </strong>{{ $category->name }}</div>
-                    <div class="title"><strong>Product Sub Category: </strong>{{ $subcategory->name }}</div>
-                    <div class="title" style="color: #000; text-align: justify"><strong>Product Description: </strong>
+                    <h2 class="mt-md-3 py-4" style="color: #ff0000">{{ $product->name}}</h2>
+                    <p class="title"><strong>Product code:</strong> {{ @$product->code?$product->code:'Unavailable'}} </p>
+                    <p class="title"><strong>Category:</strong> {{ @$category->name?$category->name:'Unavailable'}} </p>
+                    <p class="title"><strong>Sub Category:</strong> {{ @$subcategory->name?$subcategory->name:'Unavailable'}} </p>
+                    <div class="mb-0"><strong style="font-size:16px;color: #bf3838;">Description:</strong></div>
+                    <div style="color: #000; text-align: justify; font-size: 15px">
                         {!! $product->description !!}
                     </div>
                 </div>
             </div>
+          
         </div>
     </div>
 </section>
-@endsection
-@push('web-js')
- <!-- Swiper JS -->
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-<!-- Initialize Swiper -->
-<script>
-  var swiper = new Swiper(".mySwiper", {
-    pagination: {
-      el: ".swiper-pagination",
-      type: "fraction",
-    },
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
-  });
-</script>
-@endpush

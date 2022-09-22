@@ -22,6 +22,7 @@ class CreateProductsTable extends Migration
                     ->constrained('subcategories')
                     ->onDelete('cascade');
             $table->string('name', 100);
+            $table->string('code', 100)->nullable();
             $table->longText('description')->nullable();
             $table->text('image');
             $table->text('image_thumb');

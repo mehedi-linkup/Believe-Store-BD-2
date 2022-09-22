@@ -12,20 +12,19 @@
                         <i class="fas fa-edit mr-1"></i>Update Category
                         
                         @else
-                        <i class="fas fa-plus mr-1"></i>Add Category (At most 8 category)
+                        <i class="fas fa-plus mr-1"></i>Add Category 
                         @endif
                     </div>
                     <div class="card-body">
                         <form action="{{ (@$categoryData) ? route('admin.category.update', $categoryData->id) : route('admin.category.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            
                             <div class="row">
                                 <div class="col-md-6 mb-2">
                                     <label for="name"> Name <span class="text-danger">*</span> </label>
                                     <input type="text" name="name" value="{{ @$categoryData ? $categoryData->name : old('name')}}" class="form-control form-control-sm mb-2" id="name" placeholder="Enter Category Name">
                                     @error('name') <span style="color: red">{{$message}}</span><br> @enderror
 
-                                    <label for="image"> Image <small>(Size: 768px * 768px)</small> <span class="text-danger">*</span> </label>
+                                    <label for="image"> Image <small><span class="text-danger">*</span> (Size: 768px * 768px)</small></label>
                                     <input type="file" name="image" value="{{ @$categoryData->image }}" class="form-control form-control-sm" id="image" onchange="mainThambUrl(this)">
                                     @error('image') <span style="color: red">{{$message}}</span> @enderror
                                 </div>
@@ -71,7 +70,7 @@
                                         <td>{{ $loop->index + 1 }}</td>
                                         <td>
                                             @if($item->image)
-                                                <img src="{{ asset($item->image) }}" alt="" style="height: 50px; width: 65px">
+                                                <img src="{{ asset($item->image) }}" alt="" style="height: 70px; max-width: 100%">
                                             @else
                                                 <img src="{{ asset('uploads/no.png') }}" alt="" style="height: 50px; width: 65px">
                                             @endif

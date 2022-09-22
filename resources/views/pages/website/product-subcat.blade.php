@@ -24,7 +24,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12 col-12">
-          <h2 class="section-title fs-2 fw-bold text-center text-uppercase text-white">{{ $subcategory->name }}</h2>
+          <h2 class="fs-2 fw-bold text-center text-uppercase text-white"><span class="section-border">{{ $subcategory->name }}</span></h2>
         </div>
       </div>
       {{-- <div id="fb-root"></div> --}}
@@ -32,18 +32,20 @@
       {{-- <div class="fb-share-button" data-href="http://website.factorybelievestore.com/product/32" data-layout="button_count">button</div> --}}
       <div class="row gy-3">
         @foreach($product as $item)
-        <div class="col-md-3 col-12 text-center">
-          <a href="{{ route('productDetail', $item->id) }}" class="filter-anchor">
-            <div class="filter-box">
+        <div class="col-md-3 col-12">
+          <div class="filter-box">
+              <a href="{{ route('productDetail', $item->id) }}" class="filter-anchor">
+              </a>
               <div class="img-box">
-                <img src="{{ asset( $item->image ) }}" alt="{{ $item->name }}" class="img-fluid"/>
+                <img src="{{ asset( @$item->image_thumb?$item->image_thumb:$item->image ) }}" alt="{{ $item->name }}" class="img-fluid"/>
               </div>
-              <h5 class="product-title mt-2">{{ $item->name }}</h5>
-              <div class="py-2">
-                <a class="btn btn-sm btn-danger" href="{{ $messenger->link }}">Order Now</a>
+              <h5 class="product-title  text-center mt-2">{{ $item->name }}</h5>
+              <div class="pt-2 d-flex" style="padding-right: 5px; padding-left:5px">
+                <a class="btn btn-sm btn-danger" style="width:58%;border-radius:unset;z-index:2" href="{{ $messenger->link }}">Order Now</a>
+                <a class="btn btn-sm btn-primary ms-auto" style="border-radius:unset;z-index:2" href="{{ route('productDetail', $item->id) }}">View Details</a>
               </div>
             </div>
-          </a>
+         
         </div>
         @endforeach
       </div>
