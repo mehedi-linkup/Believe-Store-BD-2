@@ -35,15 +35,15 @@
                             $monthName = $dateObj->format('F');
                         @endphp
                         <div class="col-md-3 col-12">
-                            <div class="full-box" style="height: 100%">
-                                <div class="image-card">
+                            <div class="full-box" style="background-color:#fff">
+                                <div class="image-card" style="height:240px;overflow:hidden">
                                     <div class="post-date-box"> {{ date('d', strtotime($item->created_at)) }}
                                         <span>{{ $monthName }},
                                             {{ date('y', strtotime($item->created_at)) }}</span></div>
                                     <img src="{{ asset($item->image) }}" alt="" class="img-fluid">
                                 </div>
                                 <div class="text-box">
-                                    <h4><a href="{{ route('newsDetail', $item->id) }}">{{ $item->title }}</a></h4>
+                                    <h4 style="height:57px;overflow:hidden;"><a href="{{ route('newsDetail', $item->id) }}">{{ $item->title }}</a></h4>
                                     <p>{{ Str::words($item->description, 15, '') }}</p>
                                 </div>
                             </div>

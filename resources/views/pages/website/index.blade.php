@@ -62,7 +62,7 @@
                     <div class="grand-box">
                         <div class="inner-box">
                             <h3 class="card-title text-uppercase fw-bold mb-3">Who we are</h3>
-                            <div style="max-height: 234px; overflow: auto;">
+                            <div style="height: 234px; overflow: auto;">
                                 {!! $whatwe->description1 !!}
                             </div>
                         </div>
@@ -72,7 +72,7 @@
                     <div class="grand-box">
                         <div class="inner-box">
                             <h3 class="card-title text-uppercase fw-bold mb-3">WHAT WE DO</h3>
-                            <div>
+                            <div style="height: 234px; overflow: auto;">
                                 {!! $whatwe->description2 !!}
                             </div>
                         </div>
@@ -190,15 +190,15 @@
                                 $monthName = $dateObj->format('F');
                             @endphp
                             <div class="col-md-6 col-12">
-                                <div class="full-box" style="height: 100%">
-                                    <div class="image-card">
+                                <div class="full-box" style="background-color: #fff">
+                                    <div class="image-card" style="height: 240px;overflow:hidden">
                                         <div class="post-date-box"> {{ date('d', strtotime($item->created_at)) }}
                                             <span>{{ $monthName }},
                                                 {{ date('y', strtotime($item->created_at)) }}</span></div>
                                         <img src="{{ asset($item->image) }}" alt="" class="img-fluid">
                                     </div>
                                     <div class="text-box">
-                                        <h4><a href="{{ route('newsDetail', $item->id) }}">{{ $item->title }}</a></h4>
+                                        <h4 style="height:57px;overflow: hidden;"><a href="{{ route('newsDetail', $item->id) }}">{{ $item->title }}</a></h4>
                                         <p>{{ Str::words($item->description, 15, '') }}</p>
                                     </div>
                                 </div>
