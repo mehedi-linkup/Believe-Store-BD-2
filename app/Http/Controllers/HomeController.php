@@ -20,7 +20,7 @@ class HomeController extends Controller
 {
     public function index()
     {   
-        $category = Category::latest()->get();
+        $category = Category::orderBy('rank', 'asc')->get();
         $slider = Slider::latest()->get();
         $whatwe = Whatwe::first();
         $video = Video::latest()->get();
@@ -53,7 +53,7 @@ class HomeController extends Controller
     public function product() {
         $backimage = BackImage::first();
         $messenger = Messenger::first();
-        $product = Product::latest()->get();
+        $product = Product::orderBy('rank', 'asc')->get();
         return view('pages.website.product', compact('backimage', 'product', 'messenger'));
     }
     public function subcategory($id) {

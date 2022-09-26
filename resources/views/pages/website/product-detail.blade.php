@@ -51,6 +51,7 @@
                 <div class="detail-product">
                     <h2 class="mt-md-3 py-4" style="color: #ff0000">{{ $product->name}}</h2>
                     <p class="title"><strong>Product code:</strong> {{ @$product->code?$product->code:'Unavailable'}} </p>
+                    <p class="title"><strong>Product price:</strong> {{ @$product->price?$product->price:'Unavailable'}} </p>
                     <p class="title"><strong>Category:</strong> {{ @$category->name?$category->name:'Unavailable'}} </p>
                     <p class="title"><strong>Sub Category:</strong> {{ @$subcategory->name?$subcategory->name:'Unavailable'}} </p>
                     <div class="mb-0"><strong style="font-size:16px;color: #bf3838;">Description:</strong></div>

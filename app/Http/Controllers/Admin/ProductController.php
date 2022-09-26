@@ -17,7 +17,8 @@ class ProductController extends Controller
     {
         $subcategory = Subcategory::latest()->get();
         $category = Category::latest()->get();
-        $product = Product::latest()->get();
+        $product = Product::orderBy('rank', 'ASC')->get();
+       
         return view('pages.admin.product', compact('subcategory', 'category', 'product'));
     }
 
@@ -33,8 +34,10 @@ class ProductController extends Controller
             'category_id' => 'required',
             'subcategory_id' => 'required',
             'name' => 'required|max:100',
+            'rank' => 'required|unique:products',
             'code' => 'max:50',
             'image' => 'required|image|mimes:jpeg,jpg,png,gif,webp',
+            'price' => 'numeric'
         ]);
         
         try {
@@ -49,7 +52,9 @@ class ProductController extends Controller
             $product->category_id = $request->category_id;
             $product->subcategory_id = $request->subcategory_id;
             $product->name = $request->name;
+            $product->rank = $request->rank;
             $product->code = $request->code;
+            $product->price = $request->price;
             $product->description = $request->description;
             $product->image = $image_url;
             $product->image_thumb = $thumb_url;
@@ -103,8 +108,10 @@ class ProductController extends Controller
             'category_id' => 'required',
             'subcategory_id' => 'required',
             'name' => 'required|max:100',
+            'rank' => 'required',
             'code' => 'max:50',
             'image' => 'image|mimes:jpeg,jpg,png,gif,webp',
+            'price' => 'numeric',
         ]);
         try {
             $product = Product::find($id);
@@ -133,12 +140,18 @@ class ProductController extends Controller
             $product->category_id = $request->category_id;
             $product->subcategory_id = $request->subcategory_id;
             $product->name = $request->name;
+            if(($product->rank != $request->rank) && Product::where('rank', $request->rank)->count() > 0 ) {
+                return Redirect()->back()->with('error', 'Rank Exist!');
+            } else {
+                $product->rank = $request->rank;
+            }
             $product->code = $request->code;
+            $product->price = $request->price;
             $product->description = $request->description;
             $product->save();
             return Redirect()->route('admin.product.edit', $id)->with('success', 'Update Successful!');
         } catch (\Throwable $th) {
-            // throw $th;
+            throw $th;
             return Redirect()->back()->with('failed', 'Product Update Failed!');
         }   
     }

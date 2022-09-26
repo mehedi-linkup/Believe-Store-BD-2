@@ -15,7 +15,7 @@ class CategoryController extends Controller
     
     public function index()
     {
-        $category = Category::latest()->get();
+        $category = Category::orderBy('rank', 'asc')->get();
         return view('pages.admin.categories', compact('category'));
     }
 
@@ -29,6 +29,7 @@ class CategoryController extends Controller
     {
         $request->validate([
             'name' => 'required|unique:categories,name|max:100',
+            'rank' => 'required|unique:categories',
             'image' => 'required|mimes:jpeg,png,jpg,gif,webp',
         ]);
         try {
@@ -45,6 +46,7 @@ class CategoryController extends Controller
             }
             $category = new Category();
             $category->name = $request->name;
+            $category->rank = $request->rank;
             $category->image = $lastImage;
             $category->save();
             
@@ -73,7 +75,7 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $categoryData = Category::findOrFail($id);
-        $category = Category::latest()->get();
+        $category = Category::orderBy('rank', 'asc')->get();
         return view('pages.admin.categories', compact('category', 'categoryData'));
     }
 
@@ -88,12 +90,18 @@ class CategoryController extends Controller
     {
         $request->validate([
             'name' => 'required|max:100',
+            'rank' => 'required',
             'image' => 'mimes:jpeg,png,jpg,gif,webp',
         ]);
         
         try {
             $category = Category::findOrFail($id);
             $category->name = $request->name;
+            if(($category->rank != $request->rank) && Category::where('rank', $request->rank)->count() > 0 ) {
+                return Redirect()->back()->with('error', 'Rank Exist!');
+            } else {
+                $category->rank = $request->rank;
+            }
             $image = $request->file('image');
             if($image) {
                 $imageName = date('YmdHi').$image->getClientOriginalName();
@@ -111,10 +119,10 @@ class CategoryController extends Controller
             //     'alert-type'=>'success'
             // );
             // return Redirect()->route('admin.categories')->with($notification);
-            return Redirect()->route('admin.categories')->with('success', 'Category Insertion Successful!');
+            return Redirect()->route('admin.categories')->with('success', 'Update Successful!');
 
         } catch (\Exception $e) {
-            return Redirect()->back()->with('error', 'Category Insertion Failed!');
+            return Redirect()->back()->with('error', 'Update Failed!');
             // $notification=array(
             //     'message'=>'Something went wrong',
             //     'alert-type'=>'success'

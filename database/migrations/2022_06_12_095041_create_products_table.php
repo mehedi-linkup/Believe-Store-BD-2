@@ -22,7 +22,9 @@ class CreateProductsTable extends Migration
                     ->constrained('subcategories')
                     ->onDelete('cascade');
             $table->string('name', 100);
+            $table->integer('rank', 11);
             $table->string('code', 100)->nullable();
+            $table->integer('price')->nullable();
             $table->longText('description')->nullable();
             $table->text('image');
             $table->text('image_thumb');

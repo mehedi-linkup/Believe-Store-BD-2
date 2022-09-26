@@ -19,6 +19,7 @@ class CreateSubcategoriesTable extends Migration
                     ->constrained('categories')
                     ->onDelete('cascade');
             $table->string('name', 100);
+            $table->integer('rank');
             $table->string('image');
             $table->softDeletes();
             $table->timestamps();

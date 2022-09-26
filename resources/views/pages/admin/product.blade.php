@@ -30,20 +30,27 @@
                                     <input type="text" name="name" value="{{ @$productData ? $productData->name : old('name')}}" class="form-control form-control-sm mb-2" id="name" placeholder="Enter Category Name">
                                     @error('name') <span style="color: red">{{$message}}</span><br> @enderror
 
+                                    <label for="rank" class="mb-2"> Product Rank <span class="text-danger">*</span> </label>
+                                    <input type="number" name="rank" value="{{ @$productData ? $productData->rank : old('rank')}}" class="form-control form-control-sm mb-2" id="rank" placeholder="Enter Rank">
+                                    @error('rank') <span style="color: red">{{$message}}</span><br> @enderror
+
+
                                     <label for="code" class="mb-2"> Product Code </label>
                                     <input type="text" name="code" value="{{ @$productData ? $productData->code : old('code')}}" class="form-control form-control-sm mb-2" id="code" placeholder="Enter Product Code">
                                     @error('code') <span style="color: red">{{$message}}</span><br> @enderror
 
-                                    <div class="form-group">
-                                        <label for="description">Product Description</label>
-                                        @if(@$productData)
-                                        <textarea name="description" class="form-control" id="description" rows="3">{{  $productData->description }}</textarea>
-                                        @else
-                                        <textarea name="description" class="form-control" id="description" rows="3">{{ old('description') ?  old('description') : '' }}</textarea>
-                                        @endif
-                                    </div>
+                                   
+                                    <label for="description">Product Description</label>
+                                    @if(@$productData)
+                                    <textarea name="description" class="form-control" id="description" rows="3">{{  $productData->description }}</textarea>
+                                    @else
+                                    <textarea name="description" class="form-control" id="description" rows="3">{{ old('description') ?  old('description') : '' }}</textarea>
+                                    @endif
+                                   
                                 </div>
                                 <div class="col-md-6 mb-2">
+                                   
+
                                     <label for="name" class="mb-2"> Category <span class="text-danger">*</span> </label>
                                     <select name="category_id" class="form-control form-control-sm mb-2">
                                         <option value="">Select Category Option</option>
@@ -76,6 +83,13 @@
 
                                     </select>
                                     @error('subcategory_id') <span style="color: red">{{$message}}</span> @enderror
+
+
+                                    <label for="price" class="mb-2"> Product Price </label>
+                                    <input type="number" name="price" value="{{ @$productData ? $productData->price : old('price')}}" class="form-control form-control-sm mb-2" id="price" placeholder="Enter Product Price">
+                                    @error('price') <span style="color: red">{{$message}}</span><br> @enderror
+
+
 
                                     <label for="image" class="mb-2">Product Image <span class="text-danger">*</span> <small>(Size: 4000px * 2667px)</small></label>
                                     <input class="form-control form-control-sm" id="image" type="file" name="image" onchange="mainThambUrl(this)">
@@ -117,9 +131,11 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
+                                        <th>Rank No</th>
                                         <th>Image</th>
                                         <th>Category</th>
                                         <th>Subcategory</th>
+                                        <th>Price</th>
                                         <th>Product Name</th>
                                         <th>Action</th>
                                     </tr>
@@ -128,9 +144,11 @@
                                     @foreach ($product as $item)
                                     <tr>
                                         <td>{{ $loop->index + 1 }}</td>
+                                        <td>{!! @$item->rank ? $item->rank : '<span class="text-danger">None</span>' !!}</td>
                                         <td><img src="{{ asset($item->image) }}" alt="" style="height: 70px; max-width: 100%"></td>
                                         <td>{{ $item->category->name }}</td>
                                         <td>{{ $item->subcategory->name }}</td>
+                                        <td>{{ @$item->price?$item->price:'Unknown' }}</td>
                                         <td>{{ $item->name }}</td>
                                         <td>
                                             <a href="{{ route('admin.product.edit', $item->id) }}" class="btn-sm btn btn-info"><i class="fas fa-edit"></i></a>

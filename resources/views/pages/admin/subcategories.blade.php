@@ -42,6 +42,10 @@
                                     <input type="text" name="name" value="{{ @$subcategoryData ? $subcategoryData->name : old('name') }}" class="form-control form-control-sm mb-2" id="name" placeholder="Enter Category name">
                                     @error('name') <span style="color: red">{{$message}}</span><br> @enderror
 
+                                    <label for="rank"> Subcategory Rank <span class="text-danger">*</span> </label>
+                                    <input type="number" name="rank" value="{{ @$subcategoryData ? $subcategoryData->rank : old('rank') }}" class="form-control form-control-sm mb-2" id="rank" placeholder="Enter Rank">
+                                    @error('rank') <span style="color: red">{{$message}}</span><br> @enderror
+
 
                                     <label for="image"> Subcategory Image<span class="text-danger">*</span> <small>(Size: 768px * 768px)</small></label>
                                     <input type="file" name="image" value="{{ @$subcategoryData->image }}" class="form-control form-control-sm mb-2" id="image" onchange="mainThambUrl(this)">
@@ -78,6 +82,7 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
+                                        <th>Rank</th>
                                         <th>Image</th>
                                         <th>Category</th>
                                         <th>Name</th>
@@ -88,6 +93,7 @@
                                     @foreach ($subcategory as $item)
                                     <tr>
                                         <td>{{ $loop->index + 1 }}</td>
+                                        <td>{!! @$item->rank? $item->rank : '<span class="text-danger">None</span>' !!}</td>
                                         <td><img src="{{ asset('uploads/subcategory/'. $item->image) }}" alt="" style="max-width: 100%; height: 70px"></td>
                                         <td>{{ $item->category->name }}</td>
                                         <td>{{ $item->name }}</td>

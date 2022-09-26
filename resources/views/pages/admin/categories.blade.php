@@ -24,6 +24,11 @@
                                     <input type="text" name="name" value="{{ @$categoryData ? $categoryData->name : old('name')}}" class="form-control form-control-sm mb-2" id="name" placeholder="Enter Category Name">
                                     @error('name') <span style="color: red">{{$message}}</span><br> @enderror
 
+                                    <label for="rank"> Rank <span class="text-danger">*</span> </label>
+                                    <input type="number" name="rank" value="{{ @$categoryData ? $categoryData->rank : old('rank')}}" class="form-control form-control-sm mb-2" id="rank" placeholder="Enter Rank">
+                                    @error('rank') <span style="color: red">{{$message}}</span><br> @enderror
+
+
                                     <label for="image"> Image <small><span class="text-danger">*</span> (Size: 768px * 768px)</small></label>
                                     <input type="file" name="image" value="{{ @$categoryData->image }}" class="form-control form-control-sm" id="image" onchange="mainThambUrl(this)">
                                     @error('image') <span style="color: red">{{$message}}</span> @enderror
@@ -59,6 +64,7 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
+                                        <th>Rank</th>
                                         <th>Image</th>
                                         <th>Name</th>
                                         <th>Action</th>
@@ -68,6 +74,7 @@
                                     @foreach ($category as $item)
                                     <tr>
                                         <td>{{ $loop->index + 1 }}</td>
+                                        <td>{!! @$item->rank? $item->rank : "<span class='text-danger'>None</span>" !!}</td>
                                         <td>
                                             @if($item->image)
                                                 <img src="{{ asset($item->image) }}" alt="" style="height: 70px; max-width: 100%">
