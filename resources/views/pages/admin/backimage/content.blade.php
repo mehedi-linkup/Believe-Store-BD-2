@@ -59,7 +59,7 @@
             reader.readAsDataURL(input.files[0]);
         }
     }
-    document.getElementById("previewImage1").src="{{ asset('/website/assets/image/section-background/'.$backimage->bgimage_other) }}";
+    document.getElementById("previewImage1").src="{{ asset($backimage->bgimage_other) }}";
 
     function readURL2(input) {
         if (input.files && input.files[0]) {
@@ -75,6 +75,6 @@
             reader.readAsDataURL(input.files[0]);
         }
     }
-    document.getElementById("previewImage2").src="{{ asset('/website/assets/image/section-background/'.$backimage->bgimage_news) }}";
+    document.getElementById("previewImage2").src="{{ asset($backimage->bgimage_news) }}";
 </script>
 @endpush

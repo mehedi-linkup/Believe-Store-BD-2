@@ -207,7 +207,7 @@
                     </div>
                 </div>
                 <div class="col-md-4 col-12 pe-0 d-none d-md-block">
-                    <img src="{{ asset('website/assets/image/section-background/' . $backimage->bgimage_news) }}"
+                    <img src="{{ asset($backimage->bgimage_news) }}"
                         alt="" class="cover-img w-100 h-100">
                 </div>
             </div>

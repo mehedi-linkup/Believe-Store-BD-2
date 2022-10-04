@@ -13,7 +13,7 @@ class SubcategoryController extends Controller
 {
     public function index()
     {
-        $subcategory = Subcategory::orderBy('rank', 'asc')->get();
+        $subcategory = Subcategory::orderBy('category_id', 'desc')->orderBy('rank', 'asc')->get();
         $category = Category::latest()->get();
         return view('pages.admin.subcategories', compact('subcategory', 'category'));
     }
@@ -22,7 +22,6 @@ class SubcategoryController extends Controller
     {
         $validatedData = $request->validate([
             'category_id' => 'required',
-            'rank' => 'required|unique:subcategories',
             'name' => 'required|unique:subcategories,name|max:100',
             'image' => 'required|mimes:jpeg,jpg,png,gif,webp'
         ]);
@@ -30,8 +29,15 @@ class SubcategoryController extends Controller
         try {
             $subcategory = new Subcategory();
             $subcategory->category_id = $request->category_id;
-            $subcategory->rank = $request->rank;
             $subcategory->name = $request->name;
+            
+            $myRank = Subcategory::where('category_id', $request->category_id)->where('rank', $request->rank)->get();
+            if($myRank->count() > 0) {
+                return Redirect()->back()->with('error', 'Rank Already Exist For This Category!');
+            } else {
+                $subcategory->rank = $request->rank;
+            }
+            
             $image = $request->file('image');
             if($image) {
                 $imageName = date('YmdHi').$image->getClientOriginalName();
@@ -40,26 +46,18 @@ class SubcategoryController extends Controller
             }
             $subcategory->save();
 
-            $notification=array(
-                'message'=>'Subcategory Created Succefully..',
-                'alert-type'=>'success'
-            );
-            return Redirect()->back()->with($notification);
+            return Redirect()->back()->with('success', 'Insert Successful');
 
         } catch (\Exception $e) {   
 
-            $notification=array(
-                'message'=>'Something went wrong',
-                'alert-type'=>'success'
-            );
-            return Redirect()->back()->with($notification);
+            return Redirect()->back()->with('error', 'Insert Failed!');
         }
     }
 
     public function edit($id)
     {
         $subcategoryData = Subcategory::findOrFail($id);
-        $subcategory = Subcategory::orderBy('rank', 'asc')->get();
+        $subcategory = Subcategory::orderBy('category_id', 'desc')->orderBy('rank', 'asc')->get();
         $category = Category::latest()->get();
         return view('pages.admin.subcategories', compact('subcategory', 'subcategoryData', 'category'));
     }
@@ -76,8 +74,7 @@ class SubcategoryController extends Controller
             $subcategory = Subcategory::findOrFail($id);
             $subcategory->category_id = $request->category_id;
             $subcategory->name = $request->name;
-
-            if($subcategory->rank != $request->rank && Subcategory::where('rank', $request->rank)->count() > 0) {
+            if(Subcategory::where('category_id', $request->category_id)->where('rank', $request->rank)->where('id', '!=', $subcategory->id)->count() > 0) {
                 return redirect()->back()->with('error', 'Rank Exists');
             } else {
                 $subcategory->rank = $request->rank;
@@ -92,13 +89,9 @@ class SubcategoryController extends Controller
                 }
                 $subcategory['image'] = $imageName;
             }
-            $subcategory->save();
+            $subcategory->update();
 
-            $notification=array(
-                'message'=>'Subcategory Updated Succefully..',
-                'alert-type'=>'success'
-            );
-            return Redirect()->back()->with($notification);
+            return Redirect()->back()->with('success', 'Update Successful!');
 
         } catch (\Exception $e) {
             $notification=array(
