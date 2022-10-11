@@ -5,7 +5,7 @@
               <div class="col-md-3 col-6">
                   {{-- <h3 class="company-title">{{ $content->name }}</h3> --}}
                   <h4>{{ $content->name }}</h4>
-                  <div class="about-text">{!! Str::words($content->about, 25, '') !!}</div>
+                  <div class="about-text">{!! Str::words($content->s_description, 30, '') !!}</div>
               </div>
               <div class="col-md-3 col-6">
                   <h4>Company Address</h4>
@@ -32,20 +32,4 @@
           </div>
       </div>
   </div>
-  {{-- <div class="footer-end">
-      <div class="container">
-          <div class="row">
-              <div class="col-md-6 col-12">
-                  <div class="copyright">
-                      <p>&copy; Copyright 2022, All right reserved.</p>
-                  </div>
-              </div>
-              <div class="col-md-6 col-12">
-                  <div class="developed">
-                      <p>Designed & Developed By <a href="https://www.linktechbd.com" target="_blank">Link Up Technology Ltd.</a></p>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div> --}}
 </footer>

@@ -64,6 +64,7 @@ class CompanyProfileController extends Controller
             $company->phone = $request->phone;
             $company->address = $request->address;
             $company->about = $request->about;
+            $company->s_description = $request->s_description;
             $company->facebook = $request->facebook;
             $company->youtube = $request->youtube;
             $company->instagram = $request->instagram;

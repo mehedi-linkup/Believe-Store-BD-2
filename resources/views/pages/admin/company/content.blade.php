@@ -95,6 +95,14 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+
+                                <label for="s_description">Short Description</label>
+                                <textarea type="text" id="s_description" name="s_description" class="form-control form-control-sm shadow-none @error('s_description') is-invalid @enderror mb-2" rows="5">{{ $company->s_description }}</textarea>
+                                @error('s_description')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                             <div class="col-md-6 mb-2">
                                 <label for="about" class="mt-2">Company About</label>

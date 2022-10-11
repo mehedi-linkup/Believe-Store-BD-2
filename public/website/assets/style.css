@@ -478,6 +478,7 @@ nav .navbar-brand img {
 .site-footer .about-text {
     color: #ddd;
     text-align: justify;
+    font-family: 'lato';
 }
 .site-footer .address {
     padding-left: 0;
